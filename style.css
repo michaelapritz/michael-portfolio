@@ -121,10 +121,13 @@ body {
 	justify-content: center;
 	flex-wrap: wrap;
 	margin: 50px 0px 0px 0px;
-	column-gap: 4%;
+	column-gap: 5%;
+}
+#resume .section-wrap {
+	margin-bottom: 45px;
 }
 #resume .col-1-container {
-	width: 33%;
+	width: 29%;
 }
 #resume .col-1-container .pfp img {
 	height: 200px;
@@ -132,7 +135,6 @@ body {
 	border-radius: 50%;
 	transition-delay: 300ms;
 	transition-duration: 1000ms;
-
 }
 #resume .col-1-container .name {
 	color: #000;
@@ -158,13 +160,138 @@ body {
 	width: 600px;
 	max-width: 100%;
 }
+#resume .col-1-container .at-a-glance {
+	align-content: center;
+	align-items: center;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	max-width: 100%;
+	display: flex;
+	flex: none;
+	position: relative;
+	text-transform: uppercase;
+}
+#resume .col-1-container .at-a-glance > div {
+	display: flex;
+	position: relative;
+	align-content: center;
+	align-items: center;
+	background: rgba(0,0,0,0.0);
+	border-top: 2px solid #000;
+	border-right: 0px solid #000;
+	border-bottom: 2px solid #000;
+	border-left: 0px solid #000;
+	flex: none;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	height: auto;
+	justify-content: space-between;
+	padding: 10px 0px;
+	width: 100%;
+	max-width: 100%;
+	font-family: "aptos", sans-serif;
+	font-size: 13px;
+	font-weight: 700;
+	line-height: 0;
+}
+#resume .col-1-container .at-a-glance .line-2 {
+	border: none;
+}
+#resume .col-1-container .contact {
+	display: flex;
+	position: relative;
+	align-content: center;
+	align-items: center;
+	background: rgba(0,0,0,0.0);
+	border-top: 2px solid #000;
+	border-right: 2px solid #000;
+	border-bottom: 2px solid #000;
+	border-left: 2px solid #000;
+	flex: none;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	height: 40px;
+	justify-content: center;
+	margin: 0;
+	width: 100%;
+	max-width: 100%;
+	font-family: "aptos", sans-serif;
+	font-size: 13px;
+	font-weight: 700;
+	line-height: 0;
+	text-decoration: none;
+	transition: .3s cubic-bezier(.4,.4,0,1);
+	text-transform: uppercase;
+}
+#resume .col-1-container a {
+	text-decoration: none;
+	color: #000;
+	cursor: pointer;
+}
+#resume .col-1-container .contact:hover {
+	background: rgba(0,0,0,1);
+	color: #fff;
+	transition: .3s cubic-bezier(.4,.4,0,1);
+}
+#resume .col-1-container .skills {
+	color: #000;
+	font-family: "aptos-display", sans-serif;
+	font-weight: 600;
+	font-style: normal;
+	font-size: 13px;
+	margin: 30px 0px 0px 0px;
+	display: flex;
+	flex: none;
+	position: relative;
+	align-content: center;
+	align-items: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	padding: 0;
+	transform: translate(-5px, 0px);
+	transition-duration: 1000ms;
+	row-gap: 7px;
+	column-gap: 7px;
+}
+#resume .col-1-container .skills > div {
+	align-content: center;
+	align-items: center;
+	border: 2px solid rgba(0, 0, 0, 1);
+	display: flex;
+	flex: none;
+	position: relative;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	margin: px;
+	padding: 0px 15px 0px;
+	max-width: calc(100% - 10px);
+	line-height: 0;
+	border-radius: 16px;
+	text-align: center;
+	width: auto;
+	max-width: 100%;
+	height: 32px;
+	word-break: break-word;
+	overflow: visible;
+	overflow-wrap: anywhere;
+	transition: .3s cubic-bezier(.4,.4,0,1);
+}
+#resume .col-1-container .skills > div:hover {
+	background: rgba(0,0,0,1);
+	color: #fff;
+	transition: .3s cubic-bezier(.4,.4,0,1);
+	cursor: pointer;
+}
 #resume .col-2-container {
-	width: 63%;
+	width: 66%;
 }
-#resume .col-2-container .section-wrap {
-	margin-bottom: 45px;
-}
-#resume .col-2-container .section-heading {
+#resume .section-heading {
 	text-transform: uppercase;
 	color: #000;
 	font-family: "aptos-display", sans-serif;
@@ -175,7 +302,7 @@ body {
 	text-align: right;
 	margin: 0px 0px 10px 0px;
 }
-#resume .col-2-container .border-thin {
+#resume .border-thin {
 	background: #000;
 	flex: none;
 	height: 2px;
@@ -184,7 +311,7 @@ body {
 	width: 100%;
 	max-width: 100%;
 }
-#resume .col-2-container .border-thick {
+#resume .border-thick {
 	background: #000;
 	flex: none;
 	height: 4px;
@@ -263,6 +390,7 @@ body {
 	font-family: "aptos", sans-serif;
 	font-size: 15px;
 	font-weight: 400;
+	font-style: normal;
 	height: auto;
 	line-height: 1.5;
 	text-align: justify;
@@ -275,6 +403,7 @@ body {
 	font-family: "aptos", sans-serif;
 	font-size: 15px;
 	font-weight: 400;
+	font-style: normal;
 	height: auto;
 	line-height: 1.5;
 	text-align: justify;
