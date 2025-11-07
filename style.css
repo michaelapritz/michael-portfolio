@@ -233,7 +233,19 @@ body {
 	height: 65px;
 	width: 65px;
 	border-radius: 8px;
-	box-shadow: 0px 0px 3px rgba(0,0,0,0.3)
+	box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+}
+
+#resume .col-2-container .job-container div.company-img {
+	opacity: 1.0;
+	transition: opacity 300ms ease-in-out;
+	cursor: pointer;
+}
+
+#resume .col-2-container .job-container div.company-img:hover {
+	opacity: 0.8;
+	transition: opacity 300ms ease-in-out;
+	cursor: pointer;
 }
 
 #resume .col-2-container .job-container .col-2 p {
@@ -277,4 +289,12 @@ body {
 	width: 100%;
 	max-width: 100%;
 	margin-top: 30px;
+}
+
+#resume .col-2-container .break-blank {
+	flex: none;
+	height: 0px;
+	width: 100%;
+	max-width: 100%;
+	margin-top: 60px;
 }
