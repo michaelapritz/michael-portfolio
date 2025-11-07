@@ -9,10 +9,10 @@ body {
 	align-items: center;
 	background: rgba(0,0,0,0.0);
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-	border_right: 0px solid rgba(0, 0, 0, 0.1);
+	border-right: 0px solid rgba(0, 0, 0, 0.1);
 	border-top: 0px solid rgba(0, 0, 0, 0.1);
 	flex: none;
-	flex-directin: row;
+	flex-direction: row;
 	flex-wrap: nowrap;
 	height: 60px;
 	justify-content: space-between;
