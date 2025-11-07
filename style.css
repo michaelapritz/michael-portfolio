@@ -258,7 +258,7 @@ body {
 	row-gap: 7px;
 	column-gap: 7px;
 }
-#resume .col-1-container .skills > div {
+#resume .col-1-container .skills a > div {
 	align-content: center;
 	align-items: center;
 	border: 2px solid rgba(0, 0, 0, 1);
@@ -282,7 +282,7 @@ body {
 	overflow-wrap: anywhere;
 	transition: .3s cubic-bezier(.4,.4,0,1);
 }
-#resume .col-1-container .skills > div:hover {
+#resume .col-1-container .skills a > div:hover {
 	background: rgba(0,0,0,1);
 	color: #fff;
 	transition: .3s cubic-bezier(.4,.4,0,1);
