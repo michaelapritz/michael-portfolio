@@ -238,12 +238,15 @@ body {
 	transition: .3s cubic-bezier(.4,.4,0,1);
 }
 #resume .col-1-container .skills {
+	margin: 30px 0px;
+}
+#resume .col-1-container .skills-sub {
 	color: #000;
 	font-family: "aptos-display", sans-serif;
 	font-weight: 600;
 	font-style: normal;
 	font-size: 13px;
-	margin: 30px 0px 0px 0px;
+	margin: 0;
 	display: flex;
 	flex: none;
 	position: relative;
@@ -258,7 +261,7 @@ body {
 	row-gap: 7px;
 	column-gap: 7px;
 }
-#resume .col-1-container .skills a > div {
+#resume .col-1-container .skills-sub a > div, #resume .col-1-container .skills-sub > div {
 	align-content: center;
 	align-items: center;
 	border: 2px solid rgba(0, 0, 0, 1);
@@ -282,12 +285,22 @@ body {
 	overflow-wrap: anywhere;
 	transition: .3s cubic-bezier(.4,.4,0,1);
 }
-#resume .col-1-container .skills a > div:hover {
+#resume .col-1-container .skills-sub a > div:hover {
 	background: rgba(0,0,0,1);
 	color: #fff;
 	transition: .3s cubic-bezier(.4,.4,0,1);
 	cursor: pointer;
 }
+#resume .col-1-container .skills h2 {
+	color: #000;
+	font-family: "aptos-display", sans-serif;
+	font-weight: 600;
+	font-style: normal;
+	font-size: 17px;
+	margin: 30px 0px 15px 0px;
+	padding: 0;
+}
+
 #resume .col-2-container {
 	width: 66%;
 }
