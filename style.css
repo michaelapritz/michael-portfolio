@@ -67,9 +67,10 @@ body {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: flex-end;
+	border
 }
-#masthead .txt {
-	width: 65%;
+#masthead .txt  {
+	width: 70%;
 	color: #000;
 	font-family: "aptos-display", sans-serif;
 	font-weight: 400;
@@ -79,13 +80,13 @@ body {
 	margin: 0;
 	text-transform: uppercase;
 }
-#masthead .txt span {
+#masthead .txt  span {
 	font-weight: 700;
 	text-decoration: underline;
 	font-style: italic;
 }
 #masthead .urls {
-	width: 35%;
+	width: 30%;
 	display: flex;
 	justify-content: flex-end;
 }
