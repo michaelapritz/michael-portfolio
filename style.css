@@ -147,6 +147,11 @@ body {
 	width: auto;
 	max-width: 100%;
 }
+#resume .col-1-container .name span {
+	font-size: 14px;
+	font-weight: 600;
+	letter-spacing: .05rem;
+}
 #resume .col-1-container .bio {
 	color: rgba(0,0,0,0.6);
 	font-family: "aptos", sans-serif;
