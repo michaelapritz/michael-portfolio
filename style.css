@@ -58,7 +58,7 @@ body {
 	flex-wrap: wrap;
 }
 #container {
-	margin: 60px 20px 0px ;
+	margin: 0px 20px 0px ;
 	width: 1160px;
 	max-width: calc(100% - 40px);
 }
@@ -195,7 +195,7 @@ body {
 	flex-wrap: nowrap;
 	height: auto;
 	justify-content: space-between;
-	padding: 11px 0px;
+	padding: 10px 0px;
 	width: 100%;
 	max-width: 100%;
 	font-family: "aptos", sans-serif;
@@ -453,7 +453,6 @@ body {
 	padding: 0 0 0 14px;
 }
 
-
 #resume .break {
 	background: rgba(0,0,0,0.1);
 	flex: none;
@@ -463,4 +462,41 @@ body {
 	width: 100%;
 	max-width: 100%;
 	margin-top: 30px;
+}
+
+div#download-as {
+	color: rgba(0,0,0,0.8);
+	font-family: "aptos", sans-serif;
+	font-weight: 600;
+	font-style: normal;
+	font-size: 13px;
+	margin: 30px 0px;
+	display: flex;
+	column-gap: 4px;
+	flex-wrap: nowrap;
+	justify-content: flex-end;
+	align-items: baseline;
+	align-content: center;
+}
+div#download-as a {
+	color: rgba(0,0,0,0.8);
+	font-weight: 600;
+	font-size: 13px;
+	text-decoration: none;
+	border-bottom: 1px dotted transparent;
+	transition: .3s ease;
+}
+div#download-as a:hover {
+	color: rgba(0,0,0,1.0);
+	transition: .3s ease;
+}
+div#download-as a:hover > span {
+	border-bottom: 1px dotted rgba(0,0,0,1.0);
+	transition: .3s ease;
+}
+div#download-as a svg {
+	width: 18px;
+	height: 18px;
+	display: inline-block;
+	vertical-align: top;
 }
