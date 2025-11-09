@@ -195,7 +195,7 @@ body {
 	flex-wrap: nowrap;
 	height: auto;
 	justify-content: space-between;
-	padding: 10px 0px;
+	padding: 11px 0px;
 	width: 100%;
 	max-width: 100%;
 	font-family: "aptos", sans-serif;
@@ -246,7 +246,7 @@ body {
 	margin: 30px 0px;
 }
 #resume .col-1-container .skills-sub {
-	color: #000;
+	color: rgba(0,0,0,0.6);
 	font-family: "aptos-display", sans-serif;
 	font-weight: 600;
 	font-style: normal;
@@ -267,9 +267,10 @@ body {
 	column-gap: 7px;
 }
 #resume .col-1-container .skills-sub a > div, #resume .col-1-container .skills-sub > div {
+	color: rgba(0,0,0,0.6);
 	align-content: center;
 	align-items: center;
-	border: 2px solid rgba(0, 0, 0, 1);
+	border: 2px solid rgba(0,0,0,0.6);
 	display: flex;
 	flex: none;
 	position: relative;
@@ -291,7 +292,7 @@ body {
 	transition: .3s cubic-bezier(.4,.4,0,1);
 }
 #resume .col-1-container .skills-sub a > div:hover {
-	background: rgba(0,0,0,1);
+	background: rgba(0,0,0,0.6);
 	color: #fff;
 	transition: .3s cubic-bezier(.4,.4,0,1);
 	cursor: pointer;
