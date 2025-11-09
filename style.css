@@ -296,7 +296,7 @@ body {
 	transition: .3s cubic-bezier(.4,.4,0,1);
 	cursor: pointer;
 }
-#resume .col-1-container .skills h2 {
+#resume .col-1-container h2 {
 	color: #000;
 	font-family: "aptos-display", sans-serif;
 	font-weight: 600;
