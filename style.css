@@ -340,7 +340,7 @@ body {
 	max-width: 100%;
 }
 
-#resume .col-2-container .job-container {
+#resume .job-container {
 	display: flex;
 	justify-content: space-between;
 	line-height: 1;
@@ -349,61 +349,68 @@ body {
 	font-style: normal;
 	margin: 30px 0;
 }
-#resume .col-2-container .job-container .col-1 {
+#resume .job-container .col-1 {
 	display: flex;
 	column-gap: 1rem;
 }
-#resume .col-2-container .job-container .company p.company-name {
+#resume .job-container .company p.company-name {
 	font-weight: 600;
 	font-size: 18px;
 	padding: 0 0 5px 0;
 	margin: 0;
 }
-#resume .col-2-container .job-container .company p.company-name span {
+#resume .job-container .company p.company-name span {
 	font-size: 14px;
 	color: rgba(0,0,0,0.6);
 	font-weight: 400;
 	margin-left: 5px;
 }
-#resume .col-2-container .job-container .company p.company-location {
+#resume .job-container .company p.company-location {
 	font-weight: 400;
 	font-size: 16px;
 	margin: 0;
 	padding: 0 0 5px 0;
 }
-#resume .col-2-container .job-container .company p.job-title {
+#resume .job-container .company p.job-title {
 	font-weight: 400;
 	font-size: 16px;
 	margin: 0;
 	padding: 0 0 5px 0;
+}
+#resume .col-1-container .job-container div.company-img img {
+	height: 45px;
+	width: 45px;
+	border-radius: 8px;
+	box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
 }
 #resume .col-2-container .job-container div.company-img img {
 	height: 65px;
 	width: 65px;
-	border-radius: 8px;
+	border-radius: 12px;
 	box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
 }
 
-#resume .col-2-container .job-container div.company-img {
+#resume .job-container div.company-img {
 	opacity: 1.0;
 	transition: opacity 300ms ease-in-out;
 	cursor: pointer;
 }
 
-#resume .col-2-container .job-container div.company-img:hover {
+#resume .job-container div.company-img:hover {
 	opacity: 0.8;
 	transition: opacity 300ms ease-in-out;
 	cursor: pointer;
 }
 
-#resume .col-2-container .job-container .col-2 p {
+#resume .job-container .col-2 p {
 	font-size: 16px;
 	font-weight: 400;
 	padding: 0 0 5px 0;
 	margin: 0;
 	text-align: right;
+	padding-top: 3px;
 }
-#resume .col-2-container .job-description p {
+#resume .job-description p {
 	color: rgba(0,0,0,0.6);
 	font-family: "aptos", sans-serif;
 	font-size: 15px;
@@ -416,7 +423,7 @@ body {
 	padding: 0;
 	align-content: flex-start;
 }
-#resume .col-2-container .job-description ul {
+#resume .job-description ul {
 	color: rgba(0,0,0,0.6);
 	font-family: "aptos", sans-serif;
 	font-size: 15px;
@@ -427,10 +434,30 @@ body {
 	text-align: justify;
 	margin: 15px 0 0 0;
 	padding: 0 0 0 14px;
-	align-content: flex-start;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
 
 }
-#resume .col-2-container .break {
+#resume .job-description .list-columns {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+#resume .job-description .list-columns ul.column {
+	flex: 1;
+	list-style-type: disc;
+	margin: 15px 0 0 0;
+	padding: 0 0 0 14px;
+}
+
+#resume .job-description .list-columns ul.column li {
+	;
+}
+
+
+#resume .break {
 	background: rgba(0,0,0,0.1);
 	flex: none;
 	height: 1px;
