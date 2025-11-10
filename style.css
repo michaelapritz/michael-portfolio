@@ -1,26 +1,31 @@
 * {
 	box-sizing: border-box;
 }
+.animate {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 body {
 	text-rendering: optimizeLegibility;
 }
 #header {
-	align-content: center;
-	align-items: center;
-	background: rgba(0,0,0,0.0);
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-	border-right: 0px solid rgba(0, 0, 0, 0.1);
-	border-top: 0px solid rgba(0, 0, 0, 0.1);
-	flex: none;
-	flex-direction: row;
-	flex-wrap: nowrap;
+	position: sticky;
+	top: 0;
+	background: #fff;
+	z-index: 1000;
 	height: 60px;
-	justify-content: space-between;
-	margin: 0px 20px 0px;
+	margin: 0;
 	transition-delay: 0ms;
 	transition-duration: 1000ms;
 	width: calc(100% - 40px);
 	max-width: calc(100% - 40px);
+	background-color: #fff;
 }
 #header p {
 	color: #000;
@@ -42,13 +47,12 @@ body {
 	column-gap: 3em;
 }
 #header a {
-	color: #000;
+	color: rgba(0,0,0,1.0);
 	text-decoration: none;
-	border-bottom: 1px dotted transparent;
 	transition: .3s ease;
 }
 #header a:hover {
-	border-bottom: 1px dotted #000;
+	color: rgba(0,0,0,0.7);
 	transition: .3s ease;
 }
 
@@ -121,13 +125,13 @@ body {
 	justify-content: center;
 	flex-wrap: wrap;
 	margin: 50px 0px 0px 0px;
-	column-gap: 5%;
+	column-gap: 7%;
 }
 #resume .section-wrap {
 	margin-bottom: 45px;
 }
 #resume .col-1-container {
-	width: 29%;
+	width: 28%;
 }
 #resume .col-1-container .pfp img {
 	height: 200px;
@@ -153,7 +157,7 @@ body {
 	letter-spacing: .05rem;
 }
 #resume .col-1-container .bio {
-	color: rgba(0,0,0,0.6);
+	color: rgba(0,0,0,0.7);
 	font-family: "aptos", sans-serif;
 	font-size: 15px;
 	font-weight: 400;
@@ -246,7 +250,7 @@ body {
 	margin: 30px 0px;
 }
 #resume .col-1-container .skills-sub {
-	color: rgba(0,0,0,0.6);
+	color: rgba(0,0,0,0.7);
 	font-family: "aptos-display", sans-serif;
 	font-weight: 600;
 	font-style: normal;
@@ -267,10 +271,10 @@ body {
 	column-gap: 7px;
 }
 #resume .col-1-container .skills-sub a > div, #resume .col-1-container .skills-sub > div {
-	color: rgba(0,0,0,0.6);
+	color: rgba(0,0,0,0.7);
 	align-content: center;
 	align-items: center;
-	border: 2px solid rgba(0,0,0,0.6);
+	border: 2px solid rgba(0,0,0,0.7);
 	display: flex;
 	flex: none;
 	position: relative;
@@ -292,7 +296,8 @@ body {
 	transition: .3s cubic-bezier(.4,.4,0,1);
 }
 #resume .col-1-container .skills-sub a > div:hover {
-	background: rgba(0,0,0,0.6);
+	background: rgba(0,0,0,1.0);
+	border: 2px solid rgba(0,0,0,1.0);
 	color: #fff;
 	transition: .3s cubic-bezier(.4,.4,0,1);
 	cursor: pointer;
@@ -308,7 +313,7 @@ body {
 }
 
 #resume .col-2-container {
-	width: 66%;
+	width: 65%;
 }
 #resume .section-heading {
 	text-transform: uppercase;
@@ -362,7 +367,7 @@ body {
 }
 #resume .job-container .company p.company-name span {
 	font-size: 14px;
-	color: rgba(0,0,0,0.6);
+	color: rgba(0,0,0,0.7);
 	font-weight: 400;
 	margin-left: 5px;
 }
@@ -412,7 +417,7 @@ body {
 	padding-top: 3px;
 }
 #resume .job-description p {
-	color: rgba(0,0,0,0.6);
+	color: rgba(0,0,0,0.7);
 	font-family: "aptos", sans-serif;
 	font-size: 15px;
 	font-weight: 400;
@@ -425,7 +430,7 @@ body {
 	align-content: flex-start;
 }
 #resume .job-description ul {
-	color: rgba(0,0,0,0.6);
+	color: rgba(0,0,0,0.7);
 	font-family: "aptos", sans-serif;
 	font-size: 15px;
 	font-weight: 400;
