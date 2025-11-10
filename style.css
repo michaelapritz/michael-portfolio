@@ -1,16 +1,21 @@
 * {
 	box-sizing: border-box;
 }
-.section-wrap.animate {
+/* Base state: hidden and shifted down */
+.animate {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(30px);   /* slide down offset */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  will-change: opacity, transform;
 }
 
-.section-wrap.animate.visible {
+/* Visible state: fully shown */
+.animate.visible {
   opacity: 1;
   transform: translateY(0);
 }
+
+
 
 
 body {
