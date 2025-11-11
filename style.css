@@ -571,13 +571,13 @@ div#download-as a svg {
 	display: flex;
 	justify-content: flex-start;
 	flex-wrap: wrap;
-	column-gap: 50px;
-	row-gap: 50px;
+	column-gap: 45px;
+	row-gap: 45px;
 }
 #references .reference {
 	display: flex;
 	gap: 15px;
-	width: 325px;
+	min-width: 325px;
 }
 .reference {
 	font-family: "aptos", sans-serif;
