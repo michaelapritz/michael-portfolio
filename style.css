@@ -561,6 +561,39 @@ div#download-as a svg {
 	display: inline-block;
 	vertical-align: top;
 }
+footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	border-top: 1px solid rgba(0,0,0,0.1);
+	margin: 0px 40px;
+	padding: 15px 0px;
+}
+footer div {
+	font-family: "aptos-display", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	line-height: 1;
+	color: #C8C8C8;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+footer p {
+	margin: 0;
+	padding: 0;	
+}
+footer p svg {
+	height: 20px;
+}
+footer p svg#logo-mp .m {
+	fill: #C8C8C8;
+}
+footer p svg#logo-mp .p {
+	fill: #C8C8C8;
+}
 
 @media (max-width: 768px) {
 	#resume {
