@@ -8,16 +8,30 @@ html, body {
   	text-rendering: optimizeLegibility;
 	overflow: visible;
 }
-.animate {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  will-change: opacity, transform;
+main {
+	height: auto;
+	min-height: 1000px;
 }
-
-.animate.visible {
-  opacity: 1;
-  transform: translateY(0);
+#container-wrap {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-top: 45px;
+}
+#container {
+	margin: 0px 20px 0px ;
+	width: 1150px;
+	max-width: calc(100% - 40px);
+}
+h1 {
+	color: #000;
+	font-family: "aptos-display", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 51px;
+	line-height: 1;
+	margin: 0 0 45px 0;
+	text-transform: uppercase;
 }
 
 
@@ -105,16 +119,7 @@ html, body {
 }
 
 
-#container-wrap {
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-}
-#container {
-	margin: 0px 20px 0px ;
-	width: 1150px;
-	max-width: calc(100% - 40px);
-}
+
 
 #masthead {
 	display: flex;
@@ -370,7 +375,7 @@ color: rgba(0,0,0,0.7);
 #resume .col-2-container {
 	width: 65%;
 }
-#resume .section-heading {
+.section-heading {
 	text-transform: uppercase;
 	color: #000;
 	font-family: "aptos-display", sans-serif;
@@ -381,7 +386,7 @@ color: rgba(0,0,0,0.7);
 	text-align: right;
 	margin: 0px 0px 10px 0px;
 }
-#resume .border-thin {
+.border-thin {
 	background: #000;
 	flex: none;
 	height: 2px;
@@ -390,7 +395,7 @@ color: rgba(0,0,0,0.7);
 	width: 100%;
 	max-width: 100%;
 }
-#resume .border-thick {
+.border-thick {
 	background: #000;
 	flex: none;
 	height: 4px;
@@ -530,7 +535,7 @@ div#download-as {
 	font-weight: 600;
 	font-style: normal;
 	font-size: 13px;
-	margin: 45px 0px 30px 0px;
+	margin: 0px 0px 30px 0px;
 	display: flex;
 	column-gap: 4px;
 	flex-wrap: nowrap;
@@ -561,6 +566,60 @@ div#download-as a svg {
 	display: inline-block;
 	vertical-align: top;
 }
+
+#references {
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	column-gap: 50px;
+	row-gap: 50px;
+}
+#references .reference {
+	display: flex;
+	gap: 15px;
+	width: 325px;
+}
+.reference {
+	font-family: "aptos", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 18px;
+	line-height: 1;
+	color: #000;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+}
+.reference .col-1 > div, .reference .col-2 > div {
+	display: flex;
+	align-items: center;
+	height: 30px;
+
+}
+.reference .col-1 > div {
+	justify-content: flex-end;
+	
+}
+.reference .col-1 {
+	font-family: "aptos-display", sans-serif;
+
+	text-align: right;
+	font-weight: 700;
+	font-variant: small-caps;
+	text-transform: lowercase;
+	column-gap: 30px;
+}
+
+.reference a {
+	text-decoration: none;
+	color: #000;
+	border-bottom: 1px dotted #000;
+	transition: all 0.3s ease;
+}
+.reference a:hover {
+	border-bottom: 1px dotted transparent;
+	transition: all 0.3s ease;
+}
 footer {
 	display: flex;
 	justify-content: center;
@@ -569,7 +628,8 @@ footer {
 	border-top: 1px solid rgba(0,0,0,0.1);
 	margin: 30px auto 0px auto;
 	padding: 15px 0px;
-	max-width: calc(100% - 40px);
+	max-width: 100%;
+	background-color: #000;
 }
 footer div {
 	font-family: "aptos-display", sans-serif;
@@ -581,7 +641,6 @@ footer div {
 	margin: 0;
 	padding: 0;
 	text-align: center;
-
 }
 footer p {
 	margin: 0;
@@ -595,6 +654,18 @@ footer p svg#logo-mp .m {
 }
 footer p svg#logo-mp .p {
 	fill: #C8C8C8;
+}
+
+.animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+}
+
+.animate.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @media (max-width: 768px) {
