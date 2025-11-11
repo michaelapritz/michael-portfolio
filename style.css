@@ -602,7 +602,7 @@ div#download-as a svg {
 }
 .reference .col-1 {
 	font-family: "aptos-display", sans-serif;
-
+	color: rgba(0,0,0,0.7);
 	text-align: right;
 	font-weight: 700;
 	font-variant: small-caps;
