@@ -52,6 +52,20 @@ h1 {
 	display: flex;
 	align-items: center;
 }
+#logo-large {
+	text-align: center;
+	margin-bottom: 25px;
+}
+#logo-large svg {
+	height: 50px;
+	width: auto;
+}
+#logo-large svg#logo-mp-large .m {
+	fill: #fff;
+}
+#logo-large svg#logo-mp-large .p {
+	fill: #0EA3E2;
+}
 .sticky-nav {
 	position: sticky;
 	top: 0;
