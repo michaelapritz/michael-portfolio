@@ -656,7 +656,8 @@ h1.portfolio {
 	bottom: 10px;
 	left: 10px;
 	color: #fff;
-	font-family: "aptos-display", sans-serif;
+	font-family: "aptos", sans-serif;
+	text-shadow: 0px 0px 4px #000;
 	font-size: 14px;
 	font-weight: 400;
 	font-style: normal;
@@ -665,14 +666,7 @@ h1.portfolio {
 	border-radius: 2px;
 	text-transform: uppercase;
 }
-#portfolio #featured-wrap .img-container .caption::before {
-	content: "[";
-	margin-right: 2px;
-}
-#portfolio #featured-wrap .img-container .caption::after {
-	content: "]";
-	margin-left: 2px;
-}
+
 
 #references {
 	display: flex;
