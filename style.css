@@ -135,6 +135,7 @@ h1 {
 	color: #fff;
 	transition: .3s ease;
 	text-decoration: underline;
+	text-underline-offset: 6px;
 }
 
 
