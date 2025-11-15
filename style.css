@@ -48,7 +48,7 @@ h1 {
 .site-header {
 	position: relative;
 	width: 100%;
-	height: 50px;
+	height: 60px;
 	background: linear-gradient(
     to top, 
     #141414 0%,  /* Darkest Gray */
@@ -98,17 +98,7 @@ h1 {
 #logo-large svg#logo-mp-large .p {
 	fill: #0EA3E2;
 }
-.sticky-nav {
-	position: sticky;
-	top: 0;
-	z-index: 1000;
-	background: transparent;
-	height: 50px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-top: -50px;
-}
+
 .site-header #logo svg#logo-mp {
 	height: 32px;
 	width: auto;
@@ -121,8 +111,9 @@ h1 {
 }
 .nav-center {
 	display: flex;
-	gap: 0;
+	gap: 45px;
 	justify-content: center;
+	height: 60px;
 	align-items: center;
 }
 .nav-center a {
@@ -131,54 +122,18 @@ h1 {
 	font-style: normal;
 	font-size: 17px;
 	line-height: 1.5;
-	width: 115px;
-	height: 50px;
-	display: flex;
-	align-items: center;
-	align-self: center;
-	align-content: center;
-	justify-content: center;
-	background: linear-gradient(
-    to top, 
-    #141414 0%,  /* Darkest Gray */
-    #0f0f0f 25%, 
-    #0a0a0a 50%, 
-    #050505 75%, 
-    #000000 100% /* Pure Black */
-  );
 	border: none;
 	color: #fff;
 	text-decoration: none;
 	transition: .3s ease;
-	padding: 10px 15px;
-	opacity: 1;
 	text-shadow: 0px 0px 2px #000;
 }
-
 .nav-center a:hover {
 	color: #fff;
 	transition: .3s ease;
 	text-decoration: underline;
-	background: linear-gradient(
-    to bottom, 
-    #202020 0%,  /* Darkest Gray */
-    #202020 25%, 
-    #202020 50%, 
-    #202020 75%, 
-    #202020 100% /* Pure Black */
-  );
 }
-.nav-center a.left {
-	border-radius: 32px 0px 0px 32px;
-	padding-left: 25px;
-}
-.nav-center a.middle {
-	border-radius: 0px;
-}
-.nav-center a.right {
-	border-radius: 0px 32px 32px 0px;
-	padding-right: 25px;
-}
+
 
 
 
@@ -637,8 +592,12 @@ h1.portfolio {
 	font-weight: 900;
 	font-family: "aptos", sans-serif;
 	font-style: normal;
-	margin-bottom: 120px;
 	text-shadow: 0px 0px 15px #000;
+	margin: 0;
+}
+#portfolio {
+	margin-top: 120px;
+	margin-bottom: 70px;
 }
 #portfolio .featured-intro-wrap {
 	display: flex;
@@ -770,9 +729,8 @@ footer {
 	justify-content: center;
 	align-items: center;
 	align-content: center;
-	border-top: 1px solid rgba(0,0,0,0.1);
 	margin: 0px auto;
-	padding: 15px 0px;
+	padding: 20px 0px;
 	max-width: 100%;
 	background: linear-gradient(
     to top, 
