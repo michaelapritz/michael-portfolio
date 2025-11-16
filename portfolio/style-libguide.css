@@ -35,11 +35,11 @@ html, body {
 
 
 .app {
-  max-width: 1500px;
+  max-width: calc(100% - 40px);
   margin: 45px auto;
   padding: 0 20px;
   display: grid;
-  grid-template-columns: 27.5% 45% 27.5%; /* requested column widths */
+  grid-template-columns: auto 48% auto;
   gap: var(--gap);
   align-items: start;
 }
