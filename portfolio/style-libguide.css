@@ -22,10 +22,17 @@ html, body {
   scroll-behavior: smooth;
 }
 
-.material-icons {
-  font-size: 18px;
-  vertical-align: middle;
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+  font-size: 19px;
 }
+
 
 .app {
   max-width: 1500px;
@@ -47,7 +54,7 @@ html, body {
   padding: 12px 14px;
   border-bottom: 2px solid var(--border);
   background: var(--panel-muted);
-  font-family: 'Inter', sans-serif; /* headers */
+  font-family: "JetBrains Mono", sans-serif; /* headers */
   font-weight: 600;
   letter-spacing: 0.2px;
   display: flex;
