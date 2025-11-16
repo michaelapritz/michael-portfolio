@@ -115,14 +115,13 @@ html, body {
 }
 
 /* Panels */
-.tab-panels { padding: 12px; }
+.tab-panels { padding: 0px 12px 12px 12px; }
 .tab-panel {
   display: none;
-  padding: 8px;
-  border: 2px dashed var(--border);
+  padding: 0px 8px 8px 8px;
+  border: none;
   border-radius: 8px;
   min-height: 220px;
-  background: var(--panel-muted);
 }
 
 /* Show the matching panel when its radio is checked */
