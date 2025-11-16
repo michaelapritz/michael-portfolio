@@ -119,6 +119,7 @@ html, body {
   color: var(--text);
   background: var(--accent-ghost);
   border-color: var(--border);
+  font-weight: 500;
 }
 
 /* Panels */
@@ -733,7 +734,8 @@ div#summer-of-ai div#ai-publishing-trends h2::before {
 }
 div#summer-of-ai div#ai-publishing-trends img {
     width: 100%;
-    max-width: 100%;
+    max-width: 550px;
+    margin: 0 auto;
     height: auto;
     display: block;
 }
