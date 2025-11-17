@@ -7,6 +7,10 @@ html, body {
   	box-sizing: border-box;
   	text-rendering: optimizeLegibility;
 	overflow: visible;
+	font-family: "aptos", sans-serif;
+	font-size: 15px;
+	font-weight: 400;
+	-webkit-text-size-adjust: 100%;
 }
 body#portfolio-background {
 background: linear-gradient(
@@ -244,7 +248,6 @@ h1 {
 	margin: 35px 0px 0px 0px;
 	padding: 0px;
 	text-align: justify;
-	
 	max-width: 100%;
 }
 #resume .col-1-container .at-a-glance {
@@ -259,6 +262,7 @@ h1 {
 	display: flex;
 	position: relative;
 	text-transform: uppercase;
+	color: #000;
 }
 #resume .col-1-container .at-a-glance > div {
 	display: flex;
@@ -500,7 +504,7 @@ color: rgba(0,0,0,0.7);
 #resume .job-description p {
 	color: rgba(0,0,0,0.7);
 	font-family: "aptos", sans-serif;
-	font-size: 15px !important;
+	font-size: 15px;
 	font-weight: 400;
 	font-style: normal;
 	height: auto;
