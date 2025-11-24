@@ -7,8 +7,9 @@ html, body {
   	box-sizing: border-box;
   	text-rendering: optimizeLegibility;
 	overflow: visible;
-	font-family: "aptos", sans-serif;
-	font-size: 15px;
+	font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	line-height: 1.5;
+	font-size: 14px;
 	font-weight: 400;
 	-webkit-text-size-adjust: 100%;
 }
@@ -36,16 +37,6 @@ main {
 	margin: 0px 20px 0px ;
 	width: 1150px;
 	max-width: calc(100% - 40px);
-}
-h1 {
-	color: #000;
-	font-family: "aptos-display", sans-serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 51px;
-	line-height: 1;
-	margin: 0 0 45px 0;
-	text-transform: uppercase;
 }
 
 
@@ -122,11 +113,11 @@ h1 {
 	align-items: center;
 }
 .nav-center a {
-	font-family: "aptos", sans-serif;
+	font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 17px;
-	line-height: 1.5;
+	font-size: 16px;
+	line-height: 1.2;
 	border: none;
 	color: #fff;
 	text-decoration: none;
@@ -154,11 +145,11 @@ h1 {
 #masthead .txt  {
 	width: 90%;
 	color: #000;
-	font-family: "aptos-display", sans-serif;
+	font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 51px;
-	line-height: 1;
+	font-size: 44px;
+	line-height: 1.2;
 	margin: 0;
 	text-transform: uppercase;
 }
@@ -224,10 +215,10 @@ h1 {
 }
 #resume .col-1-container .name {
 	color: #000;
-	font-family: "aptos-display", sans-serif;
+	font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 	font-weight: 600;
 	font-style: normal;
-	font-size: 17px;
+	font-size: 16px;
 	line-height: 1.5;
 	margin: 20px 0px 0px 0px;
 	width: auto;
@@ -240,8 +231,8 @@ h1 {
 }
 #resume .col-1-container .bio {
 	color: rgba(0,0,0,0.7);
-	font-family: "aptos", sans-serif;
-	font-size: 15px;
+	font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	font-size: 14px;
 	font-weight: 400;
 	height: auto;
 	line-height: 1.5;
@@ -279,13 +270,13 @@ h1 {
 	flex-wrap: nowrap;
 	height: auto;
 	justify-content: space-between;
-	padding: 10px 0px;
+	padding: 5px 0px;
 	width: 100%;
 	max-width: 100%;
-	font-family: "aptos", sans-serif;
-	font-size: 13px;
-	font-weight: 700;
-	line-height: 0;
+	font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1.1;
 	min-width: max-content;
 	column-gap: 10px;
 }
@@ -313,10 +304,10 @@ color: rgba(0,0,0,0.7);
 	margin: 0;
 	width: 100%;
 	max-width: 100%;
-	font-family: "aptos", sans-serif;
-	font-size: 13px;
+	font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	font-size: 12px;
 	font-weight: 700;
-	line-height: 0;
+	line-height: 1.2;
 	text-decoration: none;
 	transition: .3s cubic-bezier(.4,.4,0,1);
 	text-transform: uppercase;
@@ -336,10 +327,10 @@ color: rgba(0,0,0,0.7);
 }
 #resume .col-1-container .skills-sub {
 	color: rgba(0,0,0,0.7);
-	font-family: "aptos-display", sans-serif;
+	font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 	font-weight: 600;
 	font-style: normal;
-	font-size: 13px;
+	font-size: 12px;
 	margin: 0;
 	display: flex;
 	flex: none;
@@ -389,12 +380,16 @@ color: rgba(0,0,0,0.7);
 }
 #resume .col-1-container h2 {
 	color: #000;
-	font-family: "aptos-display", sans-serif;
+	font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 	font-weight: 600;
 	font-style: normal;
-	font-size: 17px;
+	font-size: 15px;
 	margin: 30px 0px 15px 0px;
 	padding: 0;
+	line-height: 1.3;
+}
+#resume .col-1-container .job-description p {
+	text-align: left;
 }
 
 #resume .col-2-container {
@@ -403,11 +398,11 @@ color: rgba(0,0,0,0.7);
 .section-heading {
 	text-transform: uppercase;
 	color: #000;
-	font-family: "aptos-display", sans-serif;
+	font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 	font-weight: 700;
 	font-style: normal;
-	font-size: 24px;
-	line-height: 1.5;
+	font-size: 22px;
+	line-height: 1.3;
 	text-align: right;
 	margin: 0px 0px 10px 0px;
 }
@@ -434,9 +429,9 @@ color: rgba(0,0,0,0.7);
 #resume .job-container {
 	display: flex;
 	justify-content: space-between;
-	line-height: 1;
+	line-height: 1.2;
 	color: #000;
-	font-family: "aptos-display", sans-serif;
+	font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 	font-style: normal;
 	margin: 30px 0;
 }
@@ -446,7 +441,7 @@ color: rgba(0,0,0,0.7);
 }
 #resume .job-container .company p.company-name {
 	font-weight: 600;
-	font-size: 18px;
+	font-size: 15px;
 	padding: 0 0 5px 0;
 	margin: 0;
 }
@@ -458,13 +453,13 @@ color: rgba(0,0,0,0.7);
 }
 #resume .job-container .company p.company-location {
 	font-weight: 400;
-	font-size: 16px;
+	font-size: 14px;
 	margin: 0;
 	padding: 0 0 5px 0;
 }
 #resume .job-container .company p.job-title {
 	font-weight: 400;
-	font-size: 16px;
+	font-size: 14px;
 	margin: 0;
 	padding: 0 0 5px 0;
 }
@@ -503,8 +498,8 @@ color: rgba(0,0,0,0.7);
 }
 #resume .job-description p {
 	color: rgba(0,0,0,0.7);
-	font-family: "aptos", sans-serif;
-	font-size: 15px;
+	font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	font-size: 14px;
 	font-weight: 400;
 	font-style: normal;
 	height: auto;
@@ -516,13 +511,13 @@ color: rgba(0,0,0,0.7);
 }
 #resume .job-description ul {
 	color: rgba(0,0,0,0.7);
-	font-family: "aptos", sans-serif;
-	font-size: 15px;
+	font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	font-size: 14px;
 	font-weight: 400;
 	font-style: normal;
 	height: auto;
 	line-height: 1.5;
-	text-align: justify;
+	text-align: left;
 	margin: 15px 0 0 0;
 	padding: 0 0 0 14px;
 	display: flex;
@@ -556,10 +551,8 @@ color: rgba(0,0,0,0.7);
 
 div#download-as {
 	color: rgba(0,0,0,0.8);
-	font-family: "aptos", sans-serif;
-	font-weight: 600;
+	font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 	font-style: normal;
-	font-size: 13px;
 	margin: 0px 0px 30px 0px;
 	display: flex;
 	column-gap: 4px;
@@ -572,7 +565,7 @@ div#download-as {
 div#download-as a {
 	color: rgba(0,0,0,0.8);
 	font-weight: 600;
-	font-size: 13px;
+	font-size: 12px;
 	text-decoration: none;
 	border-bottom: 1px dotted transparent;
 	transition: .3s ease;
@@ -597,11 +590,14 @@ h1.portfolio {
 	color: #fff;
 	text-align: center;
 	width: 100%;
+	font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	font-size: 47px;
 	font-weight: 900;
-	font-family: "aptos", sans-serif;
 	font-style: normal;
+	line-height: 1.1;
 	text-shadow: 0px 0px 15px #000;
 	margin: 0;
+	text-transform: uppercase;
 }
 #portfolio {
 	margin-top: 120px;
@@ -614,12 +610,13 @@ h1.portfolio {
 #portfolio .featured-intro {
 	color: #C8C8C8;
 	text-transform: uppercase;
-	font-family: "aptos-display", sans-serif;
+	font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 12px;
+	font-size: 11px;
 	margin-bottom: 10px;
-	line-height: 1;
+	line-height: 1.2;
+	letter-spacing: .01rem;
 }
 #portfolio .featured-intro::before {
 	content: "[";
@@ -666,72 +663,19 @@ h1.portfolio {
 	bottom: 10px;
 	left: 10px;
 	color: #fff;
-	font-family: "aptos", sans-serif;
+	font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 	text-shadow: 0px 0px 4px #000;
-	font-size: 14px;
-	font-weight: 400;
+	font-size: 13px;
+	font-weight: 600;
 	font-style: normal;
 	background-color: rgba(0, 0, 0, 0.7);
-	padding: 4px 8px;
+	padding: 4px 8px 5px 8px;
 	border-radius: 2px;
 	text-transform: uppercase;
 }
 
 
-#references {
-	display: flex;
-	justify-content: flex-start;
-	flex-wrap: wrap;
-	column-gap: 45px;
-	row-gap: 45px;
-}
-#references .reference {
-	display: flex;
-	gap: 15px;
-	min-width: 325px;
-}
-.reference {
-	font-family: "aptos", sans-serif;
-	font-weight: 400;
-	font-style: normal;
-	font-size: 18px;
-	line-height: 1;
-	color: #000;
-	margin: 0;
-	padding: 0;
-	text-align: left;
-}
-.reference .col-1 > div, .reference .col-2 > div {
-	display: flex;
-	align-items: center;
-	height: 30px;
 
-}
-.reference .col-1 > div {
-	justify-content: flex-end;
-	
-}
-.reference .col-1 {
-	font-family: "aptos-display", sans-serif;
-	color: rgba(0,0,0,0.7);
-	text-align: right;
-	font-weight: 700;
-	font-variant: small-caps;
-	text-transform: lowercase;
-	column-gap: 30px;
-}
-
-.reference a {
-	text-decoration: none;
-	color: #000;
-	border-bottom: 1px dotted #000;
-	padding-bottom: 2px;
-	transition: all 0.3s ease;
-}
-.reference a:hover {
-	border-bottom: 1px dotted transparent;
-	transition: all 0.3s ease;
-}
 footer {
 	display: flex;
 	justify-content: center;
@@ -750,11 +694,11 @@ footer {
   );
 }
 footer div {
-	font-family: "aptos-display", sans-serif;
+	font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 13px;
-	line-height: 1;
+	font-size: 12px;
+	line-height: 1.2;
 	color: #C8C8C8;
 	margin: 0;
 	padding: 0;
