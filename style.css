@@ -413,7 +413,7 @@ color: rgba(0,0,0,0.7);
 .border-thin {
 	background: #000;
 	flex: none;
-	height: 0.1333em;
+	height: 0.11em;
 	transform-origin: center right;
 	transition-duration: 1000ms;
 	width: 100%;
@@ -422,8 +422,8 @@ color: rgba(0,0,0,0.7);
 .border-thick {
 	background: #000;
 	flex: none;
-	height: 0.2667em;
-	margin: 0.2em 0 0 0;
+	height: 0.26em;
+	margin: 0.175em 0 0 0;
 	transform-origin: center right;
 	transition-duration: 1000ms;
 	width: 100%;
