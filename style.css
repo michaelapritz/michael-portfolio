@@ -585,6 +585,9 @@ color: rgba(0,0,0,0.7);
 	padding: 0;
 	list-style: none;
 }
+#resume .job-description .list-columns ul.column li {
+	margin-bottom: 0;
+}
 #resume .job-description span.note {
 	font-weight: 600;
 	color: #000;
