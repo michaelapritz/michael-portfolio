@@ -498,7 +498,6 @@ color: rgba(0,0,0,0.7);
 	padding: 0 0 0.3333em 0;
 	margin: 0;
 	text-align: right;
-	padding-top: 0.2em;
 }
 #resume .job-description h2 {
 	color: #000;
@@ -689,17 +688,19 @@ h1.portfolio {
 }
 #portfolio #featured-wrap .img-container {
 	position: relative;
-	width: 25.022em;
-  	height: 18.7667em;
+	width: 100%;              /* responsive */
+	max-width: 25.022em;      /* cap it if you want */
+	aspect-ratio: 4 / 3;      /* replaces hard-coded height */
 	border-radius: 1.0667em;
-  	overflow: hidden;
+	overflow: hidden;
 	filter: drop-shadow(0 0 0.8em #000);
 }
 
 #portfolio #featured-wrap .img-container img {
-	width: 25.022em;
-  	height: auto;
-  	object-fit: cover;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;        /* now it actually crops correctly */
+	object-position: center;  /* center the crop */
 	display: block;
 }
 #portfolio #featured-wrap .img-container a img {
@@ -795,10 +796,42 @@ footer p svg#logo-mp .p {
 	#resume .col-1-container, #resume .col-2-container {
 		width: 100%;
 	}
+	#resume .col-1-container h2 {
+		text-align: center;
+	}
+	#resume .col-1-container .skills-sub {
+		justify-content: center;
+	}
+	#resume .job-container {
+		margin: 2em 0 1em 0;
+	}
+	#resume .job-container .col-1 {
+		display: block;
+		text-align: center;
+	}
+	#resume .job-container div.company-img {
+		margin-bottom: 1em;
+	}
+	#resume .job-container {
+		display: block;
+	}
+	#resume .job-container .col-2 p {
+		text-align: center;
+	}
+	#resume .job-container .company p {
+		text-align: center;
+	}
+	#resume .job-description .list-columns li {
+		padding-left: 0;
+		text-align: center;
+	}
+	#resume .job-description .list-columns li::before {
+		content: none;
+	}
 	#resume p {
 		text-align: left;
 	}
-	#resume .col-1-container .bio p {
+	#resume .col-1-container .bio p, #resume .col-1-container .name {
 		text-align: center;
 	}
 	#resume .pfp {
@@ -812,6 +845,22 @@ footer p svg#logo-mp .p {
 	}
 	#resume .section-heading {
 		text-align: center;
+		margin: 0 0 0.05em 0;
+	}
+	#resume .job-description p, #resume .job-description ul {
+		text-align: left;
+	}
+	#resume .job-description p.note {
+		text-align: center;
+	}
+	#resume .job-description h2 {
+		text-align: center;
+	}
+	#resume .job-description .list-columns {
+		display: block;
+	}
+	#resume .job-description .list-columns ul.bottom {
+		margin-top: 0.35em;
 	}
 	#masthead {
 		flex-direction: column;
@@ -820,7 +869,8 @@ footer p svg#logo-mp .p {
 	}
 	#masthead .txt {
 		width: 100%;
-		justify-content: center;
+		text-align: center;
+		font-size: 3.0em;
 	}
 	#masthead .urls {
 		width: 100%;
@@ -849,6 +899,9 @@ footer p svg#logo-mp .p {
 		rgba(252, 252, 252, 1) 30%,
 		rgba(250, 250, 250, 1) 70%,
 		rgba(249, 249, 249, 1) 100%);
+	}
+	div#download-as {
+		justify-content: center;
 	}
 
 }
