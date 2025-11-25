@@ -8,24 +8,24 @@ html, body {
   	text-rendering: optimizeLegibility;
 	overflow: visible;
 	font-family: "aptos", sans-serif;
-	font-size: 15px;
+	font-size: 0.97em;
 	font-weight: 400;
 	-webkit-text-size-adjust: 100%;
 }
 body#portfolio-background {
 background: linear-gradient(
     to bottom, 
-    #141414 0%,  /* Darkest Gray */
+    #141414 0%,
     #0f0f0f 25%, 
     #0a0a0a 50%, 
     #050505 75%, 
-    #000000 100% /* Pure Black */
+    #000000 100%
   );
 }
 main {
 	height: auto;
-	min-height: 1000px;
-	padding: 45px 0px;
+	min-height: 66.6667em;
+	padding: 3em 0;
 }
 #container-wrap {
 	display: flex;
@@ -33,18 +33,18 @@ main {
 	flex-wrap: wrap;
 }
 #container {
-	margin: 0 20px 0;
-	width: 1150px;
-	max-width: calc(100% - 40px);
+	margin: 0 1.3333em 0;
+	width: 76.6667em;
+	max-width: calc(100% - 2.6667em);
 }
 h1 {
 	color: #000;
 	font-family: "aptos-display", sans-serif;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 51px;
+	font-size: 3.4em;
 	line-height: 1;
-	margin: 0 0 45px 0;
+	margin: 0 0 3em 0;
 	text-transform: uppercase;
 }
 
@@ -52,7 +52,7 @@ h1 {
 .site-header {
 	position: relative;
 	width: 100%;
-	height: 60px;
+	height: 4em;
 	background: linear-gradient(
     to top, 
     #141414 0%,  /* Darkest Gray */
@@ -67,7 +67,7 @@ h1 {
 }
 #logo {
 	position: absolute;
-	left: calc(50% - 575px);
+	left: calc(50% - 38.3333em);
 	top: 50%;
 	transform: translateY(-50%);
 	display: flex;
@@ -75,13 +75,13 @@ h1 {
 }
 #logo-large {
 	text-align: center;
-	margin-bottom: 25px;
-	filter: drop-shadow(0px 0px 12px #000);
+	margin-bottom: 1.6667em;
+	filter: drop-shadow(0 0 0.8em #000);
 }
 #logo-large svg {
-	height: 50px;
+	height: 3.3333em;
 	width: auto;
-	filter: drop-shadow(0px 0px 8px #000);
+	filter: drop-shadow(0 0 0.5333em #000);
 }
 #logo-large svg#logo-mp-large {
 	opacity: 0;
@@ -103,7 +103,7 @@ h1 {
 }
 
 .site-header #logo svg#logo-mp {
-	height: 32px;
+	height: 2.1333em;
 	width: auto;
 }
 .site-header div#logo svg#logo-mp .m {
@@ -115,30 +115,30 @@ h1 {
 
 .nav-center {
 	display: flex;
-	gap: 20px;
+	gap: 1.3333em;
 	justify-content: center;
-	height: 60px;
+	height: 4em;
 	align-items: center;
 }
 .nav-center a {
 	font-family: "aptos", sans-serif;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 17px;
+	font-size: 1.1333em;
 	line-height: 1.5;
 	border: none;
 	color: #fff;
 	text-decoration: none;
 	transition: .3s ease;
-	text-shadow: 0px 0px 2px #000;
-	width: 100px;
+	text-shadow: 0 0 0.1333em #000;
+	width: 6.6667em;
 	text-align: center;
 }
 .nav-center a:hover {
 	color: #fff;
 	transition: .3s ease;
 	text-decoration: underline;
-	text-underline-offset: 6px;
+	text-underline-offset: 0.4em;
 }
 
 
@@ -156,7 +156,7 @@ h1 {
 	font-family: "aptos-display", sans-serif;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 51px;
+	font-size: 3.4em;
 	line-height: 1;
 	margin: 0;
 	text-transform: uppercase;
@@ -174,10 +174,10 @@ h1 {
 #masthead .urls a {
 	background-color: rgba(0, 0, 0, 0.0);
 	border-radius: 50%;
-	border: 1px solid rgba(0, 0, 0, 0.1);
+	border: 0.0667em solid rgba(0, 0, 0, 0.1);
 	justify-content: center;
-	width: 38px;
-	height: 38px;
+	width: 2.5333em;
+	height: 2.5333em;
 	display: flex;
 	align-items: center;
 	padding: 0;
@@ -187,8 +187,8 @@ h1 {
 	background-color: #0a66c2;
 }
 #masthead .urls a svg.linkedin-small {
-	width: 13px;
-	height: 13px;
+	width: 0.8667em;
+	height: 0.8667em;
 	fill: #000;
 	display: inline;
 }
@@ -206,18 +206,18 @@ h1 {
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
-	margin: 50px 0px 0px 0px;
+	margin: 3.3333em 0 0 0;
 	column-gap: 7%;
 }
 #resume .section-wrap {
-	margin-bottom: 45px;
+	margin-bottom: 3em;
 }
 #resume .col-1-container {
 	width: 28%;
 }
 #resume .col-1-container .pfp img {
-	height: 200px;
-	width: 200px;
+	height: 13.3333em;
+	width: 13.3333em;
 	border-radius: 50%;
 	transition: .5s ease;
 }
@@ -226,26 +226,26 @@ h1 {
 	font-family: "aptos-display", sans-serif;
 	font-weight: 600;
 	font-style: normal;
-	font-size: 17px;
+	font-size: 1.1333em;
 	line-height: 1.5;
-	margin: 20px 0px 0px 0px;
+	margin: 1.3333em 0 0 0;
 	width: auto;
 	max-width: 100%;
 }
 #resume .col-1-container .name span {
-	font-size: 14px;
+	font-size: 0.9333em;
 	font-weight: 600;
 	letter-spacing: .05rem;
 }
 #resume .col-1-container .bio {
 	color: rgba(0,0,0,0.7);
 	font-family: "aptos", sans-serif;
-	font-size: 15px;
+	font-size: 1em;
 	font-weight: 400;
 	height: auto;
 	line-height: 1.5;
-	margin: 35px 0px 0px 0px;
-	padding: 0px;
+	margin: 2.3333em 0 0 0;
+	padding: 0;
 	text-align: left;
 	max-width: 100%;
 }
@@ -269,24 +269,24 @@ h1 {
 	align-content: center;
 	align-items: center;
 	background: rgba(0,0,0,0.0);
-	border-top: 2px solid #000;
-	border-right: 0px solid #000;
-	border-bottom: 2px solid #000;
-	border-left: 0px solid #000;
+	border-top: 0.1333em solid #000;
+	border-right: 0 solid #000;
+	border-bottom: 0.1333em solid #000;
+	border-left: 0 solid #000;
 	flex: none;
 	flex-direction: row;
 	flex-wrap: nowrap;
 	height: auto;
 	justify-content: space-between;
-	padding: 10px 0px;
+	padding: 0.6667em 0;
 	width: 100%;
 	max-width: 100%;
 	font-family: "aptos", sans-serif;
-	font-size: 13px;
+	font-size: 0.8667em;
 	font-weight: 700;
 	line-height: 0;
 	min-width: max-content;
-	column-gap: 10px;
+	column-gap: 0.6667em;
 }
 #resume .col-1-container .at-a-glance div p.light {
 color: rgba(0,0,0,0.7);
@@ -300,20 +300,20 @@ color: rgba(0,0,0,0.7);
 	align-content: center;
 	align-items: center;
 	background: rgba(0,0,0,0.0);
-	border-top: 2px solid #000;
-	border-right: 2px solid #000;
-	border-bottom: 2px solid #000;
-	border-left: 2px solid #000;
+	border-top: 0.1333em solid #000;
+	border-right: 0.1333em solid #000;
+	border-bottom: 0.1333em solid #000;
+	border-left: 0.1333em solid #000;
 	flex: none;
 	flex-direction: column;
 	flex-wrap: nowrap;
-	height: 40px;
+	height: 2.6667em;
 	justify-content: center;
 	margin: 0;
 	width: 100%;
 	max-width: 100%;
 	font-family: "aptos", sans-serif;
-	font-size: 13px;
+	font-size: 0.8667em;
 	font-weight: 700;
 	line-height: 0;
 	text-decoration: none;
@@ -331,14 +331,14 @@ color: rgba(0,0,0,0.7);
 	transition: .3s cubic-bezier(.4,.4,0,1);
 }
 #resume .col-1-container .skills {
-	margin: 30px 0px;
+	margin: 2em 0;
 }
 #resume .col-1-container .skills-sub {
 	color: rgba(0,0,0,0.7);
 	font-family: "aptos-display", sans-serif;
 	font-weight: 600;
 	font-style: normal;
-	font-size: 13px;
+	font-size: 0.8667em;
 	margin: 0;
 	display: flex;
 	flex: none;
@@ -349,16 +349,16 @@ color: rgba(0,0,0,0.7);
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	padding: 0;
-	transform: translate(-5px, 0px);
+	transform: translate(-0.3333em, 0);
 	transition-duration: 1000ms;
-	row-gap: 7px;
-	column-gap: 7px;
+	row-gap: 0.4667em;
+	column-gap: 0.4667em;
 }
 #resume .col-1-container .skills-sub a > div, #resume .col-1-container .skills-sub > div {
 	color: rgba(0,0,0,0.7);
 	align-content: center;
 	align-items: center;
-	border: 2px solid rgba(0,0,0,0.7);
+	border: 0.1333em solid rgba(0,0,0,0.7);
 	display: flex;
 	flex: none;
 	position: relative;
@@ -366,14 +366,14 @@ color: rgba(0,0,0,0.7);
 	flex-wrap: nowrap;
 	justify-content: center;
 	margin: 0;
-	padding: 0px 15px 0px;
-	max-width: calc(100% - 10px);
+	padding: 0 1em 0;
+	max-width: calc(100% - 0.6667em);
 	line-height: 0;
-	border-radius: 16px;
+	border-radius: 1.0667em;
 	text-align: center;
 	width: auto;
 	max-width: 100%;
-	height: 32px;
+	height: 2.1333em;
 	word-break: break-word;
 	overflow: visible;
 	overflow-wrap: anywhere;
@@ -381,7 +381,7 @@ color: rgba(0,0,0,0.7);
 }
 #resume .col-1-container .skills-sub a > div:hover {
 	background: rgba(0,0,0,1.0);
-	border: 2px solid rgba(0,0,0,1.0);
+	border: 0.1333em solid rgba(0,0,0,1.0);
 	color: #fff;
 	transition: .3s cubic-bezier(.4,.4,0,1);
 	cursor: pointer;
@@ -391,8 +391,8 @@ color: rgba(0,0,0,0.7);
 	font-family: "aptos-display", sans-serif;
 	font-weight: 600;
 	font-style: normal;
-	font-size: 17px;
-	margin: 30px 0px 15px 0px;
+	font-size: 1.1333em;
+	margin: 2em 0 1em 0;
 	padding: 0;
 }
 
@@ -405,15 +405,15 @@ color: rgba(0,0,0,0.7);
 	font-family: "aptos-display", sans-serif;
 	font-weight: 700;
 	font-style: normal;
-	font-size: 24px;
+	font-size: 1.6em;
 	line-height: 1.5;
 	text-align: right;
-	margin: 0px 0px 10px 0px;
+	margin: 0 0 0.6667em 0;
 }
 .border-thin {
 	background: #000;
 	flex: none;
-	height: 2px;
+	height: 0.1333em;
 	transform-origin: center right;
 	transition-duration: 1000ms;
 	width: 100%;
@@ -422,8 +422,8 @@ color: rgba(0,0,0,0.7);
 .border-thick {
 	background: #000;
 	flex: none;
-	height: 4px;
-	margin: 3px 0px 0px 0px;
+	height: 0.2667em;
+	margin: 0.2em 0 0 0;
 	transform-origin: center right;
 	transition-duration: 1000ms;
 	width: 100%;
@@ -437,7 +437,7 @@ color: rgba(0,0,0,0.7);
 	color: #000;
 	font-family: "aptos-display", sans-serif;
 	font-style: normal;
-	margin: 30px 0;
+	margin: 2em 0;
 }
 #resume .job-container .col-1 {
 	display: flex;
@@ -445,39 +445,39 @@ color: rgba(0,0,0,0.7);
 }
 #resume .job-container .company p.company-name {
 	font-weight: 600;
-	font-size: 18px;
-	padding: 0 0 5px 0;
+	font-size: 1.2em;
+	padding: 0 0 0.3333em 0;
 	margin: 0;
 }
 #resume .job-container .company p.company-name span {
-	font-size: 14px;
+	font-size: 0.9333em;
 	color: rgba(0,0,0,0.7);
 	font-weight: 400;
-	margin-left: 5px;
+	margin-left: 0.3333em;
 }
 #resume .job-container .company p.company-location {
 	font-weight: 400;
-	font-size: 16px;
+	font-size: 1.0667em;
 	margin: 0;
-	padding: 0 0 5px 0;
+	padding: 0 0 0.3333em 0;
 }
 #resume .job-container .company p.job-title {
 	font-weight: 400;
-	font-size: 16px;
+	font-size: 1.0667em;
 	margin: 0;
-	padding: 0 0 5px 0;
+	padding: 0 0 0.3333em 0;
 }
 #resume .col-1-container .job-container div.company-img img {
-	height: 45px;
-	width: 45px;
-	border-radius: 8px;
-	box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+	height: 3em;
+	width: 3em;
+	border-radius: 0.5333em;
+	box-shadow: 0 0 0.2em rgba(0,0,0,0.3);
 }
 #resume .col-2-container .job-container div.company-img img {
-	height: 65px;
-	width: 65px;
-	border-radius: 12px;
-	box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+	height: 4.3333em;
+	width: 4.3333em;
+	border-radius: 0.8em;
+	box-shadow: 0 0 0.2em rgba(0,0,0,0.3);
 }
 
 #resume .job-container div.company-img {
@@ -493,29 +493,29 @@ color: rgba(0,0,0,0.7);
 }
 
 #resume .job-container .col-2 p {
-	font-size: 16px;
+	font-size: 1.0667em;
 	font-weight: 400;
-	padding: 0 0 5px 0;
+	padding: 0 0 0.3333em 0;
 	margin: 0;
 	text-align: right;
-	padding-top: 3px;
+	padding-top: 0.2em;
 }
 #resume .job-description h2 {
 	color: #000;
 	font-family: "aptos", sans-serif;
-	font-size: 15px;
+	font-size: 1em;
 	font-weight: 600;
 	font-style: normal;
 	height: auto;
 	line-height: 1.5;
 	text-align: left;
-	margin: 30px 0 0 0;
+	margin: 2em 0 0 0;
 	padding: 0;
 }
 #resume .job-description p {
 	color: rgba(0,0,0,0.7);
 	font-family: "aptos", sans-serif;
-	font-size: 15px;
+	font-size: 1em;
 	font-weight: 400;
 	font-style: normal;
 	height: auto;
@@ -531,27 +531,45 @@ color: rgba(0,0,0,0.7);
 #resume .job-description ul {
 	color: rgba(0,0,0,0.7);
 	font-family: "aptos", sans-serif;
-	font-size: 15px;
+	font-size: 1em;
 	font-weight: 400;
 	font-style: normal;
-	height: auto;
 	line-height: 1.5;
 	text-align: justify;
-	margin: 15px 0 0 0;
-	padding: 0 0 0 14px;
+	margin: 1em 0 0 0;
+	padding: 0;
+	list-style: none;
 	display: flex;
 	flex-direction: column;
-	gap: 6px;
+	gap: 0.4em;
 }
+
+#resume .job-description li {
+	position: relative;
+	padding-left: 1.2rem;
+	margin-bottom: 0.4em;
+}
+
+#resume .job-description li::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0.7em;
+	width: 0.3em;
+	height: 0.3em;
+	border-radius: 50%;
+	background: rgba(0,0,0,0.35);
+}
+
 #resume .job-description ul a {
 	text-decoration: none;
 	color: rgba(0,0,0,0.7);
-	border-bottom: 1px dashed #000;
+	border-bottom: 0.0667em dashed #000;
 	font-weight: 600;
 	transition: .2s ease;
 }
 #resume .job-description ul a:hover {
-	border-bottom: 1px dashed transparent;
+	border-bottom: 0.0667em dashed transparent;
 	transition: .2s ease;
 }
 #resume .job-description .list-columns {
@@ -563,8 +581,9 @@ color: rgba(0,0,0,0.7);
 #resume .job-description .list-columns ul.column {
 	flex: 1;
 	list-style-type: disc;
-	margin: 15px 0 0 0;
-	padding: 0 0 0 14px;
+	margin: 1em 0 0 0;
+	padding: 0;
+	list-style: none;
 }
 #resume .job-description span.note {
 	font-weight: 600;
@@ -573,12 +592,12 @@ color: rgba(0,0,0,0.7);
 #resume .break {
 	background: rgba(0,0,0,0.1);
 	flex: none;
-	height: 1px;
+	height: 0.0667em;
 	transition-delay: 300ms;
 	transition-duration: 1000ms;
 	width: 100%;
 	max-width: 100%;
-	margin-top: 30px;
+	margin-top: 2em;
 }
 
 div#download-as {
@@ -586,10 +605,10 @@ div#download-as {
 	font-family: "aptos", sans-serif;
 	font-weight: 600;
 	font-style: normal;
-	font-size: 13px;
-	margin: 0px 0px 30px 0px;
+	font-size: 1em;
+	margin: 0 0 2em 0;
 	display: flex;
-	column-gap: 4px;
+	column-gap: 0.2667em;
 	flex-wrap: nowrap;
 	justify-content: flex-end;
 	align-items: baseline;
@@ -599,9 +618,9 @@ div#download-as {
 div#download-as a {
 	color: rgba(0,0,0,0.8);
 	font-weight: 600;
-	font-size: 13px;
+	font-size: 0.8667em;
 	text-decoration: none;
-	border-bottom: 1px dotted transparent;
+	border-bottom: 0.0667em dotted transparent;
 	transition: .3s ease;
 }
 div#download-as a:hover {
@@ -609,17 +628,22 @@ div#download-as a:hover {
 	transition: .3s ease;
 }
 div#download-as a:hover > span {
-	border-bottom: 1px dotted rgba(0,0,0,1.0);
+	border-bottom: 0.0667em dotted rgba(0,0,0,1.0);
 	transition: .3s ease;
 }
 div#download-as a svg {
-	width: 18px;
-	height: 18px;
+	width: 1.2em;
+	height: 1.2em;
 	display: inline-block;
 	vertical-align: top;
 }
 
 
+
+#portfolio {
+	margin-top: 8em;
+	margin-bottom: 4.6667em;
+}
 h1.portfolio {
 	color: #fff;
 	text-align: center;
@@ -627,12 +651,8 @@ h1.portfolio {
 	font-weight: 900;
 	font-family: "aptos", sans-serif;
 	font-style: normal;
-	text-shadow: 0px 0px 15px #000;
+	text-shadow: 0 0 1em #000;
 	margin: 0;
-}
-#portfolio {
-	margin-top: 120px;
-	margin-bottom: 70px;
 }
 #portfolio .featured-intro-wrap {
 	display: flex;
@@ -644,37 +664,37 @@ h1.portfolio {
 	font-family: "aptos-display", sans-serif;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 12px;
-	margin-bottom: 10px;
+	font-size: 0.8em;
+	margin-bottom: 0.6667em;
 	line-height: 1;
 }
 #portfolio .featured-intro::before {
 	content: "[";
-	margin-right: 1px;
+	margin-right: 0.0667em;
 }
 #portfolio .featured-intro::after {
 	content: "]";
-	margin-left: 1px;
+	margin-left: 0.0667em;
 }
 #portfolio #featured-wrap {
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
 	width: 100%;
-	column-gap: 12px;
-	row-gap: 12px;
+	column-gap: 0.8em;
+	row-gap: 0.8em;
 }
 #portfolio #featured-wrap .img-container {
 	position: relative;
-	width: 375.33px;
-  	height: 281.5px;
-	border-radius: 16px;
+	width: 25.022em;
+  	height: 18.7667em;
+	border-radius: 1.0667em;
   	overflow: hidden;
-	filter: drop-shadow(0px 0px 12px #000);
+	filter: drop-shadow(0 0 0.8em #000);
 }
 
 #portfolio #featured-wrap .img-container img {
-	width: 375.33px;
+	width: 25.022em;
   	height: auto;
   	object-fit: cover;
 	display: block;
@@ -690,17 +710,17 @@ h1.portfolio {
 
 #portfolio #featured-wrap .img-container .caption {
 	position: absolute;
-	bottom: 10px;
-	left: 10px;
+	bottom: 0.6667em;
+	left: 0.6667em;
 	color: #fff;
 	font-family: "aptos", sans-serif;
-	text-shadow: 0px 0px 4px #000;
-	font-size: 14px;
+	text-shadow: 0 0 0.2667em #000;
+	font-size: 0.9333em;
 	font-weight: 400;
 	font-style: normal;
 	background-color: rgba(0, 0, 0, 0.7);
-	padding: 4px 8px;
-	border-radius: 2px;
+	padding: 0.2667em 0.5333em;
+	border-radius: 0.1333em;
 	text-transform: uppercase;
 }
 
@@ -711,8 +731,8 @@ footer {
 	justify-content: center;
 	align-items: center;
 	align-content: center;
-	margin: 0px auto;
-	padding: 20px 0px;
+	margin: 0 auto;
+	padding: 1.3333em 0;
 	max-width: 100%;
 	background: linear-gradient(
     to top, 
@@ -727,7 +747,7 @@ footer div {
 	font-family: "aptos-display", sans-serif;
 	font-weight: 400;
 	font-style: normal;
-	font-size: 13px;
+	font-size: 0.8667em;
 	line-height: 1;
 	color: #C8C8C8;
 	margin: 0;
@@ -739,7 +759,7 @@ footer p {
 	padding: 0;	
 }
 footer p svg {
-	height: 20px;
+	height: 1.3333em;
 }
 footer p svg#logo-mp .m {
 	fill: #C8C8C8;
@@ -750,7 +770,7 @@ footer p svg#logo-mp .p {
 
 .animate {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(2em);
   transition: opacity 0.6s ease, transform 0.6s ease;
   will-change: opacity, transform;
 }
@@ -759,8 +779,13 @@ footer p svg#logo-mp .p {
   opacity: 1;
   transform: translateY(0);
 }
-
-@media (max-width: 768px) {
+@media (max-width: 74.6em) {
+	#portfolio .featured-intro-wrap {
+		display: initial;
+		text-align: center;
+	}
+}
+@media (max-width: 51.2em) {
 	#resume {
 		display: inline-block;
 	}
@@ -777,7 +802,7 @@ footer p svg#logo-mp .p {
 		text-align: center;
 	}
 	#resume .col-1-container .pfp img {
-		border-radius: 16px;
+		border-radius: 1.0667em;
 		width: 100%;
 		height: auto;
 		transition: 2s ease;
@@ -787,7 +812,7 @@ footer p svg#logo-mp .p {
 	}
 	#masthead {
 		flex-direction: column;
-		row-gap: 30px;
+		row-gap: 2em;
 		align-items: center;
 	}
 	#masthead .txt {
@@ -803,17 +828,17 @@ footer p svg#logo-mp .p {
 	}
 	#masthead .urls a svg.linkedin-large {
 		display: inline;
-		height: 30px;
+		height: 2em;
 		width: auto;
 		border: none;
 	}
 	#masthead .urls a {
 		border-radius: 0;
-		border: 1px solid rgba(0, 0, 0, 0.1);
-		padding: 30px;
+		border: 0.0667em solid rgba(0, 0, 0, 0.1);
+		padding: 2em;
 		width: 100%;
 		max-width: 100%;
-		height: 40px;
+		height: 2.6667em;
 	}
 	#masthead .urls a:hover {
 		background: radial-gradient(circle,
