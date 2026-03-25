@@ -64,7 +64,19 @@ html, body {
 .panel-body {
   padding: 14px;
 }
-
+.panel-body a.byline {
+    text-decoration: none; 
+    border-bottom: 1px dotted #6A00F4; 
+    color: #6A00F4;
+    transition: all 0.3s ease;
+    opacity: 1;
+    font-weight: 600;
+}
+.panel-body a.byline:hover {
+    border-bottom: 1px dotted transparent;
+    transition: all 0.3s ease;
+    opacity: 1;
+}
 .stack {
   display: grid;
   gap: var(--gap);
