@@ -1,308 +1,1609 @@
 <!doctype html>
-
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="robots" content="noindex, nofollow">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>NASA Library Systems Modernization</title>
-        <link rel="stylesheet" href="https://use.typekit.net/ffe8zgm.css">
-        <link rel="stylesheet" href="style.css">
-        <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-        <style>
-            :root {
-            --ink: #16202a;
-            --muted: #65717d;
-            --line: #dce2e8;
-            --blue: #1455b8;
-            --red: #ef3f2f;
-            --green: #10a83b;
-            --paper: #ffffff;
-            --panel: #f6f8fa;
-            --label-w: 300px;
-            --month-w: 38px;
-            --row-h: 42px;
-            --months: 40;
-            }
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NASA Library Modernization | Michael Pritz</title>
+  <link rel="stylesheet" href="https://use.typekit.net/ffe8zgm.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <style>
+    :root {
+      --ink: #16202a;
+      --muted: #65717d;
+      --line: #dce2e8;
+      --active-bar: #1c67e3;
+      --enterprise-bar: #f64137;
+      --start-green: #10a83b;
+      --stop-red: #f64137;
+      --accent-gray: #4a535c;
+      --accent-gray-soft: #f0f2f4;
+      --accent-gray-line: #cbd0d5;
+      --paper: #ffffff;
+      --panel: #f3f4f5;
+      --label-w: 300px;
+      --month-w: 38px;
+      --row-h: 42px;
+      --months: 40;
+    }
 
-            *, *::before, *::after { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; }
 
-            html, body { margin: 0; min-height: 100%; background: #eef1f4; color: var(--ink); }
-            body { font-family: Aptos, "Segoe UI", Arial, sans-serif; font-weight: 400; }
+    html, body { margin: 0; min-height: 100%; background: #eef0f2; color: var(--ink); }
+    body { font-family: Aptos, "Segoe UI", Arial, sans-serif; font-weight: 400; }
 
-            h1, h2, .header-label, .group-label, .year {
-            font-family: Aptos-Display, "Aptos Display", Aptos, "Segoe UI", Arial, sans-serif;
-            font-weight: 600;
-            }
+    h1, h2, .header-label, .group-label, .year {
+      font-family: Aptos-Display, "Aptos Display", Aptos, "Segoe UI", Arial, sans-serif;
+      font-weight: 600;
+    }
 
-            .page {
-            width: min(100%, 1920px);
-            margin: 0 auto;
-            padding: 38px 34px 54px;
-            background: var(--paper);
-            min-height: 100vh;
-            }
+    .page {
+      width: min(100%, 1920px);
+      margin: 0 auto;
+      padding: 38px 34px 54px;
+      background: var(--paper);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 52px;
+    }
 
-            .masthead {
-            display: grid;
-            grid-template-columns: minmax(520px, 1fr) auto;
-            gap: 28px;
-            align-items: start;
-            margin-bottom: 26px;
-            }
+    .presentation-header {
+      width: min(100%, 1240px);
+      margin: 0 auto;
+      padding: 22px 8px 34px;
+      text-align: center;
+    }
 
-            h1 {
-            margin: 0 0 10px;
-            font-size: clamp(28px, 2.4vw, 42px);
-            line-height: 1.05;
-            letter-spacing: -.035em;
-            text-transform: uppercase;
-            }
+    .presentation-kicker {
+      margin: 0 0 12px;
+      color: #000;
+      font-size: .82em;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
 
-            .dek {
-            max-width: 1080px;
-            margin: 0;
-            color: #3b4651;
-            font-size: 13px;
-            line-height: 1.45;
-            letter-spacing: .01em;
-            }
+    .presentation-title {
+      max-width: 1120px;
+      margin: 0 auto;
+      color: #16202a;
+      font-family: Aptos-Display, "Aptos Display", Aptos, "Segoe UI", Arial, sans-serif;
+      font-size: clamp(2.6em, 5vw, 4.5em);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: .98;
+    }
 
-            .journey {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 16px;
-            color: #33404c;
-            font-size: 11px;
-            font-weight: 700;
-            white-space: nowrap;
-            }
+    .presentation-title .headline-accent {
+      color: var(--accent-gray);
+    }
 
-            .journey-step {
-            padding: 7px 10px;
-            border: 1px solid #d5dce3;
-            border-radius: 6px;
-            background: #f7f9fb;
-            }
+    .presentation-subtitle {
+      margin: 16px 0 0;
+      color: #65717d;
+      font-size: clamp(1.05em, 1.7vw, 1.3em);
+      font-weight: 500;
+      letter-spacing: .01em;
+      line-height: 1.35;
+    }
 
-            .journey-arrow { color: #7a8691; }
+    .network-section {
+      width: min(100%, 1240px);
+      margin: 0 auto;
+      border: 1px solid #d7dde4;
+      border-radius: 18px;
+      padding: 38px 40px 34px;
+      background: linear-gradient(180deg, #f6f7f8 0%, #fff 46%);
+      box-shadow: 0 10px 34px rgba(25, 35, 45, .08);
+      color: #000;
+      font-family: "Aptos", sans-serif;
+    }
 
-            .legend {
-            display: grid;
-            grid-template-columns: repeat(3, max-content);
-            gap: 8px 34px;
-            border: 1px solid #d8dee5;
-            padding: 8px 18px 12px;
-            background: #fff;
-            font-size: 11px;
-            font-weight: 700;
-            width: fit-content;
-            min-width: 0;
-            margin: 10px 0 0;
-            }
+    .network-kicker {
+      margin: 0 0 8px;
+      color: var(--accent-gray);
+      font-size: .78em;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-align: center;
+      text-transform: uppercase;
+    }
 
-            .legend > legend { padding: 0 10px; font-family: Aptos-Display, "Aptos Display", Aptos, "Segoe UI", Arial, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
-            .legend-column { display: grid; grid-template-rows: repeat(3, 20px); align-content: start; gap: 5px; }
-            .legend-item { display: flex; height: 20px; align-items: center; gap: 8px; white-space: nowrap; }
-            .swatch { width: 54px; height: 11px; border-radius: 999px; }
-            .swatch.active { background: var(--blue); }
-            .swatch.stopgap { border: 2px dashed var(--blue); background: #fff; }
-            .swatch.future { border: 2px solid var(--red); background: #fff; }
-            .migration-sample { position: relative; width: 18px; height: 18px; flex: 0 0 18px; border: 2px solid #9aa1a8; background: #d1d5d9; }
-            .migration-sample::before { content: ''; position: absolute; top: 0; bottom: 0; left: 50%; border-left: 2px solid #9aa1a8; transform: translateX(-1px); }
-            .migration-sample::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 2px solid #9aa1a8; transform: translateY(-1px); }
-            .event-sample { position: relative; width: 54px; height: 14px; flex: 0 0 54px; }
-            .event-sample::before { content: ''; position: absolute; left: 5px; right: 5px; top: 6px; border-top: 2px solid #2f3740; }
-            .event-sample::after, .event-sample > span { content: ''; position: absolute; top: 1px; width: 10px; height: 10px; background: #fff; border: 2px solid #2f3740; }
-            .event-sample::after { right: 0; }
-            .event-sample > span { left: 0; }
-            .event-sample.deployment::after, .event-sample.deployment > span { border-radius: 50%; }
-            .marker-sample { width: 18px; height: 18px; flex: 0 0 18px; display: grid; place-items: center; color: white; font-size: 6px; font-weight: 900; line-height: 1; clip-path: polygon(29% 0, 71% 0, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0 71%, 0 29%); }
-            .marker-sample.start { background: var(--green); }
-            .marker-sample.stop { background: var(--red); }
-            .legend-column.indicators .legend-item { display: grid; grid-template-columns: 72px 18px; column-gap: 12px; min-width: 0; }
+    .network-title {
+      margin: 0;
+      font-size: 2.6em;
+      font-weight: 900;
+      line-height: 1;
+      text-align: center;
+      text-transform: uppercase;
+    }
 
-            .timeline-shell {
-            width: fit-content;
-            max-width: 100%;
-            border: 1px solid #d7dde4;
-            border-radius: 10px;
-            overflow: auto;
-            background: #fff;
-            box-shadow: 0 10px 34px rgba(25, 35, 45, .08);
-            }
+    .network-summary {
+      max-width: 720px;
+      margin: 12px auto 24px;
+      color: rgba(0, 0, 0, .7);
+      font-size: 1em;
+      line-height: 1.5;
+      text-align: center;
+    }
 
-            .timeline {
-            width: calc(var(--label-w) + (var(--months) * var(--month-w)));
-            min-width: calc(var(--label-w) + (var(--months) * var(--month-w)));
-            position: relative;
-            }
+    .network-map {
+      width: min(100%, 1080px);
+      margin: 0 auto;
+      position: relative;
+    }
 
-            .header-row, .data-row, .group-row {
-            display: grid;
-            grid-template-columns: var(--label-w) calc(var(--months) * var(--month-w));
-            }
+    .network-map svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
 
-            .header-row {
-            position: sticky;
-            top: 0;
-            z-index: 15;
-            background: white;
-            border-bottom: 1px solid #cfd6dd;
-            }
+    .network-map image { display: none; }
+    .network-map image.complete-state-map { display: block; }
 
-            .header-label {
-            position: sticky;
-            left: 0;
-            z-index: 18;
-            padding: 15px 18px;
-            display: flex;
-            align-items: end;
-            background: #fff;
-            border-right: 1px solid #cfd6dd;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            }
+    .map-callout,
+    .map-marker,
+    .map-label {
+      display: none;
+    }
 
-            .calendar { position: relative; height: 74px; background: #fff; }
-            .year-band { position: absolute; inset: 0 0 auto 0; height: 30px; border-bottom: 1px solid var(--line); }
-            .year { position: absolute; top: 0; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 12px; border-right: 1px solid #bec7d0; }
-            .months { position: absolute; left: 0; right: 0; bottom: 0; height: 44px; display: grid; grid-template-columns: repeat(var(--months), var(--month-w)); }
-            .month { display: grid; place-items: center; border-right: 1px solid var(--line); font-size: 10px; font-weight: 700; color: #44505c; }
+    .map-callout {
+      stroke: #6b7680;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
 
-            .group-row { height: 36px; background: #edf2f7; border-top: 1px solid #cbd3db; border-bottom: 1px solid #cbd3db; }
-            .group-label { position: sticky; left: 0; z-index: 7; padding: 0 18px; display: flex; align-items: center; background: #edf2f7; border-right: 1px solid #cbd3db; font-size: 12px; text-transform: uppercase; letter-spacing: .055em; }
-            .group-note { padding: 0 12px; display: flex; align-items: center; color: #5b6773; font-size: 10px; font-weight: 700; }
+    .map-marker circle {
+      fill: #1c67e3;
+      stroke: #fff;
+      stroke-width: 4;
+      filter: drop-shadow(0 3px 4px rgba(19, 41, 68, .24));
+      transition: transform .15s ease, fill .15s ease;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
 
-            .data-row { height: var(--row-h); border-bottom: 1px solid #e5e9ed; }
-            .row-label { position: sticky; left: 0; z-index: 6; display: flex; align-items: center; gap: 8px; padding: 0 16px 0 22px; background: #fff; border-right: 1px solid #d8dee5; font-size: 11px; font-weight: 700; white-space: nowrap; }
-            .row-label .site { color: var(--blue); font-weight: 600; }
-            .row-label.enterprise .site { color: var(--red); }
+    .map-marker text {
+      fill: #fff;
+      font-family: "Aptos", sans-serif;
+      font-size: 15px;
+      font-weight: 900;
+      pointer-events: none;
+      text-anchor: middle;
+    }
 
-            .track {
-            position: relative;
-            height: var(--row-h);
-            background-image: repeating-linear-gradient(to right, transparent 0, transparent calc(var(--month-w) - 1px), var(--line) calc(var(--month-w) - 1px), var(--line) var(--month-w));
-            }
+    .map-marker:hover circle { fill: #0f4fae; transform: scale(1.12); }
 
-            .migration-zone { position: absolute; top: 0; bottom: 0; background: rgba(138, 148, 159, .20); border-left: 1px solid rgba(93, 102, 111, .45); border-right: 1px solid rgba(93, 102, 111, .45); pointer-events: none; }
-            .timeline-event-line { position: absolute; top: 74px; bottom: 0; width: 0; border-left: 2px solid #2f3740; pointer-events: none; z-index: 4; }
-            .timeline-event-marker { position: absolute; top: 6px; left: 0; width: 12px; height: 12px; background: #fff; border: 2px solid #2f3740; transform: translateX(-58%); }
-            .timeline-event-line.deployment .timeline-event-marker { border-radius: 50%; }
+    .map-site .leader,
+    .map-leader-layer .leader {
+      fill: none;
+      stroke: #5e6b77;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+    }
 
-            .bar {
-            position: absolute;
-            top: 10px;
-            height: 22px;
-            min-width: 8px;
-            border-radius: 999px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 9px;
-            overflow: visible;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            font-size: 10px;
-            font-weight: 600;
-            line-height: 1;
-            z-index: 5;
-            cursor: default;
-            }
+    .map-site .anchor {
+      fill: #1c67e3;
+      stroke: #fff;
+      stroke-width: 3;
+      filter: drop-shadow(0 2px 3px rgba(19, 41, 68, .28));
+    }
 
-            .bar.active { color: #fff; background: var(--blue); }
-            .bar.stopgap { color: #25313c; background: rgba(255,255,255,.92); border: 2px dashed var(--blue); }
-            .bar.future { color: #26313a; background: #fff; border: 2px solid var(--red); }
-            .bar.launch { border-color: var(--red); }
-            .bar.enterprise.active { background: var(--red); }
-            .bar.enterprise.stopgap { border-color: var(--red); }
-            .bar > .cost { display: block; max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-            .cost.sensitive { filter: blur(2px); font-weight: 800; opacity: 1; user-select: none; }
-            .bar:focus-visible { outline: 3px solid rgba(20,85,184,.3); outline-offset: 2px; }
+    .map-site.has-library .anchor {
+      fill: #f64137;
+    }
 
-            .endpoint { position: absolute; top: 50%; width: 18px; height: 18px; margin-left: -9px; color: #fff; display: grid; place-items: center; font-size: 6px; font-weight: 900; line-height: 1; z-index: 8; transform: translateY(-50%); clip-path: polygon(29% 0, 71% 0, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0 71%, 0 29%); }
-            .endpoint.start { background: var(--green); }
-            .endpoint.stop { background: var(--red); }
+    .map-site .label-box {
+      fill: rgba(255, 255, 255, .97);
+      stroke: #cbd4dc;
+      stroke-width: 1;
+      filter: drop-shadow(0 2px 5px rgba(25, 35, 45, .12));
+    }
 
-            .details {
-            position: fixed;
-            z-index: 50;
-            width: min(360px, calc(100vw - 28px));
-            padding: 15px 16px;
-            border: 1px solid #bcc6cf;
-            border-radius: 8px;
-            background: rgba(255,255,255,.98);
-            box-shadow: 0 15px 50px rgba(20,30,40,.22);
-            pointer-events: none;
-            opacity: 0;
-            transform: translateY(4px);
-            transition: opacity .1s ease, transform .1s ease;
-            }
-            .details.show { opacity: 1; transform: translateY(0); }
-            .details-title { margin: 0 0 9px; font-size: 14px; line-height: 1.25; }
-            .details dl { display: grid; grid-template-columns: 76px 1fr; gap: 4px 9px; margin: 0; font-size: 11px; line-height: 1.35; }
-            .details dt { color: var(--muted); font-weight: 700; }
-            .details dd { margin: 0; }
+    .map-site .label-title {
+      fill: #18222c;
+      font-family: "Aptos", sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+    }
 
-            .footnote { margin: 14px 2px 0; color: #6b7680; font-size: 10px; line-height: 1.45; }
-            @media (max-width: 920px) {
-            :root { --label-w: 245px; --month-w: 35px; }
-            .page { padding: 22px 16px 38px; }
-            .masthead { grid-template-columns: 1fr; }
-            .legend { min-width: 0; }
-            .controls { justify-content: flex-start; }
-            .row-label { padding-left: 13px; font-size: 10px; }
-            }
+    .map-site.langley .label-box {
+      fill: #fffdf2;
+      stroke: #f4c542;
+      stroke-width: 1.5;
+      filter: drop-shadow(0 0 4px rgba(255, 211, 45, .38));
+    }
 
-            @media print {
-            @page { size: 24in 18in landscape; margin: .35in; }
-            html, body { background: white; }
-            .page { width: 100%; padding: 0; }
-            .controls { display: none; }
-            .timeline-shell { overflow: visible; border: 0; box-shadow: none; }
-            .timeline { transform-origin: top left; }
-            .details { display: none; }
-            .header-row { position: static; }
-            .header-label, .group-label, .row-label { position: static; }
-            }
-        </style>
-    </head>
+    .map-site.langley .label-title {
+      fill: #18222c;
+      font-weight: 900;
+    }
 
-    <body>
-       
-        <header class="site-header">
-            <div id="logo">
-                <svg id="logo-mp" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="300" height="275.64" viewBox="0 0 300 275.64"><g id="c"><polygon class="m" points="247.72 0 247.72 163.07 150.55 219.21 89.11 184.16 89.11 254.55 52.87 275.64 52.87 122.38 150.04 177.62 211.49 142.28 211.49 62.38 150.1 97.29 52.87 41.29 52.87 0 150.5 55.71 247.72 0"/><polygon class="p" points="194.85 91.49 194.85 133.07 150.1 158.52 36.24 93.27 36.24 275.64 0 254.55 0 30.89 149.69 116.79 194.85 91.49"/><polygon class="p" points="300 30.89 300 255.45 264.36 275.64 264.36 51.39 300 30.89"/><path class="p" d="M247.72,182.97v92.67c-12.09-6.93-24.51-13.55-36.14-21.19l-.14-50.42,36.28-21.06Z"/></g></svg>
-            </div>
-                        <nav class="nav-center" role="navigation" aria-label="Primary">
-                <a href="https://www.michaelpritz.info/" aria-current="page">résumé</a>
-                <a href="https://www.michaelpritz.info/portfolio">portfolio</a>
-            </nav>
-        </header>
+    .map-site .label-city {
+      display: none;
+    }
 
-        <main class="page" id="page">
-    <section class="masthead">
-      <div>
-        <h1>NASA Library Systems Modernization</h1>
-        <p class="dek">Consolidating fragmented library systems and contracts into a coordinated enterprise environment.</p>
-        <div class="journey" aria-label="Modernization sequence">
-          <span class="journey-step">1. Existing services</span>
-          <span class="journey-arrow" aria-hidden="true">→</span>
-          <span class="journey-step">2. Temporary extensions</span>
-          <span class="journey-arrow" aria-hidden="true">→</span>
-          <span class="journey-step">3. Enterprise replacements</span>
+    .map-key {
+      position: absolute;
+      left: 22px;
+      bottom: 18px;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      color: #485560;
+      font-size: .76em;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .map-key-dot {
+      width: 11px;
+      height: 11px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      background: #f64137;
+      box-shadow: 0 1px 3px rgba(19, 41, 68, .28);
+    }
+
+    .network-legend {
+      width: min(100%, 1040px);
+      margin: 18px auto 0;
+      border-top: 2px solid #cfd7df;
+    }
+
+    .network-legend-title {
+      margin: 18px 0 10px;
+      color: #202830;
+      font-size: .78em;
+      font-weight: 900;
+      letter-spacing: .11em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .network-legend-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 30px;
+      row-gap: 12px;
+    }
+
+    .network-legend-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 10px minmax(0, 1fr);
+      column-gap: 9px;
+      border-bottom: 1px solid #e1e6eb;
+      padding: 13px 4px 14px;
+    }
+
+    .network-legend-item::before {
+      grid-column: 1;
+      grid-row: 1;
+      align-self: center;
+      justify-self: center;
+      width: 10px;
+      height: 10px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      background: #1c67e3;
+      box-shadow: 0 1px 3px rgba(19, 41, 68, .24);
+      content: "";
+    }
+
+    .network-legend-item.has-library::before {
+      background: #f64137;
+    }
+
+    .network-legend-name {
+      display: block;
+      grid-column: 2;
+      grid-row: 1;
+      color: #202830;
+      font-size: .84em;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .network-legend-meta {
+      display: flex;
+      grid-column: 2;
+      align-items: center;
+      gap: 5px;
+      margin-top: 3px;
+      color: #687580;
+      font-size: .75em;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .network-legend-count {
+      display: flex;
+      grid-column: 2;
+      align-items: center;
+      gap: 5px;
+      margin-top: 2px;
+      color: #687580;
+      font-size: .75em;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .network-legend-founded {
+      display: flex;
+      grid-column: 2;
+      align-items: center;
+      gap: 5px;
+      margin-top: 2px;
+      color: #687580;
+      font-size: .75em;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .network-legend-icon {
+      width: 13px;
+      height: 13px;
+      flex: 0 0 13px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.8;
+    }
+
+    .network-legend-note {
+      max-width: 890px;
+      margin: 12px auto 0;
+      color: #6a7580;
+      font-size: .7em;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .map-label .leader {
+      fill: none;
+      stroke: #586673;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
+    .map-label .anchor {
+      fill: #1c67e3;
+      stroke: #fff;
+      stroke-width: 4;
+      filter: drop-shadow(0 2px 3px rgba(19, 41, 68, .25));
+    }
+
+    .map-label .label-box {
+      fill: rgba(255, 255, 255, .96);
+      stroke: #cbd4dc;
+      stroke-width: 1.25;
+      filter: drop-shadow(0 3px 7px rgba(25, 35, 45, .13));
+    }
+
+    .map-label .label-title {
+      fill: #18222c;
+      font-family: "Aptos", sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .map-label .label-city {
+      fill: #66737f;
+      font-family: "Aptos", sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .hisd-section {
+      width: min(100%, 1240px);
+      margin: 0 auto;
+      border: 1px solid #d7dde4;
+      border-radius: 18px;
+      padding: 38px 40px 40px;
+      background: #fff;
+      box-shadow: 0 10px 34px rgba(25, 35, 45, .08);
+      color: #000;
+      font-family: "Aptos", sans-serif;
+    }
+
+    .hisd-kicker {
+      margin: 0 0 8px;
+      color: var(--accent-gray);
+      font-size: .78em;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .hisd-title {
+      margin: 0;
+      font-size: 2.6em;
+      font-weight: 900;
+      line-height: 1;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .hisd-summary {
+      max-width: 690px;
+      margin: 12px auto 28px;
+      color: rgba(0, 0, 0, .7);
+      font-size: 1em;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .hisd-director {
+      width: fit-content;
+      margin: 0 auto 26px;
+      border-radius: 999px;
+      padding: 12px 22px;
+      background: #15191d;
+      color: #fff;
+      font-size: .95em;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .hisd-branches {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .hisd-branch {
+      border: 1px solid #d7dde4;
+      border-radius: 12px;
+      min-height: 104px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 18px 20px;
+      background: #f3f4f5;
+      text-align: center;
+    }
+
+    .hisd-branch-label {
+      margin: 0 0 6px;
+      color: #6a7580;
+      font-size: .72em;
+      font-weight: 800;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .hisd-branch h3 {
+      margin: 0;
+      color: #15191d;
+      font-size: 1.2em;
+      font-weight: 900;
+      line-height: 1.15;
+    }
+
+    .library-branch {
+      border: 2px solid var(--accent-gray-line);
+      background: #f0f2f4;
+    }
+
+    .branch-detail-badge {
+      display: block;
+      margin-top: 8px;
+      color: var(--accent-gray);
+      font-size: .66em;
+      font-weight: 900;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .hisd-library-detail {
+      margin-top: 16px;
+      border: 1px solid var(--accent-gray-line);
+      border-radius: 13px;
+      padding: 22px 24px 24px;
+      background: #f0f2f4;
+    }
+
+    .hisd-library-detail-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 1px solid #c4d7f5;
+      padding-bottom: 14px;
+    }
+
+    .hisd-library-detail-header h3 {
+      margin: 0;
+      color: #15191d;
+      font-size: 1.2em;
+      font-weight: 900;
+    }
+
+    .hisd-library-detail-header p {
+      margin: 0;
+      color: #596979;
+      font-size: .8em;
+      font-weight: 700;
+    }
+
+    .chief-librarian {
+      width: min(100%, 360px);
+      margin: 20px auto 0;
+      border-radius: 9px;
+      padding: 12px 14px;
+      background: #15191d;
+      color: #fff;
+      font-size: .95em;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .library-heads {
+      display: grid;
+      grid-template-columns: 1.6fr repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .library-reporting-label {
+      margin: 18px 0 0;
+      color: #596979;
+      font-size: .72em;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .library-head {
+      position: relative;
+      min-height: 86px;
+      border: 1px solid #cfd7df;
+      border-radius: 9px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 13px 12px;
+      background: #fff;
+      color: #303941;
+      font-size: .86em;
+      font-weight: 800;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .library-head.my-role {
+      border: 2px solid var(--accent-gray-line);
+      background: #fff;
+      color: #343b42;
+    }
+
+    .role-detail {
+      color: #768391;
+      font-size: .72em;
+      font-weight: 650;
+      line-height: 1.2;
+    }
+
+    .library-head.my-role .role-detail { color: #626b74; }
+
+    .role-badge {
+      position: absolute;
+      top: 6px;
+      right: 7px;
+      border-radius: 999px;
+      padding: 3px 6px 2px;
+      background: var(--accent-gray);
+      color: #fff;
+      font-size: .56em;
+      font-weight: 900;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .library-structure-note {
+      margin: 14px 0 0;
+      color: #566574;
+      font-size: .8em;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    .hierarchy-section {
+      width: min(100%, 1240px);
+      margin: 0 auto;
+      border: 1px solid #d7dde4;
+      border-radius: 18px;
+      padding: 38px 40px 28px;
+      background: linear-gradient(180deg, #f6f7f8 0%, #fff 45%);
+      box-shadow: 0 10px 34px rgba(25, 35, 45, .08);
+    }
+
+    .hierarchy-chart {
+      color: #000;
+      font-family: "Aptos", sans-serif;
+    }
+
+    .hierarchy-kicker {
+      margin: 0 0 8px;
+      color: var(--accent-gray);
+      font-size: .78em;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .hierarchy-root {
+      margin: 0;
+      font-size: 2.6em;
+      font-weight: 900;
+      line-height: 1;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .hierarchy-summary {
+      max-width: 660px;
+      margin: 12px auto 0;
+      color: rgba(0, 0, 0, .7);
+      font-size: 1em;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .hierarchy-branches {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .hierarchy-unit {
+      min-height: 126px;
+      border: 1px solid #d7dde4;
+      border-top: 5px solid #d3d7da;
+      border-radius: 11px;
+      padding: 20px 22px 18px;
+      background: #fff;
+      box-shadow: 0 5px 18px rgba(25, 35, 45, .06);
+    }
+
+    .hierarchy-unit h3 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 45px;
+      margin: 0 0 12px;
+      color: #15191d;
+      font-size: 1.12em;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .hierarchy-count {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      color: #4f5b66;
+    }
+
+    .hierarchy-count strong {
+      color: var(--accent-gray);
+      font-size: 2.15em;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .hierarchy-count span { font-size: .95em; font-weight: 700; }
+
+    .hierarchy-note {
+      margin: 18px 0 0;
+      color: #66717c;
+      font-size: .82em;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .stakeholder-section {
+      width: min(100%, 1240px);
+      margin: 0 auto;
+      border: 1px solid #d7dde4;
+      border-radius: 18px;
+      padding: 34px 40px 36px;
+      background: #f3f4f5;
+      box-shadow: 0 10px 34px rgba(25, 35, 45, .07);
+    }
+
+    .stakeholder-kicker {
+      margin: 0 0 8px;
+      color: var(--accent-gray);
+      font-size: .78em;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .stakeholder-title {
+      margin: 0;
+      color: #16202a;
+      font-size: 2em;
+      font-weight: 800;
+      line-height: 1.1;
+      text-align: center;
+    }
+
+    .stakeholder-summary {
+      max-width: 760px;
+      margin: 10px auto 0;
+      color: #65717d;
+      font-size: .96em;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    .stakeholder-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .stakeholder-card {
+      min-height: 112px;
+      border: 1px solid #dce2e8;
+      border-top: 3px solid var(--accent-gray-line);
+      border-radius: 10px;
+      padding: 15px 16px 14px;
+      background: #fff;
+    }
+
+    .stakeholder-card h3 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 6px;
+      color: #202830;
+      font-size: .96em;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .card-icon {
+      display: inline-grid;
+      width: 31px;
+      height: 31px;
+      flex: 0 0 31px;
+      place-items: center;
+      border-radius: 9px;
+      background: var(--accent-gray-soft);
+      color: var(--accent-gray);
+    }
+
+    .card-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .stakeholder-card p {
+      margin: 0;
+      color: #65717d;
+      font-size: .8em;
+      line-height: 1.4;
+    }
+
+    .audit-section {
+      width: min(100%, 1240px);
+      margin: 0 auto;
+      border: 1px solid #d7dde4;
+      border-radius: 18px;
+      padding: 36px 40px 38px;
+      background: linear-gradient(145deg, #f6f7f8 0%, #fff 62%);
+      box-shadow: 0 10px 34px rgba(25, 35, 45, .07);
+    }
+
+    .audit-kicker {
+      margin: 0 0 8px;
+      color: var(--accent-gray);
+      font-size: .78em;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .audit-title {
+      margin: 0;
+      color: #16202a;
+      font-size: 2em;
+      font-weight: 800;
+      line-height: 1.1;
+      text-align: center;
+    }
+
+    .audit-summary {
+      max-width: 820px;
+      margin: 11px auto 0;
+      color: #65717d;
+      font-size: .96em;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .audit-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 24px auto 26px;
+      max-width: 920px;
+    }
+
+    .audit-metric {
+      padding: 17px 14px 15px;
+      border: 1px solid #dce2e8;
+      border-radius: 12px;
+      background: #fff;
+      text-align: center;
+    }
+
+    .audit-metric strong {
+      display: block;
+      color: var(--accent-gray);
+      font-family: Aptos-Display, "Aptos Display", Aptos, "Segoe UI", Arial, sans-serif;
+      font-size: clamp(1.8em, 3vw, 2.45em);
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .audit-metric span {
+      display: block;
+      margin-top: 7px;
+      color: #52606d;
+      font-size: .82em;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .audit-logo-heading {
+      margin: 0 0 12px;
+      color: #52606d;
+      font-size: .74em;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .audit-logos {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .audit-logo {
+      display: grid;
+      min-height: 76px;
+      place-items: center;
+      padding: 12px 14px;
+      border: 1px solid #e3e8ed;
+      border-radius: 10px;
+      background: rgba(255,255,255,.9);
+      transition: transform .55s cubic-bezier(.2,.7,.2,1), opacity .55s ease, box-shadow .2s ease;
+    }
+
+    .audit-logo img {
+      display: block;
+      width: 100%;
+      max-width: 150px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .audit-logo:nth-last-child(2):nth-child(6n + 1) { grid-column-start: 3; }
+
+    .audit-logo:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 18px rgba(25, 35, 45, .1);
+    }
+
+    .audit-logos.reveal-ready .audit-logo {
+      opacity: 0;
+      transform: translateY(12px) scale(.98);
+    }
+
+    .audit-logos.reveal-ready .audit-logo.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .masthead {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 26px;
+      text-align: center;
+    }
+
+    .timeline-section {
+      width: min(100%, 1240px);
+      margin: 0 auto;
+      border: 1px solid #d7dde4;
+      border-radius: 18px;
+      padding: 38px 40px 34px;
+      background: linear-gradient(180deg, #f6f7f8 0%, #fff 32%);
+      box-shadow: 0 10px 34px rgba(25, 35, 45, .08);
+    }
+
+    .timeline-kicker {
+      margin: 0 0 8px;
+      color: var(--accent-gray);
+      font-size: .78em;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      color: #000;
+      font-family: Aptos-Display, "Aptos Display", Aptos, "Segoe UI", Arial, sans-serif;
+      font-size: 2.6em;
+      font-style: normal;
+      font-weight: 900;
+      line-height: 1;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .dek {
+      max-width: 780px;
+      margin: 0 auto;
+      color: rgba(0, 0, 0, 0.7);
+      font-family: "Aptos", sans-serif;
+      font-size: 1em;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .legend {
+      display: grid;
+      grid-template-columns: repeat(3, max-content);
+      gap: 8px 34px;
+      border: 1px solid #d8dee5;
+      padding: 1.5em 18px;
+      background: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      width: fit-content;
+      min-width: 0;
+      margin: 0 auto;
+    }
+
+    .legend > legend { padding: 0 10px; font-family: Aptos-Display, "Aptos Display", Aptos, "Segoe UI", Arial, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+    .legend-column { display: grid; grid-template-rows: repeat(3, 20px); align-content: start; gap: 5px; }
+    .legend-item { display: flex; height: 20px; align-items: center; gap: 8px; white-space: nowrap; }
+    .swatch { width: 54px; height: 11px; border-radius: 999px; }
+    .swatch.active { background: var(--active-bar); }
+    .swatch.stopgap { border: 2px dashed var(--active-bar); background: #fff; }
+    .swatch.future { border: 2px solid var(--enterprise-bar); background: #fff; }
+    .migration-sample { position: relative; width: 18px; height: 18px; flex: 0 0 18px; border: 2px solid #9aa1a8; background: #d1d5d9; }
+    .migration-sample::before { content: ''; position: absolute; top: 0; bottom: 0; left: 50%; border-left: 2px solid #9aa1a8; transform: translateX(-1px); }
+    .migration-sample::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 2px solid #9aa1a8; transform: translateY(-1px); }
+    .marker-sample { width: 18px; height: 18px; flex: 0 0 18px; display: grid; place-items: center; color: white; font-size: 6px; font-weight: 900; line-height: 1; clip-path: polygon(29% 0, 71% 0, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0 71%, 0 29%); }
+    .marker-sample.start { background: var(--start-green); }
+    .marker-sample.stop { background: var(--stop-red); }
+    .legend-column.indicators .legend-item { display: grid; grid-template-columns: 72px 18px; column-gap: 12px; min-width: 0; }
+    .milestone-sample { position: relative; width: 52px; height: 18px; flex: 0 0 52px; background: linear-gradient(#2f3740, #2f3740) center / 100% 2px no-repeat; }
+    .milestone-sample::before, .milestone-sample::after { content: ''; position: absolute; top: 50%; width: 10px; height: 10px; box-sizing: border-box; background: #fff; border: 2px solid #2f3740; transform: translateY(-50%); }
+    .milestone-sample::before { left: 0; }
+    .milestone-sample::after { right: 0; }
+    .milestone-sample.deployment::before, .milestone-sample.deployment::after { background: #FFFF00; border-radius: 50%; }
+    .swatch.present { height: 0; border-top: 2px dashed #2f3740; border-radius: 0; }
+
+    .timeline-shell {
+      width: fit-content;
+      max-width: 100%;
+      margin: 0 auto;
+      border: 1px solid #d7dde4;
+      border-radius: 10px;
+      overflow: auto;
+      background: #fff;
+      box-shadow: 0 10px 34px rgba(25, 35, 45, .08);
+    }
+
+    .timeline {
+      width: calc(var(--label-w) + (var(--months) * var(--month-w)));
+      min-width: calc(var(--label-w) + (var(--months) * var(--month-w)));
+      position: relative;
+    }
+
+    .header-row, .data-row, .group-row {
+      display: grid;
+      grid-template-columns: var(--label-w) calc(var(--months) * var(--month-w));
+    }
+
+    .header-row {
+      position: sticky;
+      top: 0;
+      z-index: 15;
+      background: white;
+      border-bottom: 1px solid #cfd6dd;
+    }
+
+    .header-label {
+      position: sticky;
+      left: 0;
+      z-index: 18;
+      padding: 15px 18px;
+      display: flex;
+      align-items: end;
+      background: #fff;
+      border-right: 1px solid #cfd6dd;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .calendar { position: relative; height: 74px; background: #fff; }
+    .year-band { position: absolute; inset: 0 0 auto 0; height: 30px; border-bottom: 1px solid var(--line); }
+    .year { position: absolute; top: 0; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 12px; border-right: 1px solid #bec7d0; }
+    .months { position: absolute; left: 0; right: 0; bottom: 0; height: 44px; display: grid; grid-template-columns: repeat(var(--months), var(--month-w)); }
+    .month { display: grid; place-items: center; border-right: 1px solid var(--line); font-size: 10px; font-weight: 700; color: #44505c; }
+
+    .group-row { height: 36px; background: #edf2f7; border-top: 1px solid #cbd3db; border-bottom: 1px solid #cbd3db; }
+    .group-label { position: sticky; left: 0; z-index: 7; padding: 0 18px; display: flex; align-items: center; background: #edf2f7; border-right: 1px solid #cbd3db; font-size: 12px; text-transform: uppercase; letter-spacing: .055em; white-space: nowrap; }
+    .group-note { padding: 0 12px; display: flex; align-items: center; color: #5b6773; font-size: 10px; font-weight: 700; }
+
+    .data-row { height: var(--row-h); border-bottom: 1px solid #e5e9ed; }
+    .row-label { position: sticky; left: 0; z-index: 6; display: flex; align-items: center; gap: 8px; padding: 0 16px 0 22px; background: #fff; border-right: 1px solid #d8dee5; font-size: 11px; font-weight: 700; white-space: nowrap; }
+    .track {
+      position: relative;
+      height: var(--row-h);
+      background-image: repeating-linear-gradient(to right, transparent 0, transparent calc(var(--month-w) - 1px), var(--line) calc(var(--month-w) - 1px), var(--line) var(--month-w));
+    }
+
+    .migration-zone { position: absolute; top: 0; bottom: 0; background: rgba(138, 148, 159, .20); border-left: 1px solid rgba(93, 102, 111, .45); border-right: 1px solid rgba(93, 102, 111, .45); pointer-events: none; }
+    .present-line { position: absolute; top: 0; bottom: 0; width: 0; border-left: 2px dashed #2f3740; pointer-events: none; z-index: 4; }
+    .timeline-event-line { position: absolute; top: 110px; bottom: 0; width: 0; border-left: 2px solid #2f3740; pointer-events: none; z-index: 4; }
+    .timeline-event-line::before { content: ''; position: absolute; z-index: 1; left: 0; top: 0; transform: translate(-50%, -50%); }
+    .timeline-event-line.transition::before { width: 12px; height: 12px; box-sizing: border-box; background: #fff; border: 2px solid #2f3740; }
+    .timeline-event-line.deployment::before { width: 12px; height: 12px; box-sizing: border-box; background: #FFFF00; border: 2px solid #2f3740; border-radius: 50%; }
+
+    .bar {
+      position: absolute;
+      top: 10px;
+      height: 22px;
+      min-width: 8px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 9px;
+      overflow: visible;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: 10px;
+      font-weight: 600;
+      line-height: 1;
+      z-index: 5;
+      cursor: default;
+    }
+
+    .bar.active { color: #fff; background: var(--active-bar); }
+    .bar.stopgap { color: #25313c; background: rgba(255,255,255,.92); border: 2px dashed var(--active-bar); }
+    .bar.future { color: #26313a; background: #fff; border: 2px solid var(--enterprise-bar); }
+    .bar.launch { border-color: var(--enterprise-bar); }
+    .bar.enterprise.active { background: var(--enterprise-bar); }
+    .bar.enterprise.stopgap { border-color: var(--enterprise-bar); }
+    .bar > .cost { display: block; max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .cost.sensitive { filter: blur(2px); font-weight: 800; opacity: 1; user-select: none; }
+    .bar:focus-visible { outline: 3px solid rgba(20,85,184,.3); outline-offset: 2px; }
+
+    .endpoint { position: absolute; top: 50%; width: 18px; height: 18px; margin-left: -9px; color: #fff; display: grid; place-items: center; font-size: 6px; font-weight: 900; line-height: 1; z-index: 8; transform: translateY(-50%); clip-path: polygon(29% 0, 71% 0, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0 71%, 0 29%); }
+    .endpoint.start { background: var(--start-green); }
+    .endpoint.stop { background: var(--stop-red); }
+
+    .details {
+      position: fixed;
+      z-index: 50;
+      width: min(360px, calc(100vw - 28px));
+      padding: 15px 16px;
+      border: 1px solid #bcc6cf;
+      border-radius: 8px;
+      background: rgba(255,255,255,.98);
+      box-shadow: 0 15px 50px rgba(20,30,40,.22);
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity .1s ease, transform .1s ease;
+    }
+    .details.show { opacity: 1; transform: translateY(0); }
+    .details-title { margin: 0 0 9px; font-size: 14px; line-height: 1.25; }
+    .details dl { display: grid; grid-template-columns: 76px 1fr; gap: 4px 9px; margin: 0; font-size: 11px; line-height: 1.35; }
+    .details dt { color: var(--muted); font-weight: 700; }
+    .details dd { margin: 0; }
+
+    .footnote { margin: 14px 2px 0; color: #6b7680; font-size: 10px; line-height: 1.45; }
+    @media (max-width: 920px) {
+      :root { --label-w: 245px; --month-w: 35px; }
+      .page { padding: 22px 16px 38px; }
+      .presentation-header { padding: 16px 8px 26px; }
+      .presentation-title { font-size: clamp(2.2em, 9vw, 3.3em); }
+      .network-section { padding: 30px 22px 24px; }
+      .network-legend-grid { grid-template-columns: 1fr; }
+      .hisd-section { padding: 30px 22px 24px; }
+      .hisd-branches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .library-heads { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hierarchy-section { padding: 30px 22px 24px; }
+      .hierarchy-branches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .stakeholder-section { padding: 30px 22px 26px; }
+      .stakeholder-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .audit-section { padding: 30px 22px 28px; }
+      .audit-logos { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .audit-logo:nth-last-child(2):nth-child(6n + 1) { grid-column-start: 2; }
+      .timeline-section { padding: 30px 22px 24px; }
+      .legend { min-width: 0; }
+      .controls { justify-content: flex-start; }
+      .row-label { padding-left: 13px; font-size: 10px; }
+    }
+
+    @media (max-width: 620px) {
+      .audit-section { padding: 26px 16px 22px; }
+      .audit-title { font-size: 1.65em; }
+      .audit-metrics { grid-template-columns: 1fr; gap: 9px; margin: 20px auto 22px; }
+      .audit-metric { padding: 13px 12px; }
+      .audit-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+      .audit-logo { min-height: 66px; padding: 10px; }
+      .audit-logo img { height: 36px; }
+      .audit-logo:nth-last-child(2):nth-child(6n + 1) { grid-column-start: auto; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .audit-logo { transition: none !important; }
+    }
+
+    @media print {
+      @page { size: 24in 18in landscape; margin: .35in; }
+      html, body { background: white; }
+      .page { width: 100%; padding: 0; }
+      .timeline-section { border: 0; box-shadow: none; padding: 0; }
+      .controls { display: none; }
+      .timeline-shell { overflow: visible; border: 0; box-shadow: none; }
+      .timeline { transform-origin: top left; }
+      .details { display: none; }
+      .audit-logo { opacity: 1 !important; transform: none !important; box-shadow: none; }
+      .header-row { position: static; }
+      .header-label, .group-label, .row-label { position: static; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div id="logo">
+      <svg id="logo-mp" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="300" height="275.64" viewBox="0 0 300 275.64"><g id="c"><polygon class="m" points="247.72 0 247.72 163.07 150.55 219.21 89.11 184.16 89.11 254.55 52.87 275.64 52.87 122.38 150.04 177.62 211.49 142.28 211.49 62.38 150.1 97.29 52.87 41.29 52.87 0 150.5 55.71 247.72 0"/><polygon class="p" points="194.85 91.49 194.85 133.07 150.1 158.52 36.24 93.27 36.24 275.64 0 254.55 0 30.89 149.69 116.79 194.85 91.49"/><polygon class="p" points="300 30.89 300 255.45 264.36 275.64 264.36 51.39 300 30.89"/><path class="p" d="M247.72,182.97v92.67c-12.09-6.93-24.51-13.55-36.14-21.19l-.14-50.42,36.28-21.06Z"/></g></svg>
+    </div>
+    <nav class="nav-center" role="navigation" aria-label="Primary">
+      <a href="https://www.michaelpritz.info/">résumé</a>
+      <a href="https://www.michaelpritz.info/portfolio">portfolio</a>
+    </nav>
+  </header>
+  <main class="page" id="page">
+    <header class="presentation-header">
+      <p class="presentation-kicker">NASA Library Systems Modernization</p>
+      <h1 class="presentation-title"><span class="headline-accent">One Library.</span> One Mission.</h1>
+      <p class="presentation-subtitle">How I led the effort to bring ten long-established, geographically dispersed NASA libraries into a shared way of working—aligning services and operations while guiding the technology, vendor, and cost decisions behind the transformation.</p>
+    </header>
+    <section class="network-section" aria-labelledby="network-title">
+      <p class="network-kicker">Agencywide Reach</p>
+      <h2 class="network-title" id="network-title">NASA Centers and Facilities</h2>
+      <p class="network-summary">NASA’s enterprise library services supported personnel across 18 geographically dispersed centers and facilities.</p>
+      <div class="network-map">
+        <svg viewBox="0 0 1150 700" role="img" aria-labelledby="network-map-title network-map-desc">
+          <title id="network-map-title">Map of 18 NASA centers and facilities</title>
+          <desc id="network-map-desc">A United States map showing 18 NASA centers and facilities supported by the agency’s enterprise library services.</desc>
+          <image width="1150" height="700" href="data:image/png;base64,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"/>
+
+          <line class="map-callout" x1="1004" y1="216" x2="1040" y2="180"/>
+          <line class="map-callout" x1="964" y1="271" x2="1040" y2="255"/>
+          <line class="map-callout" x1="958" y1="292" x2="1070" y2="315"/>
+          <line class="map-callout" x1="979" y1="335" x2="1045" y2="375"/>
+
+          <g class="map-marker" transform="translate(56 297)"><title>Ames Research Center — Mountain View, California</title><circle r="18"/><text y="5">1</text></g>
+          <g class="map-marker" transform="translate(110 369)"><title>Armstrong Flight Research Center — Edwards, California</title><circle r="18"/><text y="5">2</text></g>
+          <g class="map-marker" transform="translate(843 243)"><title>Glenn Research Center — Cleveland, Ohio</title><circle r="18"/><text y="5">3</text></g>
+          <g class="map-marker" transform="translate(1040 180)"><title>Goddard Institute for Space Studies — New York, New York</title><circle r="18"/><text y="5">4</text></g>
+          <g class="map-marker" transform="translate(1040 255)"><title>Goddard Space Flight Center — Greenbelt, Maryland</title><circle r="18"/><text y="5">5</text></g>
+          <g class="map-marker" transform="translate(1070 315)"><title>NASA Headquarters — Washington, DC</title><circle r="18"/><text y="5">6</text></g>
+          <g class="map-marker" transform="translate(1045 375)"><title>Langley Research Center — Hampton, Virginia</title><circle r="18"/><text y="5">7</text></g>
+          <g class="map-marker" transform="translate(774 428)"><title>Marshall Space Flight Center — Huntsville, Alabama</title><circle r="18"/><text y="5">8</text></g>
+          <g class="map-marker" transform="translate(587 569)"><title>Johnson Space Center — Houston, Texas</title><circle r="18"/><text y="5">9</text></g>
+          <g class="map-marker" transform="translate(924 569)"><title>Kennedy Space Center — Merritt Island, Florida</title><circle r="18"/><text y="4" style="font-size:12px">10</text></g>
+          <image width="1150" height="700" href="data:image/png;base64,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"/>
+
+          <g class="map-label">
+            <path class="leader" d="M56 297 L92 277"/>
+            <circle class="anchor" cx="56" cy="297" r="9"/>
+            <rect class="label-box" x="92" y="249" width="198" height="50" rx="9"/>
+            <text class="label-title" x="106" y="270">Ames Research Center</text>
+            <text class="label-city" x="106" y="287">Mountain View, California</text>
+          </g>
+          <g class="map-label">
+            <path class="leader" d="M110 369 L150 381"/>
+            <circle class="anchor" cx="110" cy="369" r="9"/>
+            <rect class="label-box" x="150" y="356" width="254" height="50" rx="9"/>
+            <text class="label-title" x="164" y="377">Armstrong Flight Research Center</text>
+            <text class="label-city" x="164" y="394">Edwards, California</text>
+          </g>
+          <g class="map-label">
+            <path class="leader" d="M843 243 L775 213"/>
+            <circle class="anchor" cx="843" cy="243" r="9"/>
+            <rect class="label-box" x="610" y="180" width="218" height="50" rx="9"/>
+            <text class="label-title" x="624" y="201">Glenn Research Center</text>
+            <text class="label-city" x="624" y="218">Cleveland, Ohio</text>
+          </g>
+          <g class="map-label">
+            <path class="leader" d="M1004 216 L1012 171"/>
+            <circle class="anchor" cx="1004" cy="216" r="9"/>
+            <rect class="label-box" x="835" y="116" width="284" height="50" rx="9"/>
+            <text class="label-title" x="849" y="137">Goddard Institute for Space Studies</text>
+            <text class="label-city" x="849" y="154">New York, New York</text>
+          </g>
+          <g class="map-label">
+            <path class="leader" d="M964 271 L892 281"/>
+            <circle class="anchor" cx="964" cy="271" r="9"/>
+            <rect class="label-box" x="670" y="256" width="225" height="50" rx="9"/>
+            <text class="label-title" x="684" y="277">Goddard Space Flight Center</text>
+            <text class="label-city" x="684" y="294">Greenbelt, Maryland</text>
+          </g>
+          <g class="map-label">
+            <path class="leader" d="M958 292 L1005 326"/>
+            <circle class="anchor" cx="958" cy="292" r="9"/>
+            <rect class="label-box" x="1005" y="304" width="132" height="50" rx="9"/>
+            <text class="label-title" x="1019" y="325">NASA Headquarters</text>
+            <text class="label-city" x="1019" y="342">Washington, DC</text>
+          </g>
+          <g class="map-label">
+            <path class="leader" d="M979 335 L1006 390"/>
+            <circle class="anchor" cx="979" cy="335" r="9"/>
+            <rect class="label-box" x="934" y="390" width="203" height="50" rx="9"/>
+            <text class="label-title" x="948" y="411">Langley Research Center</text>
+            <text class="label-city" x="948" y="428">Hampton, Virginia</text>
+          </g>
+          <g class="map-label">
+            <path class="leader" d="M774 428 L720 470"/>
+            <circle class="anchor" cx="774" cy="428" r="9"/>
+            <rect class="label-box" x="532" y="466" width="246" height="50" rx="9"/>
+            <text class="label-title" x="546" y="487">Marshall Space Flight Center</text>
+            <text class="label-city" x="546" y="504">Huntsville, Alabama</text>
+          </g>
+          <g class="map-label">
+            <path class="leader" d="M587 569 L545 605"/>
+            <circle class="anchor" cx="587" cy="569" r="9"/>
+            <rect class="label-box" x="420" y="603" width="200" height="50" rx="9"/>
+            <text class="label-title" x="434" y="624">Johnson Space Center</text>
+            <text class="label-city" x="434" y="641">Houston, Texas</text>
+          </g>
+          <g class="map-label">
+            <path class="leader" d="M924 569 L965 606"/>
+            <circle class="anchor" cx="924" cy="569" r="9"/>
+            <rect class="label-box" x="878" y="603" width="226" height="50" rx="9"/>
+            <text class="label-title" x="892" y="624">Kennedy Space Center</text>
+            <text class="label-city" x="892" y="641">Merritt Island, Florida</text>
+          </g>
+
+          <image class="complete-state-map" width="1150" height="700" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABH4AAAK8CAMAAACum4iuAAAABlBMVEX////o7fJKUEz3AAA8qElEQVR42u2d7WLqOq+E0/u/6XPevVpIgpPY1kgjmXn+7K5CrNHXbEqBbpsQQgghhBBCCCGEEEKIL+fnh61ACPGd/PwPtgghxBfy8wtbhxDi2/h5w5YihFidvc/8HGArE0Iszs5nfn7kP0KIMHY28yP7EUIE8vaZnx/5jxAikJ872OKEECvzI/8RQnCQ/QghOPz8yH+EEBQWtp/S4oX4Ap7sp/AKV9cvxOosbz+lUxBiaR7tp+7yrpGFEMvy7D51F3edTIRYkg77Kbu1K+UixIKsbD/bavkIsRYl7adXUaWchPg+euwn2652KyqVlRDfRpf7ZFvUbknlMhPim+izn2Rb2q2pYnJCfA0V7adbVGdy6RIU4juouJ7dogbsJ1mKQnwDFXezV9aY+6RLU4jFKbmYfbImzCddpkKsTMml7FM2bT/JshViWSpuZJ80k/3kSliINam4jX3izPaTK2kh1qPiKvbJg9hPrsSFWIuSW9gnEec/qZIXYh0qbiDBfnIVQIg1KLl9XSrh9pOsCEKUp+Tmdcl0sZ9slRCiMiWXjmw/yaohRFUqLlynTnf/SVQSISpS8X/4SewnWVWEKMfw//IT/D8/lf3Ig4SYZWrx8mo2pjZUhGxlEaIcS9mPLTGz/WQojhCFmFu9nJKtiRntJ02BhCjCQvZjzWusBk9+xK6SEPmZ272Ukv/dOJ/WWAUev5OhVEKkZjH7+TOhLPaToV5CZGV2+7JKNmRltJ/UNRMiI/P7l1GyMauB9J+/k61sQqTDtoTZJAOSmrOfoaDsnguRBOMWJpOMSKovb4v9yISE+A/zHqaSDEkqyH5kQuLrsS9iFsXb+/1oDPupVkYh+AA2MYliYFLPST9/p0QthaBSb2c6ZLi7D+xnrxQVFYJDwWXpkOFmPFdm4xCTPRlCuFNwTZ5VeFjOvdn4BWUPiBB+FN2PWxVORrAP9vwdeEghlqPqXtyocDaCH4r9kMudENWiPlX34VpEjAU8fidAw5ejKtSn6Bq0DAGUUF/Oj98Jgz1BNL46+UWoOf29ruC38azQt6K+i69Mei1qzjx/05+/w1T3HXxTrotSdNLp+/34nRywx8t/CNgihIma001f6sfvZIM9Z15DwBYhbMzPM7H19FV+/E5i2BMHHQK2CGGj5Ayz97dRDa4kUzZFKS5f/I+KQ0tf2EY1yJqQ2RWgmFxxQckhpe9n1/fKsyX6s623KkVVDKNZTzRyK5+/V57HpLx6OlRN6iQKE5bRrCcaQ1MBX1ZQoukCs1dIzGMYkHqiYcth3Zgi8HIaCszeITHL/FwWVA1bjYs/psyVFZdptsjsJRJzTI9GQdXuq8EXFpVpusjsiRRTTA5GQdUBq5FAWVCmKSOzp1KMMDlbbNm/2qlcf9grWVhUpplDN+eEPbDizM/cvrBl7/Vn2wzZDzS09bcire+JJEx2mC37mEGuxSBqckuVGNr2mpDP74g8zE4XW/dHDokWgyfJL1ViaGhs9qyKA+MtTvgG41yLQRPkmeo6sdnDKnYMt5gt+DqJLHtBExSfas3Y7HEVL14NKd47xlpsl7fEq/HOlRlbf7ZxWYZbzBZ8Ut7+/QZ3LRhqvHNlxnYLzh5hMew/bL0n4W9JedaCIMY9V2Zsx+Ctsbr+l0Cya+1W2X5+RYWvxcxNJYkvblzwxkwdh4k952tyam1vj9myj/rjprRVibsixWpxTzXjqzuB2bVH6ny7APHZ2q2zyWzlnynshPmO6Ue82yJFamHmGhGdmyB70lejWffq9hO989vTxAZqoea6ePQ8E78EV63d+prMln+RR/yY3kfbYsVQc10+ukDRqO5Yk9kJXCYS/YRvx6cfR8pxzvVb7Yc95ivRru9Yl9k53OSS6MFPdzlrwM2FFp094yvx2Nutp8vsLO7SyWU/K/kPORVSdPaIr8NtjQe6zM7jNqFk9sNe2thkfcNzchYQOnv7dM9MLaFPaZ9XBwryTZb9uydCSIHgudCtL5M3hT+knT+pBioiJ+saPv4V7QLCSGuf7s7O5T6rjmSh8wm6UwW+zH7Y070GXY3bOu3n/29i53PIjDykfcFCJblmSw4v+ylG5+Bshzts13dn59NKjjikncFCNXlm+03x2dNdnkMpHyp988+sLUkwpP1vUYnTRM92jfjs6S7OuZYPpe7pMzuluwyPKuNGFHzH1LCTCH5cK2ZpVfO21B33Zuf0nOReZ9SMgu+YGnYSgVWcmUb2PiRhtHON2yrYz8PsBA0p/J6JYecQWMSJYWTvQwrGR2frfLDEzqw304NW7yEdmWdfLf7QU4gTMDON7H3gM9W6rc9+2LkN5NqU6zOlIwPtoSASfgpRAtizXZLJ1m0XP2klb8ncDKHHdGikscHD4WcQ95Te0CSyVyEFs8OzLWo/TeXoOR1SgQ0eDj+DsGf0hgfROsvsbTIzPzxdH1vBTm803cfBurxxYNCHZBh054CvPkbB3CAaR5m9T0YMvbuwn49XDqUiYLDAn6VhEZ4CvvgQBYYRMcxx8PqAsfRu6/npi53geL720XoMNSbEIjwDfPURCqzDMXkla5EgmHq3FXz4A5608w3njEdLeh0RIpwDquwmCQFJmqdw6srTzewFA5ThI7+RG7b17WdwGgdKOtqCEiRQn8t+5o+5v2JUBxtb7y4OOH2bneNEwg4j2VW5u4NilaPLsLwE3BDOXbgVfCa6u7RDPT1+m53jVMZOc/lY0afhqkkC9d4SkDNoml32gjks46D9/OS1H9cR7JuJ24qOdqAGCdQ79x47g5bZZW+YwzJulzbT8X12klMZe2BRkmCBTZmzFTjbD3oEbbtaBHPvur7PznIuZScmlSRQbsuarcBXg8vGzQ4ue8VcijH0/f0N7CQnU3ZkQkoS5fMZsxW4avCYvb9rJi5m7xi8HNuE/WwZa+E2gaMMaskkfSpbtgLPErbGzD57u0uGL2avGXoXhz+cfZP9PA3I2N3Zgo3ZshU42k9zyMiTx94z8CqO/22Iv5vYWc7n7D4fQ/dmCzZmy1bgV8P2iHEGL+kzHuZVvLj73SlbxtdgxkxBZ0W/5xPHUsj3+ty41oBx5o69XW6ruF3Zz+M17Czncw6YFWP5y5BCvouIi9kKmbrabz4dLfNoR//FYGc5n7I3A3qSKXfMtJiKq6mKmLrPCOz1ctzF5gXPn9qeqyROgzA/P933ZGsNSrSYisuZChi7z9lmb5fnKm7j9pOvHi5zYBkg8B2TkkO/g4rrI09PAnskUxtAqR9PYedoy9ibgQc/6bQPJppBP15F34n48WMvEmUXt9ZTXZUKhes/aojg98xJDv0OKkbfhA5Koz6Y9pWyH0TvkfRLyqfdK1NnGbwTUVPIXiLiLm61H/4Axg1Jt6KE2r1S9ZbBPREwiOwdoq7ix4XPJ7ETtabsR7ekjOKdUvWWQT/RvoD3E85eMtdV3GQ/OL7l1155Uoj8zdftNVMD+fib9fP5eYE1UPYzX0rZT7iMLIlNDOX2+Bq6xvE5wZX76TB2poCcneiVlFC6W67uMhIlNjiZowPOXjeXTdwG7YedKSRpF7oV5ZM+kyxbgZMMW3MGRnR4vtnr5rOJYz99sRPF5OxCt6SE2ieSZSv4lcF53eHDCR1jOjXf7JVzWMZt5OHPf5HYqVozdmLq7xawRXsn6y4jn/38nnLfY8t8sxcPuo7bgP38hmFnaknXjW5JyfPoTYKtwEkHuiPtFpsHnL19uH3st5+/KOxMTel6MSYpcSKd+tkK/nTg/QeucO5ZnOdjUwHr4POHzWdIHjskZiYV5UukVzdbgZcQj8dT28c3zAPOXj/YPm59D3/2MdipGrL1YlJSwkw6dbMVvITAH604SJx5BU/HqZmAFbxx1jEEO1NTtj5MK0qXSTHZ6FFwGa39oagJZy8gbCG3h5++PiKwM7Uk68O8onSpVJONVeIzW1O70yM1E4DiNDraOJ2dqCFXHwyK0uVSTTVUilNe24T99ByaCljNt48fs7Jl7jEjBpDFL0Ei1UgpXmlt4/bTd2omDNVpVevu3LKpumASlC0Z/4yzSvEbrG34adNevYnAdfDx0KqZumATlC6dYqJhUhwHa3OxH/YWopZye3quOVnmTkMyXz3ZT30pnoO1fYH9mMrzmVPi1L2mZLZ4NkHpEiqmGWc/jhK31xfAEWfuIHIpP8uTOXW3KbHVjnYAJ2luk+DBXCVvPvaTyX/s5SmSut+UzJfOeAQ7iZmsM4HJyLdcY3Wr1gbUOM1cUylTMAhB2XIalcwefUj1fJvwqxKdErvwqA5MnVIxUTQIRfmycpDs1nVQ9Zx78C8J9JhTNtBhK+eOKJgoGIygdGkVUoxS4p1Q93yPjDljAT2WcvKIeoliAQlKl1eHYraCl5D8v/d6Rega8JE5j98/n6WcPaNepkhggpLlVUgwrgPuGXXO98iYh6+f107Of15EtUyBwASly+xZMFvBn478L3k+xHge8BElwdvnt5KWd2y/hBTJFQVQT7LMyujFtSBguvrmu8Ivn+ELOfA6S2IJnOfDp2addWVnw0rdJgPaAvqzz/gTiyzkwDv8eTXwnQ6fmvUelS25sNRtMpA6vJuAH3CC4fjs48iHq9Hq4DocEyXL/zlXfrmzFfzKKGQ/DvMd7zhO29j5Z4UumlQwYf+aDZ7V/+sOdt7g1G06yvwvwGO+wy3Haxl7Plxj36XDP77Wfhizn6IcaXqBLINrST3GO8pp/Ffx+sSPkPt/VE7ZsWaep6WoS5pmINN3LaXHdIdun+vEXZz5Dre7w1tB8aSdiuZ62Hb9cLNo4mmkeGa1axFuuinr51Kl7eYZnb9/Hb8fnn6aib8tmvdpx3uRCpWoGUApnlntOoOb7nX27jPKOfZ2/oEr/LFfQBmGq+bagv57BdcrUTOAUjyzercEN90Lbd0hTjP0Jvu5r5r7aVvHnWIql6kZJexn1wfceC+0dNvZXLbGw6HItGmVmKpaxGnbyGvyfYuYqRlfaz8rrdx2fmB4052IvJm1GCobvgnXN46+JejntldeQoMp8ca7d8Vx/fi4vPDCdUTdZD+Nmng14Zzye8Zwp09XNlMzcFq87ef9FaoJp4vr7ltPSLL9BFZjoGouXbgoAKoO5jJn6gZOi+/PXrsvIfPdurbuunVE3HxMNmc9eosGb8JN/g51mCt7pm7gtHg++tnLRcz3xZVlt60j4ib7+ahIwIG79F3rMNCHTN3AaYl6hQtivK+uLLtuHQGp9hNcDlTNwPGiClGoHbKfnuOz71tHxI3xWud88z5SsvIR96FzdqPWJ9462w9yOwOqcdDddReS+2Qa+IGSlY+YV8VbTaWs8PbTeX7ylesJx7KeXPM+VDJ4SHbSnLwD1MRMGWq+L6+sunOyH4eKwSNmKEQOFXA1IWMGt5/eANmXriOc7GewYAuETKsCr6aS/3yh/RDdJ9O89xdshZBpVTioiZg1sP30B0i+dE/hmOaTa+A7C7ZGyLQqdnKgqfkOG2q+I+zHrwrtjCaq9tX2QwiZoQ45VOzkYHNzHTew/YxESL5y1wHZ1pPSfhiacpQhWTccXnvulyFwvq8uyrZynWe5p5OhFjhkP0lwkOM2cRHznWrl+g/bnB/LJSgGEtlPElzkOI1cyHhn2bj3QZ3+45VIjnJg+dqnfrLI8JXjM3GV7Ack4vWvjivgOaCBD4ShvF8RM68MbzkO4xYz2PRVax3xfOL+DmybiWmUrcdfETOvjJ0etzzBJwdNNXXPrq5/PjKz/dxlxoChIkfmWWTs9PglGvbpbkFhBjduOvJMNd83s83muhgu/Zoq9HfEzCsjQE+cL+B1h7vP45XP9kP+NPm+amRwIEr0JHufRMZOT33/cdAdaj9dl3XezLaa52q49W2g3IygpGxTytjp8f0bFeDjIvwn1n16L3q6z8b8PMPRcjh1rrviXxGzrYOt4KzH+01a2NPM624KNLtuT5H673t3c1L3eXpBNrh7HYWMjij7udbjKQg6X5CFNwaa3rabKJBq/ncL22dGC+LVwKcyRkZ7ZRofNEnu93oCPiMDeJRp4+2BLMvWjDCj7OKGnw8hbN/pydGph7cBo0KRgzZ1sBVEC4LNlnXnIYFsu3Y83qCt8e3WHzRgG09fnk5tvI4WEeYcND5mZh2RgkCDtYL92BW3T2irYPvOQKo+nWxHcg+RJGhiHTtBMR8SjzjDOOKYSPM6IGLb4ZrfZdvOYLY+zWyEcT0+UdCWjBw6ghUhgmBm3B5pTgZM6eePVRfns11nKmF/C6JsICVoYh3BihBBgENuizQsAilyf8j+3I8IbNOZT9rXgWQ/qVjFflJ85tjdYT6VPNoPIAW+/fy4Pggi/eyVY+2z6IhW9J32gxfXPOplP/YEcriPU/FexQony9pn0XGQVCKI35yfooDsx2d7Luxn29/A9htgW/A15CxglrXPouMgqUTeYfYzv2VvGS7Wc1nGYyy23YC7gu0vzX4IQdNk/yCpRt7+k2593IPX01fGQzi23XgUAdthfFs6ohKCpsmeLwkQJGLSzUvmaD0/D+7TdEA+uNQhB7LeZM+I2tKRREicJNQcBow6ZsdcP8HkWrUpgezuc2oPuILepNn6NEJ8JXlMYsCsZ9ixe33Xqi36HcGXwHRyYLPoUTMLwUvyHsWAWU+yYnf6rlQb5LviUoT50yO7xY7aFMJWANU0MHvmFvgPe5oNu1PYlp3Te1xq82G14xdHEzsk6dKHapodOGsP/Kc9zYaN1ZBtMbHF2RrP8498xFtku95hGVEzCxnTBBkyY+/dpz3Lgt1rBMkOwqMCV580Mn4xsWsc0gi51+QyWAH24H1+yILdawTJjsGlAq3PWusMGN6vy65xSCPkoClmmrI/95xmw4ZqyPMWTnGeP1ZgG7/Yu2lZtj6NkLegqAGyH+Y77lPLJfuJGZ67CjRrcXV7bLuoYZtK2Ao+BHnPyy4SVCt63qeWK3qySv3w5VOA7o+z3cYv9mpalq1PI+QtiPyiuUGxaewnvHxXNWSbTKj79BX8SoXsJ4uQt6BC9uP6o+LUbiWwnwnxpe1nop3DF6M1J9n6NEL2kgpFSmM/hPK9RNrV13WfwXqf9NDshxK2WQ62hE9JhZLPYj+M8r1FWtWXdp+pN1p4y3oSwIjargRbAk/SMvbDKd99QLbbxLjPdLlDxF0HDw54UwW2BJ6kVeyHVL77iGy7iXEfW7lJHpRn6fMoYUhaw37gSY3rNKgvbz+A8gV7UJ6lz6OEIckeKoH9fF4WVb7biGy/iXIf0NGRHpRn6fMo2Wsqk77n2M8uVnxLmxHZhhOzz9izgzwoz9LnUbLXlD/9gLGfjSD7KWs/n4WrIrq8kr2mxPmHjf10AEJLt/aDsDw4Zu5WUT/1eXae0bIOTfmCXVTIbewNeyX7CZtl31H1SqGE/di7PDkGvj1tVWC0QN0F9G5Mgvr9hpxMIAi/vN1L7ZBHKvtpZMkdhOD1acrqFu809ZZiBtfvImTUQKGmDpW3VxxcNoT5uJYyk7/vKISXZydrWLLH1BsrSRivLbn9+L3mObbIkJQI83EtJThcR+6E6szPLHroEetEKeBkIrKf4ZDWvL7XfnYGdFlDSnWme4qc+calUwdzlmKgMKv4D22RTdl9s/38PI4Hz36Q+Qye93jZyLHxFdyyP/pZzH5+mr92Hbk2B8xHGqd/sj4wa6fCks3wxL/u03fJwIyFV7Cli+03Ef7DW+TDBzwNJvrl9vO5H4fSMR/Qzl43OPBz+9EvMMNHjrHtZmn72Z5/1k2oOrOUV9WcRqVPgkF5V/9tu5Hz4XUJ9/EoSb5J7cmap7qlha3gIOZ/pSGWB/r0z/29Xt/yySP4F8K9NZH9hES+TV72c6fHaVR6oxtEX3b87oZMeUwH+1r7iavyTOR2CRLZTyIpb0Vr+E/rhsaFmdKYzryvImwckg+qsilyiBPPppFGyk4S1X6cXit4daFXHmHlaufGtpoI+yEuz0Rk2U+3pmr+Mz31XonGFPAmQ7bVrG0/hsiZ3Cel/XBlIf2Hl2hIAf9L8SIS22pkPzcXk1SD81hU10zs2Umvbj8/lewHXRLq/yMrysbmsaiuqdizc173yZ+/PMde4LSQ/RBn1PhRLizZqbWchNWKPTvmRe1nl6jsJx7Zz8LCjL/8SpGnY/1OC13mmWfZD1t2ai1phFnsJ0uejufujOfquR+2zwTZj0uF+5pAujhTIs7KeJEn7ScuGOnc8x7/2k+FN3zJfviywYksqkz2c3Hgxw5v/37x/rHZbJsJsR/i6ixkP2wF18qon+QUptfxhyToYccFfn1QUfM5L7bNRLhP1ad+Uq18Ji1JpE2O1bL209ze11vami/mZ/tMkP24NM47NNE1sYm4S+NoC/YRpzQx63a1utvLfraz2RwvSwW6wh59cw8t++mVxrKf0Ovy2s/N2h7s5/Nt/WyfiXGfqk/9JFr5TFo+tZE+83n2wkxZGhfuYWlf328+2pH9+CL7idFWzH4yPfljWLiOhd3ZT8N/vsR+PNrW2yDSxfhM2ApuxYWrM4zpGvbTtazv27f3T2HZgRfYo23+oVNtfCoxDXXB8ixjOm8/Hkn+9xhkIvuuVd3dZedDyUHXV/ZDziRAXaw805QWt5+BRd3faSvjP+j6yn4AiSQSw9ZnHdJM9rNtI38xZGxVD3c5fJUbeIFJmEKn2vhUYoj6IBNa1H5GV/V1h/crD28OSgS4wPimdYeW/SylDzOgwb+xf8qo5+D3ah7yvy3FX6m29xsvzqflBF5fErKftfSBhnP2EJL9HPfyIL7DfraG/ST3H3h9Sch+1tIHijJvP/gkt8uP4vm7+bSTx/v2+M/ffQq813Q1+ykqPLcYmr4vs5/GQp7Xc8x+tuaN6cDWF96ymNipFj67/cRUCxSkgv00l7GxnX3+07gr22Oi3Kfoz16yn0GBhYJks5+ToItVfH3rcMPdyp6OKeI/+PJysNpPoo1PJYYmkGw/Hh77Zz+fL8pp2cX+PucL2ofvb5T9hGKK7VQPRipBAt0VwmLktJ+PiTuk23Ccl6arMf08sH1rLrDlhXdssLWGqz0LE5nKKgpRPZg9xiHHl/00hmw7Ptw5/PLr71tvF2poO5+5lXj4gy0vumGxsd0L1C0jPmg+iavaz097sA7vUr+6Zm9Rn4cXtB9gjalrA06EaUP53Sek1yvbT/PGv/tsjWvOvvQ5l41vnM5JCby6FFxiexfsMqx7CERpipQhn/3c3fhxl6PBHL5/nMeP8dy+7OHPss+X+Dv3KZxfKoVErverr2f72Vo/U91csRvDG/thO4zsBxYlwIgq2E9Avb/QfhqjdHfNcfY+pvH4rFFaIorrTVDw8/9qXIop+4FGmLcfcIoPB7bn5/ljNo7X7045fINtMqvbDymMQ2FlP9AIswehU3yaiAv3ebKf4/X70bv0olzgygtt12DwmChdb/ozVrmC/fiLXNF+nm4fdJ/Di6Mbryfan8g2GXf/+YqfvfrC2GpexH6cVa5mP4/HzdnP7qvb0WJ7jLf9BDkANfhUmOEeyH6gVZhWCs2wY8+G3af9y63XjefwaQHVF9itnMHtYaL/p5C4FI8B2CehX8k6dVXnoZ+DU+NVh7BRl/3MHUhqF0C68/EJ7AcowcF9Drefp2OrZD+QN0yhepU3uPvmF7Ih3/DI7Nj2M92rSftpvLODbS/ug8xdBtrv3cPyS+c/rtGhuc2eBdLg5j6X9vM5HGx7cfcf6i5EBc/xY0901jHRd2MIdlau/cwn02M/dwZ0vmdmAFUG9Cp58Gz2s0L4xiCC2zl9HOpDXNxkP7vM1fezYS+zvVWG4LKfauFvJjH49X5eGVqDd9rPvQE1v5kPWpkRBAWn5tiSQw4/Ff9++v77B7jOFgegxe66srG8n6VlO0uI/ZA/7ScojOxnH747/sDUocYRUSi7Dl/3aT3WYfuI7McxjOynP/7ktK1kP/OZ9F3Yu9tscwmwH+Zyyn448V1mzMN+SL/6cnaf3xFYwH1Kv+45KrDs5xTfZ67S2I+5wkGBZT+mYlcJzN73ZHK8JgneznL2M37d7WazvSXGfmj+I/shxfcRkMl+zC8uiLjuffevth+W/0RFZe97NjlO7YafWtB+BqPcvviZbS2yn1pxqsipYj+kX30N79Xf3UfDngLVth9LzTn+853PPPPtx6ciDocaXn1jymMsldcmjlfgEKqi/WzNTGZqPt+w5DFlP58KPCR42E/8c8/ja9R8MDB08cc5hfgoQkzR7ch+iBJKPPwh2c/MFdOrt7uQ7SQG//n0I++qm5H9ECU4FCWV/bi+aeJ8yfG/4xF/u8E2knn/sboPY0llP1QRiZ6quRGZ/0J7Idn+Yfeftw1ZimAs43DAqDgZ9j0+7ycV+R/+fIn9lPefPxcy1sBaxtGAa8Uppgffb48TYy+cyQCRNds5EthPtP+EhUuy7tn0ONQ/k/1MbcWc/UASrQ+gBoBKpouWZN3T6cE3AH7i9IGTe0GznxUMCFABSCWTRcuy7un0rG8/w7/jozz18yG7JojscaXMEizWVCvpwStBn2ixn92X290djQGxKbMthGo/oavxvb/4IrzCwXFmPHND2M+t/5xvk/2Q7SdsN2Q/6GNJQ+OYHMR+bqb6owQz9gNMt7T9lHr4ExYpof3kmRLM1LidN3/a54OaxlEfBRmPh8yXPRjIwZovAaycXxaoX0+iWcBNzu5A4GEGGZdp/n3177/b8ec0WxxruqUBlQBXzwRx8vyi6S5xRqcPkbEHepZq7tJd5c51fAmeUe7Ri3rg3kQIrWeCODXsZyVJOP+ZP+hTQ/M9ne87b5/PA3UGwhWurv8Amx60HoFPMgUF6taTTBBcE38ULxW8LGY7PeUzZz4ev+qrCLISMfsh+0kEWBPKf+Duc3nmnPnACvcOzzaSafuB7RlqeJ6i+MeIDdStJ5mgvK8/nLaEqOdwbGm2l7gihiKgi5onRmygsoJcFEGGcvQMyzoksJ+6nzlmKAK8qllCBAeSoPOp0f5j2oaZy6wptvaY7SQJ7CdgRWQ/WXAYH9i5c/YTEGr+mjvhdYGUAV7XuwjOAeJSKS7ITU+4/5jizdmPNb99+MrA6gDoZHDnyJlI0M3BoR+BZwtHfsnh+eWQbEOh2o/7knztL77y2Y+r/4QeYX0iOD69jwPfZ7IdhW0/nlsSt4Pfs+wmSV5P/4QeYYqXwH6OjWBbCtN+nLdE9pMKL02x9mPMIoH9/HtvyPv4MsDr4Lsmsp9cuNkPwH8GghntZ/By506yLYVrP67VDdvBfMueT5GfqGj7iVUr+/H0HydX+z3bs3HHJIIi1VX0M/+ep45jzUf0xwLIdbz7hJo6+OTvV1rHvgXlsIyiX1Up/af7eoT8MbVyn6r+E7eC+ZY9n6KXLqf3fllGdMB9oj/r3LeRbDtZ2X9kPxlxUWab0O6LQNoHjvHsI9tKkviP7OcbFO2kOebraj+wonYe5PY//J+i3lPKfyLtJyhQwtwnpCU7PNx9uo7yW7fTm/bZfkK3H7dPY3A4lBypX1E6SSHSHO0HOvsPh4V5z+E7NXApiUuhHQ4lR6qraCct2Su94h/8/Dw8B++4Z40dZvvJmv7jOeYfoaIi1VW0k5bLfnqvAeu+WSZn77m8oQoutSlwJD3SgCS2ghtp2ezn6ch/Mw/XfecG+Lpcby7bTXLYT7lPEyJEGpDEVnAjzdN+4HI85751KDzOk3y2mSRwn7x/ByFXpAFJbAU30jLZz9M8ew5+61BwmA7pbDfJ4D4uH6vkIzRAeqXkJ6Qlsp/HefZVux0EgPerb2PZbpLDffCNlv3kJJP9PGrxdp/9IyDoenWuK9tM0riPw28W3KR+hIqKVFnSW1qe/4Mx7efoOsjl6j2PbSWp7Af/wgo/qedQUZEqSwrQhrMf/3nfPn7owoTqF852klzuA3YM2U9WCtiP/8CfjsZEGlPNthLZDypUVKTKkgK0oezn36AHug/qyBHJbCdJZz9QywhcwIS7nlBSgDab/bzG233O4REm9pNtJAntB/umYl+pLqKBmtgKGNoM9rMbcP9+Qhdpbje3Y8JbET8q0xfZT1Zy2U/pKZ9WfLju979sa8nhP8kOShVqQBNbAUXb6IB+DHahGbes5PFC2Q+6N7IftgKOtsEJbU20dzsR5xvX8Xyp7AfaHdwxyUINaGIruNOWxn9CJhqcPmAVzxcXsp8iD3+++xdfKTW9tfl+3OrA+QT3MaXvtIWyH0x79qd462SEKq3prc371WPdEQq5j+cKVrKfGv4j+0mL+wj1j2m8/cwskP/2lfnFexH7iZyrhKsev1a5xHUOKqFMgyGDNu/3kz9qkKxFTkckDFVaU6y4rkmNL1N/xNiVK+Q+FfxH9sOWwBf3PKnhZeoLGOw8jZi5iaiF+YSYtuVc9YyaCOKe5ii6TI9zHbxnl4GTE1AN6wFRjUu56hk1McQl85+bcDTjaYZPDrNRnddHNS7lqmfUtFcXWYjt/ubQvHv+2ESgoLaAAkTUw3Z5ZOvCYlXWtFcXGWu7u40vheQ8+4BsM8lnP8YFirWfsFAp859RlyIY3X2O+xT6jFhxGN2Kung4VliolPnPqAsNdvN5qqEyzh9tdtqlwN8H1iekTpRrx2OFhUqZ/4y60GCXP/KEivj8YLOTBNnPQvYT0srwWP2aEoraqaNH45jP7Qbph69U9mMZkcDpSrnpKUXt1MVG2zq/6Ra/Z3mCW8b2j6X9J1Blyk1PKWqnLjYa1X461yZopW61VSKmOpi65hT5baJI6raLn76CYndOoexnHf/Z2p9fkkqjKylFcdRtnJ91BieP0jC2g2S3n9muHC5z1p1y01OK4qjbB9t97adhatwo/WI7SAX7mYnTuMhNfcpFl/0cop1e3eulYX7GOP1iO0gJ/5m6qrfgCIURdRgWlVEVSd2rz37jax0rUrvYDpLefqZG9ekaaCopF132c4q3vcNix9c+SYHL9KC9FmE1croEk1HKRZf9nANu+7CQ6QWtg9wntf/42c9lF5zlBZBTFU8dcmCxe0BzH7Z5FLGfiWGdfL5oKr+ci55TFVMdYGA9NoDWKLZ3lLGf4RaZlI3mmXPRc6rayWPEnI3qOPoJ3KewEcWVavD+wPY8pJtz0XOq2smjBB1/FO088cQ2vdNhm0h2+5n420jgLt2knXPRc6rayUsdNWDUt+Nz4TTYDrKg/3jIusw+wQi15bIl3MvLGTVuwmP3ZyjjQgRWaeTOhHZFVaJbJlvCvTxK0J4Peo/pZ5ahYfvHgvYTIitDUdg1sMijBL351NXY7v0Lw28R2z5W9J/Q1ctSnw9ZpMCJ5T3YTwYp4QWpT7qORdtPd0PjVOW3H85v3pOIkfuU85/+SAk+y+qH7UQp5vtOXiL7CS9WCvdhu0Yx++luWmxzu6LFly/DgN8XJFHQYDWBO3MvYg0CK3Z7c9/dYkW17h9RzAQD/lAFRtCGjOAZ/snhPmzLqGg/90P7UpLbfk6KvYrLn/CnXBkSruXEViI894aGZYis2kNF/30V20lUatCKs1/Mn2hq3q8wbr+9Kb48sRHbGpYhtm4PFf0paj9X+cz2IuqDjCdFho8Nd26PUiiBH8tRleDK3TSVoygs83rwy9aqXWDkhhJi9GY1qsNv30sFRVFktFbmOchcNsJYXApJIGEt+A3cfZMgKDRcb0n2t2ZsqF+URhrhQ3GtLIOGtQivX9f3iHK+T8KMaHgRrucyR4UyuI/sx6GJsp9yQDT3Dia/QpOrAl8wtleUt5/WLMl+ymHQ3DeKmexnblM8VoztFfXtpzFM324/bAURoofn7/B8IDnXee+5vXp4AdlW4QGjnQ/fIGphSGArmBL9rNo2da/7sFs0viOnHFuZz20g2yo8YPTz4RtELQwJbAVTors++sswa1sS+xmX/ZnqXUEG6sJ2ChcoHb39d6gUVuRMEmZE37wBCzFf2/7BAzfRiUcn17c06tJbJbZR+MDp6c0/Y5WwImeSMCPaeaa2HPYzkMx88p1XsY3CB1JXL/8VLIQVOZOEGdG+c7Ttn3nm5jlWj+kwj5eyfUL24yGEFTlD9ibRnrq3w88m3Dx7i2HS2XE92ydWMqBDVN4CJlj9/L26kO1clKBIA0Iu7wFpzOMhbJfwhNpX3lYl2OeS3XM2hb+UeOm9dGyPd4ApfDiIbRHOxLe28SVPBIvGqxCyt869cvz0Xio6RAYFZPuDP8HNbXwZDC/yTkLJHDyjMsfypOJRYlxMtjlEENve11eBYS800JD9tM5+zSKvQ5eRPbfl5li2NazmQK9Ysh/yCYmj5rKfgDW5PJztC8s50Pb6P1xQwIYCVmSghJXth/j/h1PouA1pnc92hBUNSPYDkZDhpVu1ozyEPm2Gu6aPDWS7QTyRHf5m+wGUemH7iRrE69ifSxGhab+BbCegENvimGit+KzIxwoUTCJkRsIGsR27uQ5Rif/9r/k7CetxsmcX60kgJbGw/dxtQpQk9v6ziSxySKxmdFJkpATZDzbi/Q6ESWLvP5u4Isf0sxmcFRoogWY/Ic+BhCbUMf1xitj7zyasyFENbcRmhQZKWNh+Al9d1Dv2YTPD3n4+QVWOaWey2DgJsh9TEoMDH7UXsp+oMoeEuegwLTZOwsL24xhjetaDVoO9+xlwL/IP2X5ood8SqtpPQFyfCTQPecRusDc/Bb4l/it0RJRsod8SZD83EeAf4Xoa78kI7uvBXvws+FV4V2n/IFehWZGR2RM/kaJMgKuxng7hvB7stc+DV4XNE4AIzYqMzH5V+0Gc/zjOhhiO28He+VT4lBgxAWUj7yTIfhzO755iUxJuy8He+Hy4lNk+ASUDYzUQXzTufPzE+aOTa6u/0wSxdz0jHnX27GHiwFgNq9rP2PmzA2tLwmeE2KueEoc6IybA1GVOYGzuy75lrvN826Aak/CoAXvRcwIvs2cLM8c9ashwxGxgrv1AJtSahEMR2IueE3SVPTuYOu5RQ4YjZgNz7Ac7n3b78fhzF+IDbJWPBXc7O1/Yk4YMR6SM/NGeu5mcn0/rFKCniL3laYFW2bOD3WEZUeEaFrWf91B0DeP0DJmHD7wa7C1PC7DGHyX3OztbVLiGNe1ndAjn5xPxl9ZwhWAveWZgRf6sudfRt1EJQfEalvy8pOHRm9dizwK5GuwVzw2qyn79G4kaH9NBw9r2468FkAVuftn7nR5MmfEjUCJmQ0SGI6Yje4UeP9mgBfTeMlTi4hZImRtldzk3V8iWiAxHTEf2ezQcqAWSBmgz2MudH0CRvWYgecSmiAxHTEfOMwwGLZg0MKvBXu4CAHrlNQO5IzZFZDhiOnKeWbBowaQBWQ32blcA0SyP3g2HDI7oo0H2Y9UCygMxw+zVLgGiWZ9FR5/6HDQ4oo+G5exn6liLFlQegCFmb3YNIN061hx7ZFfU8JCtzAvn4dO1uVNNWmB5WAeZvddVALXrVXLgef1xCUE/cy+ch0/f5k41acElYptl9lbXAdQuaO9H41LCwnNfz37CtQATMewGe6UrgWoX88MOOXHRyct+7FrAb9qavlD0gmsXrPOj3eYERouQ/di1IDOZXg72RtcC1ixY42sERotYz37Cn/sBZzK5HeyFrgWqU8C+14gMFiH7AWjBZjKzHux1LgeoUci+l4gMFiH7AWgBpzK+HuxlrgemT8iuD/abFRorYrUSzp1q1IJOZXQ/2LtcEUiXoF2vERorglpDjzMZ9gNPZSwN9ibXBNEkbNdHQrMig/Nfq4azY2WtAryKIwvC3uOiAFqE7flQbFpocAFWs5/Q61DXt4/sPJS9x1WxNwjd84HYtNDgAvCq6LKypCI4PZLrOpa9xlUx9wfe8hKxsSLsfaDKx6RiLoJLFTuXhL3GZcnX8f7gvNhYEbwyOjxfQiuCUxU7loS9w5Wxtcaj4d1jwQsOrsAq9mPpib2frE+OZW9waRz74go1+E5F6Vzgr9Vj1sCrig/nshe4Ngn7nT/4TkXpZGQ/5oPZ+1scS1OYBsCN/laBziY0raV++PIr3Y029vpWx9AS2Q/0Uz4JeaGDse3H7+HPdnmDsJCu10Xi/6kA5mPuyUzQLOUASPGr3OfJ7LVdhXy97o1PDY9XgWjKRMwsxyGk+BXurI69tatAHRfbQFDDO6h4dSSutOBI7HnyK9x5VdhruwoJW90bnxreVYWpMYOB0lQjtf0cjt5+5D8gMra6Mz41vK8KU2fG4qSpRvI3775L9a857MVdA0A7KJDDv2W4pWfqTn+YNKdlf/PudvIfGRCAlJ3OH95dBaRHwfptp9Wyn03uAyFjp/OH91dx6JGtVVH6E7yBMMSr2Su7FNZmcCCHD1QB6FWQ/hT2I/+pxXwv9JavGBX/Km3q1t8xny9fSVOMEvazvb4QIMzdYMCMHa7i8D/dv6+HlTb6DdVvPKzAZ5f8VY+9sasx3Q3HXj/FpoUmVuCvWZ9Nays5bcvHIyCofuNhFT67ZF9+4QBhYiYHgRb6oCJaxrZ/zcnh259amp09/wMpjXm5R0ZX57OX9Bvgt/o+Ni00twKv7uyb1OradTPf30Hqt55V5KOT2Gv5hZA6fT8FtNDcCrw7smvNtvuZYH+//764OAOt33oW7qOTYCld5SlIIOfNOAO02FwZ+y789WTb2dB28eTQ5yn/Xk+Uphb4T25zgr2D4g/fPjNnrIiMj0Z09wbeQvtfqsDVBJbUxfkiA65dpo5YHRkfnejtDbiJ5pPyKHk8XqTAs8vUEasl4yxioDW4bgIOwNXD+5fvgoxjf/kTVk2GLQNMSwEHAHNCHdU8XLDxa2+CCSsnw5oD4klowAHIlGBnfR4t6Hh1t38K2AoyyUiRinUqZD+iF6/u9k8BW0EmGSlSsU5Fovd/3J8sEuDU3u4p4MbPJSNHKsahSPTZHw9ZigR49Zc8XhVlpEjFOhOJPnjxIUuRAp8Gd04BMXg6GZhUyM895/mbP/fHiix4NJg5XBM62AqAqch+uo4VefBoMW+4JnSwFQBTmcsFNg3gWrqMCHvdxBl8j1mzNaWDrQCYykAuHrMAf/Qj+/kK8F3uGQNC1JYOtgJgKr1vUr2YAWtPKvzwxV410cChz5ThmtHBVgBMZbv6fmfjM9mPz4CwF020cWg1YbpmdLAVAFNpfWrHSK+NTSnwuh/2mokrPLodPV11dUBSMbdX9iNoePQ7drpmxpEtAZqMsaO2csh+hAWPhodO18w4siVAkzE/e5PFfrwaw14xcYdLy9tjEBbqYRrZEpDJAI4wnCH7EVZcmh42XVV1gJIBHCH7EVRc2h40XVV1gJIBHLG2/bB3S3Tg0fiQ6SqrA5QM94hEf3D1+lhRAJfeH8fAO0QpHVmSMdpPnj/6c6lQlMCj+z6TuoKOLMmYjkAWU/bz7Xj032NSV9CRJhnLGchi+jSGvVJiAIf+v+fA8fCxeWRLyJWMpe/IYvo0hr1RYgiHCfibA7ejR+eRLSFZMoa2Q4vp0xn2QokxHEbg3xg4HTw+jmwJ0Gwgh6SwH58RYa+TGMVhCGQ/XtlgTpk8BltMl9awl0mM4zIF+ENLCwFlgzlF9iMy4TAF+NEqLQSUDeSQLD98yX7EL/ApwI9WaSGgbCCHyH5EOsBTgB+tOSFsBdhsqC/8gQ8J8rSXRFET7BTgR2tOCFsBNhvZz6NEURXkFOBHa04IWwE2G+q7LsBdlf2IE7gpwI/WnBC2Amw2gD/zzgx/Og54lFiDbJO1iBBQNrKfC2FiFVJN1ipCcqRj7G5S+2EvjMCSZ7KWEZIjHWNvc/56dD+x7M0REMwTgZzTFYSkSMfaWPtgeJx2OIa9OAJDhsECj2Z9yG0B9xVz3Cb7WZL4ubLGbZ2IPI2OrTrm2sKbI/sRl0TPFVjFvyMBA54HUzmstcQ/qoWcdzqEvTQCR+xYOaiS/YAu/jsiTzp/f/X1fAZ7ZwQQ5Fg9nra/DqJyNoGsWPJB1MLhlYKGSy+OYK+MQAKb9Odjb6PNCJ+TnxhDQohaQOo5PV6dE8peGIFlYsD6Z+dw/lgwH/GpMWTk8DzLhPhTa7oOvOtrqyDsfRFg7JPuFeoxjO28dExnBCnF7CGXXdmGH+827tN1najM4LT1jZI90vcxWyFIZccPeeru1jsrA4rYuyLc6Jw5y0jYt2RpJiuEKezAIZ1t3Q4PhcanYfAHfbEEoyMBO/vrmSwQpq5dhwzOCn4I2MshouiddPOh4o9Z+8HE3h5uHm6kR+/ZWyGCeZhRw2niREb7sTTQoeXsbRAkLmZ05hjRJpv9JOwcewsEG+M8sAc4MVPVAZV0u7Efdl1amsTXMzcO7AHOy1RxUBVt2w+7JC1NQhhgT3BeJooDq+fF77nZJWlpEsIAe4LzQrUfPfwRXwF7hNMyXBtcMbf2wx92RZpChbDAHuG0jNYG+jdt7HIiYM+uqA97hrMyWpqu+3dVvX1zxk6xZ1fUhz3DWQHaz2DRrz7KiV2RjryEGIQ9xEkZrczQC0H7TtrfMWWj2KMrFoA9xDkZLczr/o9lfjp5f1KHHmIb2ZMrVoAwuAWYeVtVV3GfKr7tjezhqsk2ojrPnlyxAtYpXJKxugxU9OncrWk/DT3TXYS1nj24YgVsM7goY3XpL+Tj3bYH+zG3Edh79uSKFbDN4KJ4laXjryH9/Xdr+I+5kdDesydXrIDPotXGqyyP57bt598/zJ0E9549uGIJXBatNm5V6fzp69CZ3y/NvYQ3nz24Ygl8Nq00fvbT9auvfWd+vzI306H57MEVS+CzapVxK8qY/QDb6dF89tyKNfBZtcK4lWTr+QHJvNcX58K7z55bsQZOy1YWv4rcvEPjB7jPFyHQ3WfPrVgEt02uiGM9ttMv1CP66dh89tiKRfBf6jp4lmP/ttKYfrp2nz22YhWCdrsAnsX4Ozusm77N546sWIjABc+Nay027LM8D910bz5tWsVqBG95Wrz+Lujfv0KWNurP30YOqFga8tpnAVuIc4XZTUZ3ny1bLAN78XPgaD+pWT5BkRv24ucAWgd2SwP6z1YtVoG9+Sn4XvvZptJnixarwN78FCDLwG5owBiwxYp1YK9+AqBVYPczYAzYWsVCsJefD7IIH9Vlt9dhDNhSxUKwl58PtAin2rK76zIHbKliIdjbTwdbg2Nl2c11GQO2VLEQ7O2n41iDd43ZXYbOAVuqWAj2+rNxLMGuxOwuI+eArVQsBHv92fiW4K/C7C5D54AtVSwEd/vpBFSA3WH0GLClioUgrn4GAgrA7jB6DNhSxUrwVj8BEfmzGwwfA7ZUsRC83U9AQP7s/uLHgC1VLARx+em4p89urs8YsLWKdWCuP5uh9GdqxW6uzxiwtYqFYHsAj4HsJ0vF7q3TFLDFinVgmwCP3uzny8XurdcUsNWKZWCbAI/O7MfrFfUHvmhTwFYrloFtAjxO2V/VYrxg73uxm+s1BWy5YhXYJsDjX/bP5Rgu2O6O7O56TQFbr1gFtguw6K7Ix81PRTscxG6v0xCwBYtFmFpdkmXM0kqztyjjVTvfid1hjyFgCxaLMDl5ofZhoqW3vzYTZWvdid1l9BBkT0gUwTR2JEeZ0Itfnf7NTL+wlsIKYQAycmyTeVbssDcDVUq+sKbKCmEAMnBsm3nU7LI1jWAXIXIvrK20QliAjBvbaB5Eu6xMI9RVkNTraqytEBYg08Z2mkfR+H1pBaq4lYDiCjEPZNbYXhO+IatsYsriii8CM2tst4nfkCUWMW11xbcAmjS232hDJlB1BRvgoLE9RwsyyPqfaCSyg5wztutoQaZQeQWLJe1HCzKCqit4wMaM7TnajzlUX0FlMffRegyhAgs2gBljm46WYw5VWNBBzBjbd7QbM6jGIgGACWM7jzZjAhVZZAAwYGzv0WYMoyqLJJjHi+09WoxhVGaRButwsc1HazGK6izyYJ0tuU8tVGmRC9tkyX1KoVKLlZD7lELFFish86mE6i2WQu5TChVcrITMpxaquVgJuU8pVHSxFHKfUqjsYiVkPrVQ4cVKyH1qodKLhfB0Gi0AHtmPWAlH+1nn7/wlQvYjFsLVfgSeXX3VD1Ed+U8xdn+vXu0QxXGzHw28D7IfsQ5+9qOJ9+FVVzVDlEf+U42pv7nMFi1ECw/b0cgHIPsRC+DyoEcT747sRyyAi/0Id9QVsQBw+9Gkh6CmiBWQ+dREbRErIPepifoiVkD2UxT1RSyA3KcoaoxYALlPTdQZsQKyn5qoM2IFZD8lUWfEEsh+SqLOiBWQ+5RErRFLIPupiHoj1kDuUxE1RyyByXU04CRkP2IN9KCnIOqSWATZT0HUJbEGevhTETVJrIH8pyRqkVgC+U9N1CGxArKfsqhDoj7yn7KoQaI+8p+qqD2iPHKfsqg/ojyyn7KoP6I6/aaj6U6G7EdUR/ZTF7mPKM7Aj1wa72zIfkRtRp7y0XBnQ/YjSjNiPyIdapOoTLf9aLAzoi6J0sh+SqMuicro4U9t1CNRmH770XDnRA0SZZH9LIDaI2oi+1kANUfURPazAOqMKIrspzbqiiiN7EcIQUP2I4RgIf8RQpCQ/QghSOjZHyEEC9mPEIKF7EcIwUL2I4QgoYc/QggWsh8hBAvZjxCChexHCMFC9iOEYCH7EUKQ0MMfIQQL2Y8QgoXsRwjBQv4jhGAh+xFCsJD9CCGIyH+EEDRkP0IIGrIfIQQN+Y8Qgo/sRwhBQ/4jhKAh/xFC0JD5CCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIWz8H0c8gB1OqFnJAAAAAElFTkSuQmCC"/>
+
+          <g class="map-site has-library" data-lat="37.414" data-lon="-122.053">
+            <path class="leader" d="M49 333 L104 277"/><circle class="anchor" cx="49" cy="333" r="7"/>
+            <rect class="label-box" x="80" y="235" width="190" height="42" rx="8"/>
+            <text class="label-title" x="92" y="253">Ames Research Center</text><text class="label-city" x="92" y="268">Moffett Field, California</text>
+          </g>
+          <g class="map-site has-library" data-lat="34.958" data-lon="-117.883">
+            <path class="leader" d="M124 415 L135 351"/><circle class="anchor" cx="124" cy="415" r="7"/>
+            <rect class="label-box" x="135" y="330" width="240" height="42" rx="8"/>
+            <text class="label-title" x="147" y="348">Armstrong Flight Research Center</text><text class="label-city" x="147" y="363">Edwards, California</text>
+          </g>
+          <g class="map-site" data-lat="34.201" data-lon="-118.172">
+            <path class="leader" d="M114 434 L145 416"/><circle class="anchor" cx="114" cy="434" r="7"/>
+            <rect class="label-box" x="145" y="395" width="205" height="42" rx="8"/>
+            <text class="label-title" x="157" y="413">Jet Propulsion Laboratory</text><text class="label-city" x="157" y="428">Pasadena, California</text>
+          </g>
+          <g class="map-site" data-lat="32.500" data-lon="-106.600">
+            <path class="leader" d="M364 510 L385 500"/><circle class="anchor" cx="364" cy="510" r="7"/>
+            <rect class="label-box" x="300" y="500" width="205" height="42" rx="8"/>
+            <text class="label-title" x="312" y="518">White Sands Test Facility</text><text class="label-city" x="312" y="533">Las Cruces, New Mexico</text>
+          </g>
+          <g class="map-site has-library" data-lat="41.413" data-lon="-81.861">
+            <path class="leader" d="M871 235 L810 227"/><circle class="anchor" cx="871" cy="235" r="7"/>
+            <rect class="label-box" x="610" y="185" width="200" height="42" rx="8"/>
+            <text class="label-title" x="622" y="203">Glenn Research Center</text><text class="label-city" x="622" y="218">Cleveland, Ohio</text>
+          </g>
+          <g class="map-site" data-lat="41.360" data-lon="-82.670">
+            <path class="leader" d="M855 239 L805 146"/><circle class="anchor" cx="855" cy="239" r="7"/>
+            <rect class="label-box" x="560" y="125" width="245" height="42" rx="8"/>
+            <text class="label-title" x="572" y="143">Neil Armstrong Test Facility</text><text class="label-city" x="572" y="158">Sandusky, Ohio</text>
+          </g>
+          <g class="map-site has-library" data-lat="40.806" data-lon="-73.962">
+            <path class="leader" d="M1028 212 L1000 147"/><circle class="anchor" cx="1028" cy="212" r="7"/>
+            <rect class="label-box" x="825" y="105" width="290" height="42" rx="8"/>
+            <text class="label-title" x="837" y="123">Goddard Institute for Space Studies</text><text class="label-city" x="837" y="138">New York, New York</text>
+          </g>
+          <g class="map-site has-library" data-lat="38.992" data-lon="-76.852">
+            <path class="leader" d="M984 275 L895 271"/><circle class="anchor" cx="984" cy="275" r="7"/>
+            <rect class="label-box" x="675" y="250" width="220" height="42" rx="8"/>
+            <text class="label-title" x="687" y="268">Goddard Space Flight Center</text><text class="label-city" x="687" y="283">Greenbelt, Maryland</text>
+          </g>
+          <g class="map-site" data-lat="39.476" data-lon="-80.159">
+            <path class="leader" d="M915 278 L895 331"/><circle class="anchor" cx="915" cy="278" r="7"/>
+            <rect class="label-box" x="665" y="310" width="230" height="42" rx="8"/>
+            <text class="label-title" x="677" y="328">Katherine Johnson IV&amp;V Facility</text><text class="label-city" x="677" y="343">Fairmont, West Virginia</text>
+          </g>
+          <g class="map-site has-library" data-lat="38.883" data-lon="-77.016">
+            <path class="leader" d="M982 279 L990 271"/><circle class="anchor" cx="982" cy="279" r="7"/>
+            <rect class="label-box" x="990" y="250" width="145" height="42" rx="8"/>
+            <text class="label-title" x="1002" y="268">NASA Headquarters</text><text class="label-city" x="1002" y="283">Washington, D.C.</text>
+          </g>
+          <g class="map-site has-library langley" data-lat="37.086" data-lon="-76.380">
+            <path class="leader" d="M1007 322 L935 391"/><circle class="anchor" cx="1007" cy="322" r="7"/>
+            <rect class="label-box" x="740" y="370" width="195" height="42" rx="8"/>
+            <text class="label-title" x="752" y="388">Langley Research Center</text><text class="label-city" x="752" y="403">Hampton, Virginia</text>
+          </g>
+          <g class="map-site" data-lat="37.940" data-lon="-75.466">
+            <path class="leader" d="M1020 295 L1010 370"/><circle class="anchor" cx="1020" cy="295" r="7"/>
+            <rect class="label-box" x="945" y="370" width="190" height="42" rx="8"/>
+            <text class="label-title" x="957" y="388">Wallops Flight Facility</text><text class="label-city" x="957" y="403">Wallops Island, Virginia</text>
+          </g>
+          <g class="map-site has-library" data-lat="34.650" data-lon="-86.670">
+            <path class="leader" d="M803 432 L750 450"/><circle class="anchor" cx="803" cy="432" r="7"/>
+            <rect class="label-box" x="545" y="440" width="230" height="42" rx="8"/>
+            <text class="label-title" x="557" y="458">Marshall Space Flight Center</text><text class="label-city" x="557" y="473">Huntsville, Alabama</text>
+          </g>
+          <g class="map-site" data-lat="30.026" data-lon="-89.916">
+            <path class="leader" d="M747 565 L765 526"/><circle class="anchor" cx="747" cy="565" r="7"/>
+            <rect class="label-box" x="545" y="505" width="220" height="42" rx="8"/>
+            <text class="label-title" x="557" y="523">Michoud Assembly Facility</text><text class="label-city" x="557" y="538">New Orleans, Louisiana</text>
+          </g>
+          <g class="map-site has-library" data-lat="29.559" data-lon="-95.090">
+            <path class="leader" d="M628 588 L560 620"/><circle class="anchor" cx="628" cy="588" r="7"/>
+            <rect class="label-box" x="430" y="620" width="195" height="42" rx="8"/>
+            <text class="label-title" x="442" y="638">Johnson Space Center</text><text class="label-city" x="442" y="653">Houston, Texas</text>
+          </g>
+          <g class="map-site" data-lat="30.360" data-lon="-89.600">
+            <path class="leader" d="M753 555 L740 570"/><circle class="anchor" cx="753" cy="555" r="7"/>
+            <rect class="label-box" x="650" y="570" width="190" height="42" rx="8"/>
+            <text class="label-title" x="662" y="588">Stennis Space Center</text><text class="label-city" x="662" y="603">Hancock County, MS</text>
+          </g>
+          <g class="map-site" data-lat="30.390" data-lon="-89.604">
+            <path class="leader" d="M753 554 L760 620"/><circle class="anchor" cx="753" cy="554" r="7"/>
+            <rect class="label-box" x="650" y="620" width="240" height="42" rx="8"/>
+            <text class="label-title" x="662" y="638">NASA Shared Services Center</text><text class="label-city" x="662" y="653">Stennis Space Center, Mississippi</text>
+          </g>
+          <g class="map-site has-library" data-lat="28.573" data-lon="-80.649">
+            <path class="leader" d="M967 567 L980 610"/><circle class="anchor" cx="967" cy="567" r="7"/>
+            <rect class="label-box" x="900" y="610" width="220" height="42" rx="8"/>
+            <text class="label-title" x="912" y="628">Kennedy Space Center</text><text class="label-city" x="912" y="643">Merritt Island, FL</text>
+          </g>
+        </svg>
+        <div class="map-key" aria-label="Map key"><span class="map-key-dot" aria-hidden="true"></span><span>On-site librarians</span></div>
+      </div>
+      <div class="network-legend" aria-label="NASA centers and facilities legend">
+        <p class="network-legend-title">Centers and Facilities</p>
+        <div class="network-legend-grid">
+          <div class="network-legend-item has-library"><span class="network-legend-name">Ames Research Center</span><span class="network-legend-meta"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Moffett Field, CA</span><span class="network-legend-count"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>3,200 personnel</span></div>
+          <div class="network-legend-item has-library"><span class="network-legend-name">Armstrong Flight Research Center</span><span class="network-legend-meta"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Edwards, CA</span><span class="network-legend-count"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>1,000 personnel</span></div>
+          <div class="network-legend-item has-library"><span class="network-legend-name">Glenn Research Center</span><span class="network-legend-meta"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Cleveland, OH</span><span class="network-legend-count"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>3,000 personnel</span></div>
+          <div class="network-legend-item has-library"><span class="network-legend-name">Goddard Space Flight Center</span><span class="network-legend-meta"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Greenbelt, MD</span><span class="network-legend-count"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>10,000 personnel</span></div>
+          <div class="network-legend-item has-library"><span class="network-legend-name">Goddard Institute for Space Studies</span><span class="network-legend-meta"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>New York, NY</span><span class="network-legend-count"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>129 personnel</span></div>
+          <div class="network-legend-item"><span class="network-legend-name">Katherine Johnson IV&amp;V Facility</span><span class="network-legend-meta"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Fairmont, WV</span><span class="network-legend-count"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>275 personnel</span></div>
+          <div class="network-legend-item"><span class="network-legend-name">Jet Propulsion Laboratory</span><span class="network-legend-meta"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Pasadena, CA</span><span class="network-legend-count"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>4,500 personnel</span></div>
+          <div class="network-legend-item has-library"><span class="network-legend-name">Johnson Space Center</span><span class="network-legend-meta"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Houston, TX</span><span class="network-legend-count"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>12,000 personnel</span></div>
+          <div class="network-legend-item has-library"><span class="network-legend-name">Kennedy Space Center</span><span class="network-legend-meta"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Merritt Island, FL</span><span class="network-legend-count"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>10,000 personnel</span></div>
+          <div class="network-legend-item has-library"><span class="network-legend-name">Langley Research Center</span><span class="network-legend-meta"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Hampton, VA</span><span class="network-legend-count"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>3,400 personnel</span></div>
+          <div class="network-legend-item has-library"><span class="network-legend-name">Marshall Space Flight Center</span><span class="network-legend-meta"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Huntsville, AL</span><span class="network-legend-count"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>6,000 personnel</span></div>
+          <div class="network-legend-item"><span class="network-legend-name">Michoud Assembly Facility</span><span class="network-legend-meta"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>New Orleans, LA</span><span class="network-legend-count"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>3,400 personnel</span></div>
+          <div class="network-legend-item has-library"><span class="network-legend-name">NASA Headquarters</span><span class="network-legend-meta"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Washington, DC</span><span class="network-legend-count"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>3,180 personnel</span></div>
+          <div class="network-legend-item"><span class="network-legend-name">NASA Shared Services Center</span><span class="network-legend-meta"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Stennis Space Center, MS</span><span class="network-legend-count"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>521 personnel</span></div>
+          <div class="network-legend-item"><span class="network-legend-name">Neil Armstrong Test Facility</span><span class="network-legend-meta"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Sandusky, OH</span><span class="network-legend-count"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>100 personnel</span></div>
+          <div class="network-legend-item"><span class="network-legend-name">Stennis Space Center</span><span class="network-legend-meta"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Hancock County, MS</span><span class="network-legend-count"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>5,200 personnel</span></div>
+          <div class="network-legend-item"><span class="network-legend-name">Wallops Flight Facility</span><span class="network-legend-meta"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Wallops Island, VA</span><span class="network-legend-count"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>1,100 personnel</span></div>
+          <div class="network-legend-item"><span class="network-legend-name">White Sands Test Facility</span><span class="network-legend-meta"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Las Cruces, NM</span><span class="network-legend-count"><svg class="network-legend-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>1,108 personnel</span></div>
         </div>
+        <p class="network-legend-note">Workforce figures are approximate and may include civil servants and contractors. Establishment years reflect each site’s institutional origins, including predecessor facilities.</p>
+      </div>
+    </section>
+
+    <section class="hisd-section" aria-labelledby="hisd-title">
+      <p class="hisd-kicker">Organizational Context</p>
+      <h2 class="hisd-title" id="hisd-title">History and Information Services Division</h2>
+      <p class="hisd-summary">As Head of Technical Services, I reported to the Chief Librarian and led one of four departments within the Library Branch, itself one of four branches within HISD.</p>
+      <div class="hisd-director">Head of History and Information Services</div>
+      <div class="hisd-branches">
+        <article class="hisd-branch library-branch">
+          <p class="hisd-branch-label">Branch</p>
+          <h3>Library</h3>
+          <span class="branch-detail-badge">Expanded below</span>
+        </article>
+        <article class="hisd-branch">
+          <p class="hisd-branch-label">Branch</p>
+          <h3>Archives</h3>
+        </article>
+        <article class="hisd-branch">
+          <p class="hisd-branch-label">Branch</p>
+          <h3>History</h3>
+        </article>
+        <article class="hisd-branch">
+          <p class="hisd-branch-label">Branch</p>
+          <h3>FOIA</h3>
+        </article>
+      </div>
+      <div class="hisd-library-detail">
+        <div class="hisd-library-detail-header">
+          <h3>Library Branch</h3>
+          <p>Reporting structure</p>
+        </div>
+        <div class="chief-librarian">Chief Librarian</div>
+        <p class="library-reporting-label">Department heads reporting to the Chief Librarian</p>
+        <div class="library-heads" aria-label="Library department heads reporting to the Chief Librarian">
+          <div class="library-head my-role">Head of Technical Services<span class="role-detail">Six subordinate functional teams</span><span class="role-badge">My role</span></div>
+          <div class="library-head">Head of Subscription<span class="role-detail">Independent function</span></div>
+          <div class="library-head">Head of IT<span class="role-detail">Independent function</span></div>
+          <div class="library-head">Head of Reference<span class="role-detail">Independent function</span></div>
+        </div>
+        <p class="library-structure-note">Technical Services was the only Library department organized into subordinate functional teams; Subscription, IT, and Reference had no librarians reporting to their department heads.</p>
+      </div>
+    </section>
+
+    <section class="hierarchy-section" aria-label="NASA Technical Services organizational hierarchy">
+      <div class="hierarchy-chart">
+        <p class="hierarchy-kicker">Head of Technical Services</p>
+        <h2 class="hierarchy-root">Technical Services Leadership</h2>
+        <p class="hierarchy-summary">Agencywide oversight across six core library functions.</p>
+        <div class="hierarchy-branches">
+          <article class="hierarchy-unit">
+            <h3><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21V5.5Z"/><path d="M4 6h16M8 3v16m8-10h-5m2.5-2.5v5"/></svg></span><span>Acquisitions</span></h3>
+            <div class="hierarchy-count"><strong>3</strong><span>librarians</span></div>
+          </article>
+          <article class="hierarchy-unit">
+            <h3><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 22h8m-4-4v4"/><circle cx="6" cy="6.5" r=".4"/><circle cx="8" cy="6.5" r=".4"/></svg></span><span>Agency Library Portal System (ALPS)</span></h3>
+            <div class="hierarchy-count"><strong>6</strong><span>librarians</span></div>
+          </article>
+          <article class="hierarchy-unit">
+            <h3><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/><circle cx="6.5" cy="8" r=".4"/><circle cx="6.5" cy="12" r=".4"/><circle cx="6.5" cy="16" r=".4"/></svg></span><span>Cataloging and Metadata</span></h3>
+            <div class="hierarchy-count"><strong>4</strong><span>librarians</span></div>
+          </article>
+          <article class="hierarchy-unit">
+            <h3><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V8h4v12M10 20V4h4v16m1 0V10h4v10"/><path d="M6.5 11h1m4.5-3h1m3 5h1"/></svg></span><span>Collection Management</span></h3>
+            <div class="hierarchy-count"><strong>7</strong><span>librarians</span></div>
+          </article>
+          <article class="hierarchy-unit">
+            <h3><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4M7 9h10M7 13h6"/><circle cx="17" cy="13" r="1.5"/></svg></span><span>Electronic Resources Management</span></h3>
+            <div class="hierarchy-count"><strong>6</strong><span>librarians</span></div>
+          </article>
+          <article class="hierarchy-unit">
+            <h3><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8h15l-3-3m3 3-3 3M20 16H5l3-3m-3 3 3 3"/><path d="M6 5h3m9 14h-3"/></svg></span><span>Interlibrary Loan</span></h3>
+            <div class="hierarchy-count"><strong>7</strong><span>librarians</span></div>
+          </article>
+        </div>
+        <p class="hierarchy-note">Staff served across multiple functional teams.</p>
+      </div>
+    </section>
+
+    <section class="stakeholder-section" aria-labelledby="stakeholder-title">
+      <p class="stakeholder-kicker">Collaboration</p>
+      <h2 class="stakeholder-title" id="stakeholder-title">Stakeholders Behind the Transformation</h2>
+      <p class="stakeholder-summary">The modernization depended on bringing the people who ran, supported, funded, supplied, and used NASA’s library services into the same conversation.</p>
+      <div class="stakeholder-grid">
+        <article class="stakeholder-card">
+          <h3><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10v4h4l10 4V6L7 10H3Z"/><path d="m7 14 2 6h4l-2-5m10-6a5 5 0 0 1 0 6"/></svg></span><span>OCOMM Leadership</span></h3>
+          <p>Division-level leadership in the Office of Communications, HISD’s organizational home.</p>
+        </article>
+        <article class="stakeholder-card">
+          <h3><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="2.5" y="16" width="7" height="5" rx="1"/><rect x="14.5" y="16" width="7" height="5" rx="1"/><path d="M12 8v4M6 12h12M6 12v4m12-4v4"/></svg></span><span>Library Leadership</span></h3>
+          <p>Five civil servants, led by the Chief Librarian, guided the libraries; I was a member of this leadership team.</p>
+        </article>
+        <article class="stakeholder-card">
+          <h3><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="2.5"/><circle cx="16" cy="8" r="2.5"/><path d="M2.5 20a5.5 5.5 0 0 1 11 0m-2-5a5.5 5.5 0 0 1 10 5"/></svg></span><span>Center Library Staff and Contract Leads</span></h3>
+          <p>Contractor librarians and library technicians handled daily work; task leads coordinated systems support.</p>
+        </article>
+        <article class="stakeholder-card">
+          <h3><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="8" rx="1.5"/><rect x="4" y="13" width="16" height="8" rx="1.5"/><path d="M8 7h7m-7 10h7"/><circle cx="17" cy="7" r=".6"/><circle cx="17" cy="17" r=".6"/></svg></span><span>NASA IT and Data-Center Teams</span></h3>
+          <p>Coordinated hosting, integrations, infrastructure changes, and migrations.</p>
+        </article>
+        <article class="stakeholder-card">
+          <h3><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><rect x="8.5" y="10" width="7" height="6" rx="1"/><path d="M10 10V8.5a2 2 0 0 1 4 0V10"/></svg></span><span>Cybersecurity</span></h3>
+          <p>Reviewed technical requirements, documentation, and approvals.</p>
+        </article>
+        <article class="stakeholder-card">
+          <h3><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10 5 4h14l2 6M4 10h16v11H4z"/><path d="M3 10c0 2 1.3 3 3 3s3-1 3-3c0 2 1.3 3 3 3s3-1 3-3c0 2 1.3 3 3 3s3-1 3-3M9 21v-5h6v5"/></svg></span><span>Vendors and Implementation Partners</span></h3>
+          <p>Evaluated products, negotiated agreements, and resolved technical issues.</p>
+        </article>
+        <article class="stakeholder-card">
+          <h3><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zM14 3v5h5"/><path d="M9 13h6m-6 3h4m1 2 1.5 1.5L21 16"/></svg></span><span>NASA Procurement and Contracting</span></h3>
+          <p>Worked through acquisition requirements and agreement approvals.</p>
+        </article>
+        <article class="stakeholder-card">
+          <h3><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5c-.7-.7-1.7-1-3.5-1-1.8 0-3 .8-3 2s1 2 3 2.5 3 1.1 3 2.5-1.3 2.5-3.2 2.5-3.1-.5-3.8-1.2M12 5v14"/></svg></span><span>NASA Accounting</span></h3>
+          <p>Coordinated annual payments for library systems and services.</p>
+        </article>
+        <article class="stakeholder-card">
+          <h3><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10" cy="8" r="3"/><path d="M4 20a6 6 0 0 1 12 0m1-5 4 4m-2-6a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"/></svg></span><span>Researchers and Library Users</span></h3>
+          <p>Reference needs and user feedback informed service design and support.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="audit-section" aria-labelledby="audit-title">
+      <p class="audit-kicker">Electronic Resources Audit</p>
+      <h2 class="audit-title" id="audit-title">Finding the Access NASA Already Had</h2>
+      <p class="audit-summary">In preparation for the Alma/Primo migration, I audited NASA Langley’s journal and e-book subscriptions, access rights, and coverage with publishers and providers. The audit surfaced entitlements that had gone unnoticed and prepared cleaner journal data for migration.</p>
+
+      <div class="audit-metrics" aria-label="Audit results">
+        <div class="audit-metric"><strong>24</strong><span>publishers and providers contacted</span></div>
+        <div class="audit-metric"><strong>Hundreds</strong><span>overlooked entitlements recovered</span></div>
+        <div class="audit-metric"><strong>Thousands</strong><span>journal and e-book records standardized for Alma</span></div>
+      </div>
+
+      <p class="audit-logo-heading">Publishers and platforms in the audit</p>
+      <div class="audit-logos" id="audit-logos" aria-label="Publisher and provider logos">
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/aerospace-research-central_transparent.png" alt="Aerospace Research Central" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/allen-press_transparent.png" alt="Allen Press" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/american-institute-of-physics_transparent.png" alt="American Institute of Physics" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/american-meteorological-society_transparent.png" alt="American Meteorological Society" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/american-physical-society_transparent.png" alt="American Physical Society" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/american-society-of-civil-engineers_transparent.png" alt="American Society of Civil Engineers" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/american-society-of-mechanical-engineers_transparent.png" alt="American Society of Mechanical Engineers" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/annual-reviews_transparent.png" alt="Annual Reviews" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/aviation-week_transparent.png" alt="Aviation Week" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/cambridge-university-press_transparent.png" alt="Cambridge University Press" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/elsevier_transparent.png" alt="Elsevier" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/ieee-xplore_transparent.png" alt="IEEE Xplore" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/ingenta_transparent.png" alt="Ingenta" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/institute-of-physics_transparent.png" alt="Institute of Physics" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/optica_transparent.png" alt="Optica" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/oreilly_transparent.png" alt="O’Reilly" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/royal-society-of-chemistry_transparent.png" alt="Royal Society of Chemistry" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/sage_transparent.png" alt="SAGE" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/science-aaas_transparent.png" alt="Science / AAAS" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/spie-digital-library_transparent.png" alt="SPIE Digital Library" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/springer_transparent.png" alt="Springer" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/taylor-francis-online_transparent.png" alt="Taylor &amp; Francis Online" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/vertical-flight-society_transparent.png" alt="Vertical Flight Society" loading="lazy" decoding="async"></div>
+        <div class="audit-logo"><img src="https://www.michaelpritz.info/images/vendors/wiley-online_transparent.png" alt="Wiley Online" loading="lazy" decoding="async"></div>
+      </div>
+    </section>
+
+    <section class="timeline-section" aria-labelledby="timeline-title">
+    <div class="masthead">
+      <div>
+        <p class="timeline-kicker">Enterprise Transformation</p>
+        <h1 id="timeline-title">NASA Library Systems Modernization</h1>
+        <p class="dek">Consolidating fragmented library systems and contracts into a coordinated enterprise environment.</p>
       </div>
       <div>
         <fieldset class="legend" aria-label="Timeline legend">
           <legend>Legend</legend>
-          <div class="legend-column">
-            <div class="legend-item"><span class="event-sample transition"><span></span></span>Enterprise transition</div>
-            <div class="legend-item"><span class="event-sample deployment"><span></span></span>ALPS deployment</div>
-          </div>
           <div class="legend-column">
             <div class="legend-item"><span class="swatch active"></span>Active subscription</div>
             <div class="legend-item"><span class="swatch stopgap"></span>Temporary extension</div>
@@ -313,14 +1614,20 @@
             <div class="legend-item"><span>Start Service</span><span class="marker-sample start">GO</span></div>
             <div class="legend-item"><span>End Service</span><span class="marker-sample stop">STOP</span></div>
           </div>
+          <div class="legend-column milestones">
+            <div class="legend-item"><span class="swatch present"></span>Present</div>
+            <div class="legend-item"><span class="milestone-sample transition"></span>Enterprise transition</div>
+            <div class="legend-item"><span class="milestone-sample deployment"></span>ALPS Go-Live</div>
+          </div>
         </fieldset>
       </div>
-    </section>
+    </div>
 
     <section class="timeline-shell" aria-label="NASA library systems modernization timeline">
       <div class="timeline" id="timeline"></div>
     </section>
     <p class="footnote">Hover over or focus a timeline bar for vendor, licensing, dates, status, and notes. Financial figures have been redacted and intentionally blurred.</p>
+    </section>
   </main>
 
   <aside class="details" id="details" role="tooltip" aria-hidden="true"></aside>
@@ -329,8 +1636,53 @@
     (() => {
       'use strict';
 
+      const foundingYears = {
+        'Ames Research Center': 1939,
+        'Armstrong Flight Research Center': 1946,
+        'Glenn Research Center': 1941,
+        'Goddard Space Flight Center': 1959,
+        'Goddard Institute for Space Studies': 1961,
+        'Katherine Johnson IV&V Facility': 1993,
+        'Jet Propulsion Laboratory': 1936,
+        'Johnson Space Center': 1961,
+        'Kennedy Space Center': 1962,
+        'Langley Research Center': 1917,
+        'Marshall Space Flight Center': 1960,
+        'Michoud Assembly Facility': 1961,
+        'NASA Headquarters': 1958,
+        'NASA Shared Services Center': 2006,
+        'Neil Armstrong Test Facility': 1955,
+        'Stennis Space Center': 1961,
+        'Wallops Flight Facility': 1945,
+        'White Sands Test Facility': 1963
+      };
+      const svgNS = 'http://www.w3.org/2000/svg';
+      document.querySelectorAll('.network-legend-item').forEach(item => {
+        const name = item.querySelector('.network-legend-name')?.textContent.trim();
+        const year = foundingYears[name];
+        if (!year) return;
+        const founded = document.createElement('span');
+        founded.className = 'network-legend-founded';
+        const icon = document.createElementNS(svgNS, 'svg');
+        icon.setAttribute('class', 'network-legend-icon');
+        icon.setAttribute('viewBox', '0 0 24 24');
+        icon.setAttribute('aria-hidden', 'true');
+        const calendar = document.createElementNS(svgNS, 'rect');
+        calendar.setAttribute('x', '3');
+        calendar.setAttribute('y', '5');
+        calendar.setAttribute('width', '18');
+        calendar.setAttribute('height', '16');
+        calendar.setAttribute('rx', '2');
+        const marks = document.createElementNS(svgNS, 'path');
+        marks.setAttribute('d', 'M8 3v4M16 3v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01');
+        icon.append(calendar, marks);
+        founded.append(icon, document.createTextNode(`Est. ${year}`));
+        item.insertBefore(founded, item.querySelector('.network-legend-count'));
+      });
+
       const start = new Date(Date.UTC(2023, 8, 1));
       const end = new Date(Date.UTC(2026, 11, 31));
+      const present = '2024-08-08';
       const migrationStart = '2025-10-01';
       const migrationEnd = '2025-11-30';
       const enterpriseTransition = '2025-10-01';
@@ -507,7 +1859,7 @@
       function calendarHeader() {
         const header = document.createElement('div');
         header.className = 'header-row';
-        header.innerHTML = '<div class="header-label">System and license</div>';
+        header.innerHTML = '<div class="header-label">System / Center</div>';
         const cal = document.createElement('div');
         cal.className = 'calendar';
         const years = document.createElement('div');
@@ -549,6 +1901,11 @@
         migration.style.left = `calc(${position(migrationStart)} * var(--month-w))`;
         migration.style.width = `calc(${position(migrationEnd, true) - position(migrationStart)} * var(--month-w))`;
         track.appendChild(migration);
+
+        const now = document.createElement('span');
+        now.className = 'present-line';
+        now.style.left = `calc(${position(present)} * var(--month-w))`;
+        track.appendChild(now);
       }
 
       function addTimelineEvent(timeline, date, type, label) {
@@ -556,9 +1913,6 @@
         line.className = `timeline-event-line ${type}`;
         line.style.left = `calc(var(--label-w) + (${position(date)} * var(--month-w)))`;
         line.setAttribute('aria-label', label);
-        const marker = document.createElement('span');
-        marker.className = 'timeline-event-marker';
-        line.appendChild(marker);
         timeline.appendChild(line);
       }
 
@@ -600,8 +1954,91 @@
         const root = document.documentElement;
         root.style.setProperty('--label-w', '1px');
         const labels = timeline.querySelectorAll('.header-label, .group-label, .row-label');
-        const width = Math.ceil(Math.max(...Array.from(labels, label => label.scrollWidth))) + 1;
+        const width = Math.ceil(Math.max(...Array.from(labels, label => label.scrollWidth))) + 16;
         root.style.setProperty('--label-w', `${width}px`);
+      }
+
+      function projectMapCoordinate(latitude, longitude) {
+        const radians = Math.PI / 180;
+        const phi1 = 29.5 * radians;
+        const phi2 = 45.5 * radians;
+        const phi0 = 38.7 * radians;
+        const lambda0 = -96 * radians;
+        const n = (Math.sin(phi1) + Math.sin(phi2)) / 2;
+        const c = (Math.cos(phi1) ** 2) + (2 * n * Math.sin(phi1));
+        const rho0 = Math.sqrt(c - (2 * n * Math.sin(phi0))) / n;
+        const phi = latitude * radians;
+        const lambda = longitude * radians;
+        const rho = Math.sqrt(c - (2 * n * Math.sin(phi))) / n;
+        const theta = n * (lambda - lambda0);
+        const projectedX = rho * Math.sin(theta);
+        const projectedY = rho0 - (rho * Math.cos(theta));
+
+        return [
+          (1536.69993623 * projectedX) - (77.22247335 * projectedY) + 594.20956512,
+          (-82.17963951 * projectedX) - (1529.92504945 * projectedY) + 343.49770591
+        ];
+      }
+
+      function fitMapLabels() {
+        const resize = () => {
+          document.querySelectorAll('.map-site').forEach(site => {
+            const text = site.querySelector('.label-title');
+            const box = site.querySelector('.label-box');
+            const anchor = site.querySelector('.anchor');
+            const leader = site.querySelector('.leader');
+            if (!text || !box || !leader) return;
+
+            const latitude = Number(site.dataset.lat);
+            const longitude = Number(site.dataset.lon);
+            if (anchor && Number.isFinite(latitude) && Number.isFinite(longitude)) {
+              const [projectedX, projectedY] = projectMapCoordinate(latitude, longitude);
+              anchor.setAttribute('cx', projectedX.toFixed(1));
+              anchor.setAttribute('cy', projectedY.toFixed(1));
+            }
+
+            const bounds = text.getBBox();
+            const paddingX = 12;
+            const paddingY = 7;
+            const x = bounds.x - paddingX;
+            const y = bounds.y - paddingY;
+            const width = Math.ceil(bounds.width + (paddingX * 2));
+            const height = Math.ceil(bounds.height + (paddingY * 2));
+
+            box.setAttribute('x', x.toFixed(1));
+            box.setAttribute('y', y.toFixed(1));
+            box.setAttribute('width', width);
+            box.setAttribute('height', height);
+            box.setAttribute('rx', '7');
+
+            if (!anchor) return;
+            const anchorX = Number(anchor.getAttribute('cx'));
+            const anchorY = Number(anchor.getAttribute('cy'));
+            const centerX = x + (width / 2);
+            const centerY = y + (height / 2);
+            const dx = anchorX - centerX;
+            const dy = anchorY - centerY;
+            const scale = 1 / Math.max(Math.abs(dx) / (width / 2), Math.abs(dy) / (height / 2));
+            const edgeX = centerX + (dx * scale);
+            const edgeY = centerY + (dy * scale);
+            leader.setAttribute('d', `M${anchorX} ${anchorY} L${edgeX.toFixed(1)} ${edgeY.toFixed(1)}`);
+          });
+
+          const firstSite = document.querySelector('.map-site');
+          const svg = firstSite?.ownerSVGElement;
+          if (svg && firstSite) {
+            let leaderLayer = svg.querySelector('.map-leader-layer');
+            if (!leaderLayer) {
+              leaderLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+              leaderLayer.setAttribute('class', 'map-leader-layer');
+              svg.insertBefore(leaderLayer, firstSite);
+            }
+            document.querySelectorAll('.map-site > .leader').forEach(leader => leaderLayer.appendChild(leader));
+          }
+        };
+
+        if (document.fonts?.ready) document.fonts.ready.then(resize);
+        else requestAnimationFrame(resize);
       }
 
       function render() {
@@ -619,7 +2056,7 @@
             rowEl.className = 'data-row';
             const label = document.createElement('div');
             label.className = `row-label${item.enterprise ? ' enterprise' : ''}`;
-            label.innerHTML = `<span>${escapeHtml(item.code)}</span><span class="site">${escapeHtml(item.license)}</span>`;
+            label.innerHTML = `<span>${escapeHtml(item.code)}</span>`;
             const track = document.createElement('div');
             track.className = 'track';
             trackOverlays(track);
@@ -631,7 +2068,7 @@
 
         fitLabelColumn(timeline);
         addTimelineEvent(timeline, enterpriseTransition, 'transition', 'Enterprise transition begins October 2025');
-        addTimelineEvent(timeline, alpsDeployment, 'deployment', 'ALPS environment deployed January 2026');
+        addTimelineEvent(timeline, alpsDeployment, 'deployment', 'ALPS Go-Live — January 2026');
       }
 
       function escapeHtml(value) {
@@ -647,7 +2084,7 @@
           <h2 class="details-title">${escapeHtml(data.title)}</h2>
           <dl>
             <dt>Vendor</dt><dd>${escapeHtml(data.vendor)}</dd>
-            <dt>License</dt><dd>${escapeHtml(data.license)}</dd>
+            <dt>Center</dt><dd>${escapeHtml(data.license)}</dd>
             <dt>Dates</dt><dd>${escapeHtml(data.dates)}</dd>
             <dt>Cost</dt><dd class="cost${data.cost.trim().startsWith('$') ? ' sensitive' : ''}">${escapeHtml(data.cost)}</dd>
             <dt>Status</dt><dd>${escapeHtml(data.status)}</dd>
@@ -673,6 +2110,7 @@
       }
 
       render();
+      fitMapLabels();
 
       const timeline = document.getElementById('timeline');
       timeline.addEventListener('mouseover', showDetails);
@@ -684,16 +2122,31 @@
       timeline.addEventListener('focusin', showDetails);
       timeline.addEventListener('focusout', hideDetails);
 
+    const auditLogos = document.getElementById('audit-logos');
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      auditLogos.classList.add('reveal-ready');
+      const logoObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+      auditLogos.querySelectorAll('.audit-logo').forEach((logo, index) => {
+        logo.style.transitionDelay = `${(index % 6) * 55}ms`;
+        logoObserver.observe(logo);
+      });
+    }
+
     })();
   </script>
-
-    <footer>
-        <div>
-            <p><svg id="logo-mp" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="300" height="275.64" viewBox="0 0 300 275.64"><g id="c"><polygon class="m" points="247.72 0 247.72 163.07 150.55 219.21 89.11 184.16 89.11 254.55 52.87 275.64 52.87 122.38 150.04 177.62 211.49 142.28 211.49 62.38 150.1 97.29 52.87 41.29 52.87 0 150.5 55.71 247.72 0"/><polygon class="p" points="194.85 91.49 194.85 133.07 150.1 158.52 36.24 93.27 36.24 275.64 0 254.55 0 30.89 149.69 116.79 194.85 91.49"/><polygon class="p" points="300 30.89 300 255.45 264.36 275.64 264.36 51.39 300 30.89"/><path class="p" d="M247.72,182.97v92.67c-12.09-6.93-24.51-13.55-36.14-21.19l-.14-50.42,36.28-21.06Z"/></g></svg></p>
-            <p style="margin: 5px 0px;">© 2026 Michael Pritz</p>
-            <p>All rights reserved</p>
-        </div>
-    </footer>
-        <script src="script.js"></script>
-    </body>
+  <footer>
+    <div>
+      <p><svg id="logo-mp" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="300" height="275.64" viewBox="0 0 300 275.64"><g id="c"><polygon class="m" points="247.72 0 247.72 163.07 150.55 219.21 89.11 184.16 89.11 254.55 52.87 275.64 52.87 122.38 150.04 177.62 211.49 142.28 211.49 62.38 150.1 97.29 52.87 41.29 52.87 0 150.5 55.71 247.72 0"/><polygon class="p" points="194.85 91.49 194.85 133.07 150.1 158.52 36.24 93.27 36.24 275.64 0 254.55 0 30.89 149.69 116.79 194.85 91.49"/><polygon class="p" points="300 30.89 300 255.45 264.36 275.64 264.36 51.39 300 30.89"/><path class="p" d="M247.72,182.97v92.67c-12.09-6.93-24.51-13.55-36.14-21.19l-.14-50.42,36.28-21.06Z"/></g></svg></p>
+      <p style="margin: 5px 0px;">© 2026 Michael Pritz</p>
+      <p>All rights reserved</p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
 </html>
