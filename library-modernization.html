@@ -1,0 +1,699 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>NASA Library Systems Modernization</title>
+        <link rel="stylesheet" href="https://use.typekit.net/ffe8zgm.css">
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+        <style>
+            :root {
+            --ink: #16202a;
+            --muted: #65717d;
+            --line: #dce2e8;
+            --blue: #1455b8;
+            --red: #ef3f2f;
+            --green: #10a83b;
+            --paper: #ffffff;
+            --panel: #f6f8fa;
+            --label-w: 300px;
+            --month-w: 38px;
+            --row-h: 42px;
+            --months: 40;
+            }
+
+            *, *::before, *::after { box-sizing: border-box; }
+
+            html, body { margin: 0; min-height: 100%; background: #eef1f4; color: var(--ink); }
+            body { font-family: Aptos, "Segoe UI", Arial, sans-serif; font-weight: 400; }
+
+            h1, h2, .header-label, .group-label, .year {
+            font-family: Aptos-Display, "Aptos Display", Aptos, "Segoe UI", Arial, sans-serif;
+            font-weight: 600;
+            }
+
+            .page {
+            width: min(100%, 1920px);
+            margin: 0 auto;
+            padding: 38px 34px 54px;
+            background: var(--paper);
+            min-height: 100vh;
+            }
+
+            .masthead {
+            display: grid;
+            grid-template-columns: minmax(520px, 1fr) auto;
+            gap: 28px;
+            align-items: start;
+            margin-bottom: 26px;
+            }
+
+            h1 {
+            margin: 0 0 10px;
+            font-size: clamp(28px, 2.4vw, 42px);
+            line-height: 1.05;
+            letter-spacing: -.035em;
+            text-transform: uppercase;
+            }
+
+            .dek {
+            max-width: 1080px;
+            margin: 0;
+            color: #3b4651;
+            font-size: 13px;
+            line-height: 1.45;
+            letter-spacing: .01em;
+            }
+
+            .journey {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 16px;
+            color: #33404c;
+            font-size: 11px;
+            font-weight: 700;
+            white-space: nowrap;
+            }
+
+            .journey-step {
+            padding: 7px 10px;
+            border: 1px solid #d5dce3;
+            border-radius: 6px;
+            background: #f7f9fb;
+            }
+
+            .journey-arrow { color: #7a8691; }
+
+            .legend {
+            display: grid;
+            grid-template-columns: repeat(3, max-content);
+            gap: 8px 34px;
+            border: 1px solid #d8dee5;
+            padding: 8px 18px 12px;
+            background: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            width: fit-content;
+            min-width: 0;
+            margin: 10px 0 0;
+            }
+
+            .legend > legend { padding: 0 10px; font-family: Aptos-Display, "Aptos Display", Aptos, "Segoe UI", Arial, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+            .legend-column { display: grid; grid-template-rows: repeat(3, 20px); align-content: start; gap: 5px; }
+            .legend-item { display: flex; height: 20px; align-items: center; gap: 8px; white-space: nowrap; }
+            .swatch { width: 54px; height: 11px; border-radius: 999px; }
+            .swatch.active { background: var(--blue); }
+            .swatch.stopgap { border: 2px dashed var(--blue); background: #fff; }
+            .swatch.future { border: 2px solid var(--red); background: #fff; }
+            .migration-sample { position: relative; width: 18px; height: 18px; flex: 0 0 18px; border: 2px solid #9aa1a8; background: #d1d5d9; }
+            .migration-sample::before { content: ''; position: absolute; top: 0; bottom: 0; left: 50%; border-left: 2px solid #9aa1a8; transform: translateX(-1px); }
+            .migration-sample::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 2px solid #9aa1a8; transform: translateY(-1px); }
+            .event-sample { position: relative; width: 54px; height: 14px; flex: 0 0 54px; }
+            .event-sample::before { content: ''; position: absolute; left: 5px; right: 5px; top: 6px; border-top: 2px solid #2f3740; }
+            .event-sample::after, .event-sample > span { content: ''; position: absolute; top: 1px; width: 10px; height: 10px; background: #fff; border: 2px solid #2f3740; }
+            .event-sample::after { right: 0; }
+            .event-sample > span { left: 0; }
+            .event-sample.deployment::after, .event-sample.deployment > span { border-radius: 50%; }
+            .marker-sample { width: 18px; height: 18px; flex: 0 0 18px; display: grid; place-items: center; color: white; font-size: 6px; font-weight: 900; line-height: 1; clip-path: polygon(29% 0, 71% 0, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0 71%, 0 29%); }
+            .marker-sample.start { background: var(--green); }
+            .marker-sample.stop { background: var(--red); }
+            .legend-column.indicators .legend-item { display: grid; grid-template-columns: 72px 18px; column-gap: 12px; min-width: 0; }
+
+            .timeline-shell {
+            width: fit-content;
+            max-width: 100%;
+            border: 1px solid #d7dde4;
+            border-radius: 10px;
+            overflow: auto;
+            background: #fff;
+            box-shadow: 0 10px 34px rgba(25, 35, 45, .08);
+            }
+
+            .timeline {
+            width: calc(var(--label-w) + (var(--months) * var(--month-w)));
+            min-width: calc(var(--label-w) + (var(--months) * var(--month-w)));
+            position: relative;
+            }
+
+            .header-row, .data-row, .group-row {
+            display: grid;
+            grid-template-columns: var(--label-w) calc(var(--months) * var(--month-w));
+            }
+
+            .header-row {
+            position: sticky;
+            top: 0;
+            z-index: 15;
+            background: white;
+            border-bottom: 1px solid #cfd6dd;
+            }
+
+            .header-label {
+            position: sticky;
+            left: 0;
+            z-index: 18;
+            padding: 15px 18px;
+            display: flex;
+            align-items: end;
+            background: #fff;
+            border-right: 1px solid #cfd6dd;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            }
+
+            .calendar { position: relative; height: 74px; background: #fff; }
+            .year-band { position: absolute; inset: 0 0 auto 0; height: 30px; border-bottom: 1px solid var(--line); }
+            .year { position: absolute; top: 0; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 12px; border-right: 1px solid #bec7d0; }
+            .months { position: absolute; left: 0; right: 0; bottom: 0; height: 44px; display: grid; grid-template-columns: repeat(var(--months), var(--month-w)); }
+            .month { display: grid; place-items: center; border-right: 1px solid var(--line); font-size: 10px; font-weight: 700; color: #44505c; }
+
+            .group-row { height: 36px; background: #edf2f7; border-top: 1px solid #cbd3db; border-bottom: 1px solid #cbd3db; }
+            .group-label { position: sticky; left: 0; z-index: 7; padding: 0 18px; display: flex; align-items: center; background: #edf2f7; border-right: 1px solid #cbd3db; font-size: 12px; text-transform: uppercase; letter-spacing: .055em; }
+            .group-note { padding: 0 12px; display: flex; align-items: center; color: #5b6773; font-size: 10px; font-weight: 700; }
+
+            .data-row { height: var(--row-h); border-bottom: 1px solid #e5e9ed; }
+            .row-label { position: sticky; left: 0; z-index: 6; display: flex; align-items: center; gap: 8px; padding: 0 16px 0 22px; background: #fff; border-right: 1px solid #d8dee5; font-size: 11px; font-weight: 700; white-space: nowrap; }
+            .row-label .site { color: var(--blue); font-weight: 600; }
+            .row-label.enterprise .site { color: var(--red); }
+
+            .track {
+            position: relative;
+            height: var(--row-h);
+            background-image: repeating-linear-gradient(to right, transparent 0, transparent calc(var(--month-w) - 1px), var(--line) calc(var(--month-w) - 1px), var(--line) var(--month-w));
+            }
+
+            .migration-zone { position: absolute; top: 0; bottom: 0; background: rgba(138, 148, 159, .20); border-left: 1px solid rgba(93, 102, 111, .45); border-right: 1px solid rgba(93, 102, 111, .45); pointer-events: none; }
+            .timeline-event-line { position: absolute; top: 74px; bottom: 0; width: 0; border-left: 2px solid #2f3740; pointer-events: none; z-index: 4; }
+            .timeline-event-marker { position: absolute; top: 6px; left: 0; width: 12px; height: 12px; background: #fff; border: 2px solid #2f3740; transform: translateX(-58%); }
+            .timeline-event-line.deployment .timeline-event-marker { border-radius: 50%; }
+
+            .bar {
+            position: absolute;
+            top: 10px;
+            height: 22px;
+            min-width: 8px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 9px;
+            overflow: visible;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-size: 10px;
+            font-weight: 600;
+            line-height: 1;
+            z-index: 5;
+            cursor: default;
+            }
+
+            .bar.active { color: #fff; background: var(--blue); }
+            .bar.stopgap { color: #25313c; background: rgba(255,255,255,.92); border: 2px dashed var(--blue); }
+            .bar.future { color: #26313a; background: #fff; border: 2px solid var(--red); }
+            .bar.launch { border-color: var(--red); }
+            .bar.enterprise.active { background: var(--red); }
+            .bar.enterprise.stopgap { border-color: var(--red); }
+            .bar > .cost { display: block; max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+            .cost.sensitive { filter: blur(2px); font-weight: 800; opacity: 1; user-select: none; }
+            .bar:focus-visible { outline: 3px solid rgba(20,85,184,.3); outline-offset: 2px; }
+
+            .endpoint { position: absolute; top: 50%; width: 18px; height: 18px; margin-left: -9px; color: #fff; display: grid; place-items: center; font-size: 6px; font-weight: 900; line-height: 1; z-index: 8; transform: translateY(-50%); clip-path: polygon(29% 0, 71% 0, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0 71%, 0 29%); }
+            .endpoint.start { background: var(--green); }
+            .endpoint.stop { background: var(--red); }
+
+            .details {
+            position: fixed;
+            z-index: 50;
+            width: min(360px, calc(100vw - 28px));
+            padding: 15px 16px;
+            border: 1px solid #bcc6cf;
+            border-radius: 8px;
+            background: rgba(255,255,255,.98);
+            box-shadow: 0 15px 50px rgba(20,30,40,.22);
+            pointer-events: none;
+            opacity: 0;
+            transform: translateY(4px);
+            transition: opacity .1s ease, transform .1s ease;
+            }
+            .details.show { opacity: 1; transform: translateY(0); }
+            .details-title { margin: 0 0 9px; font-size: 14px; line-height: 1.25; }
+            .details dl { display: grid; grid-template-columns: 76px 1fr; gap: 4px 9px; margin: 0; font-size: 11px; line-height: 1.35; }
+            .details dt { color: var(--muted); font-weight: 700; }
+            .details dd { margin: 0; }
+
+            .footnote { margin: 14px 2px 0; color: #6b7680; font-size: 10px; line-height: 1.45; }
+            @media (max-width: 920px) {
+            :root { --label-w: 245px; --month-w: 35px; }
+            .page { padding: 22px 16px 38px; }
+            .masthead { grid-template-columns: 1fr; }
+            .legend { min-width: 0; }
+            .controls { justify-content: flex-start; }
+            .row-label { padding-left: 13px; font-size: 10px; }
+            }
+
+            @media print {
+            @page { size: 24in 18in landscape; margin: .35in; }
+            html, body { background: white; }
+            .page { width: 100%; padding: 0; }
+            .controls { display: none; }
+            .timeline-shell { overflow: visible; border: 0; box-shadow: none; }
+            .timeline { transform-origin: top left; }
+            .details { display: none; }
+            .header-row { position: static; }
+            .header-label, .group-label, .row-label { position: static; }
+            }
+        </style>
+    </head>
+
+    <body>
+       
+        <header class="site-header">
+            <div id="logo">
+                <svg id="logo-mp" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="300" height="275.64" viewBox="0 0 300 275.64"><g id="c"><polygon class="m" points="247.72 0 247.72 163.07 150.55 219.21 89.11 184.16 89.11 254.55 52.87 275.64 52.87 122.38 150.04 177.62 211.49 142.28 211.49 62.38 150.1 97.29 52.87 41.29 52.87 0 150.5 55.71 247.72 0"/><polygon class="p" points="194.85 91.49 194.85 133.07 150.1 158.52 36.24 93.27 36.24 275.64 0 254.55 0 30.89 149.69 116.79 194.85 91.49"/><polygon class="p" points="300 30.89 300 255.45 264.36 275.64 264.36 51.39 300 30.89"/><path class="p" d="M247.72,182.97v92.67c-12.09-6.93-24.51-13.55-36.14-21.19l-.14-50.42,36.28-21.06Z"/></g></svg>
+            </div>
+                        <nav class="nav-center" role="navigation" aria-label="Primary">
+                <a href="https://www.michaelpritz.info/" aria-current="page">résumé</a>
+                <a href="https://www.michaelpritz.info/portfolio">portfolio</a>
+            </nav>
+        </header>
+
+        <main class="page" id="page">
+    <section class="masthead">
+      <div>
+        <h1>NASA Library Systems Modernization</h1>
+        <p class="dek">Consolidating fragmented library systems and contracts into a coordinated enterprise environment.</p>
+        <div class="journey" aria-label="Modernization sequence">
+          <span class="journey-step">1. Existing services</span>
+          <span class="journey-arrow" aria-hidden="true">→</span>
+          <span class="journey-step">2. Temporary extensions</span>
+          <span class="journey-arrow" aria-hidden="true">→</span>
+          <span class="journey-step">3. Enterprise replacements</span>
+        </div>
+      </div>
+      <div>
+        <fieldset class="legend" aria-label="Timeline legend">
+          <legend>Legend</legend>
+          <div class="legend-column">
+            <div class="legend-item"><span class="event-sample transition"><span></span></span>Enterprise transition</div>
+            <div class="legend-item"><span class="event-sample deployment"><span></span></span>ALPS deployment</div>
+          </div>
+          <div class="legend-column">
+            <div class="legend-item"><span class="swatch active"></span>Active subscription</div>
+            <div class="legend-item"><span class="swatch stopgap"></span>Temporary extension</div>
+            <div class="legend-item"><span class="swatch future"></span>Enterprise replacement</div>
+          </div>
+          <div class="legend-column indicators">
+            <div class="legend-item"><span>ILS Migration</span><span class="migration-sample"></span></div>
+            <div class="legend-item"><span>Start Service</span><span class="marker-sample start">GO</span></div>
+            <div class="legend-item"><span>End Service</span><span class="marker-sample stop">STOP</span></div>
+          </div>
+        </fieldset>
+      </div>
+    </section>
+
+    <section class="timeline-shell" aria-label="NASA library systems modernization timeline">
+      <div class="timeline" id="timeline"></div>
+    </section>
+    <p class="footnote">Hover over or focus a timeline bar for vendor, licensing, dates, status, and notes. Financial figures have been redacted and intentionally blurred.</p>
+  </main>
+
+  <aside class="details" id="details" role="tooltip" aria-hidden="true"></aside>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const start = new Date(Date.UTC(2023, 8, 1));
+      const end = new Date(Date.UTC(2026, 11, 31));
+      const migrationStart = '2025-10-01';
+      const migrationEnd = '2025-11-30';
+      const enterpriseTransition = '2025-10-01';
+      const alpsDeployment = '2026-01-01';
+
+      const groups = [
+        {
+          name: 'Ex Libris 360 Link', note: 'Center-specific discovery and link-resolver subscriptions', rows: [
+            row('ARC', 'Ames Research Center', false, [seg('active','2023-11-01','2024-10-31','$XX,XXX','Ex Libris','360 Link','Active Subscription','', false, true)]),
+            row('GRC', 'Glenn Research Center', false, [seg('active','2024-01-01','2024-12-31','$XX,XXX','Ex Libris','360 Link','Active Subscription', 'Recovered metadata listed 2023; displayed as 2024 to match the planning timeline.', false, true)]),
+            row('GSFC', 'Goddard Space Flight Center', false, [seg('active','2024-08-01','2025-07-31','$XX,XXX','Ex Libris','360 Link','Active Subscription','', false, true)]),
+            row('JSC', 'Johnson Space Center', false, [seg('active','2024-05-23','2025-05-24','$XX,XXX','Ex Libris','360 Link','Active Subscription','', false, true)]),
+            row('KSC', 'Kennedy Space Center', false, [seg('active','2023-09-01','2024-08-31','$XX,XXX','Ex Libris','360 Link','Active Subscription','', false, true)]),
+            row('LARC', 'Langley Research Center', false, [seg('active','2024-01-01','2024-12-31','$XX,XXX','Ex Libris','360 Link','Active Subscription','', false, true)])
+          ]
+        },
+        {
+          name: 'Ex Libris 360 Resource Manager', note: 'Center-specific electronic resource management service', rows: [
+            row('GSFC', 'Goddard Space Flight Center', false, [seg('active','2024-08-01','2025-07-31','$XX,XXX','Ex Libris','360 Resource Manager','Active Subscription','Center-specific electronic resource management service slated for replacement by Alma.', false, true)])
+          ]
+        },
+        {
+          name: 'Ex Libris Alma and Primo VE', note: 'Future enterprise library services platform and discovery interface', rows: [
+            row('NASA', 'Enterprise', true, [seg('future','2025-11-01','2026-10-31','$XX,XXX','Ex Libris','Alma & Primo VE','Future Subscription','Replaces SirsiDynix Symphony, Ex Libris 360, and Ex Libris Summon.', true, false)])
+          ]
+        },
+        {
+          name: 'Ex Libris Rapido', note: 'Future enterprise resource-sharing service', rows: [
+            row('NASA', 'Enterprise', true, [seg('future','2025-11-01','2026-10-31','$XX,XXX','Ex Libris','Rapido','Future Subscription','Replaces OCLC ILLiad.', true, false)])
+          ]
+        },
+        {
+          name: 'Ex Libris Summon', note: 'Center-specific discovery subscriptions', rows: [
+            row('GRC', 'Glenn Research Center', false, [seg('active','2023-10-01','2024-09-30','$XX,XXX','Ex Libris','Summon','Active Subscription','', false, true)]),
+            row('GSFC', 'Goddard Space Flight Center', false, [seg('active','2024-08-01','2025-07-31','$XX,XXX','Ex Libris','Summon','Active Subscription','', false, true)])
+          ]
+        },
+        {
+          name: 'OCLC Cataloging and Metadata', note: 'Center subscriptions maintained through enterprise transition', rows: [
+            row('ARC', 'Ames Research Center', false, [seg('active','2024-01-01','2024-12-31','$XX,XXX','OCLC','Cataloging & Metadata','Active Subscription'), seg('stopgap','2025-01-01','2025-09-30','9 mo.','OCLC','Cataloging & Metadata','Temporary Stopgap','', false, true)]),
+            row('AFRC', 'Armstrong Flight Research Center', false, [seg('active','2024-07-01','2025-06-30','$XX,XXX','OCLC','Cataloging & Metadata','Active Subscription'), seg('stopgap','2025-07-01','2025-09-30','3 mo.','OCLC','Cataloging & Metadata','Temporary Stopgap','', false, true)]),
+            row('GRC', 'Glenn Research Center', false, [seg('active','2024-07-01','2025-06-30','$XX,XXX','OCLC','Cataloging & Metadata','Active Subscription'), seg('stopgap','2025-07-01','2025-09-30','3 mo.','OCLC','Cataloging & Metadata','Temporary Stopgap','', false, true)]),
+            row('GISS', 'Goddard Institute for Space Studies', false, [seg('active','2024-07-01','2025-06-30','$XX,XXX','OCLC','Cataloging & Metadata','Active Subscription'), seg('stopgap','2025-07-01','2025-09-30','3 mo.','OCLC','Cataloging & Metadata','Temporary Stopgap','', false, true)]),
+            row('GSFC', 'Goddard Space Flight Center', false, [seg('active','2024-07-01','2025-06-30','$XX,XXX','OCLC','Cataloging & Metadata','Active Subscription'), seg('stopgap','2025-07-01','2025-09-30','3 mo.','OCLC','Cataloging & Metadata','Temporary Stopgap','', false, true)]),
+            row('KSC', 'Kennedy Space Center', false, [seg('active','2024-07-01','2025-06-30','$XX,XXX','OCLC','Cataloging & Metadata','Active Subscription'), seg('stopgap','2025-07-01','2025-09-30','3 mo.','OCLC','Cataloging & Metadata','Temporary Stopgap','', false, true)])
+          ]
+        },
+        {
+          name: 'OCLC ILLiad', note: 'Center-level interlibrary loan subscriptions', rows: [
+            row('ARC', 'Ames Research Center', false, [seg('active','2024-03-01','2025-02-28','$XX,XXX','OCLC','ILLiad','Active Subscription'), seg('stopgap','2025-03-01','2025-09-30','7 mo.','OCLC','ILLiad','Temporary Stopgap','', false, true)]),
+            row('GRC', 'Glenn Research Center', false, [seg('active','2024-07-01','2025-06-30','$XX,XXX','OCLC','ILLiad','Active Subscription'), seg('stopgap','2025-07-01','2025-09-30','3 mo.','OCLC','ILLiad','Temporary Stopgap','', false, true)]),
+            row('GSFC', 'Goddard Space Flight Center', false, [seg('active','2024-03-01','2025-02-28','$XX,XXX','OCLC','ILLiad','Active Subscription'), seg('stopgap','2025-03-01','2025-09-30','7 mo.','OCLC','ILLiad','Temporary Stopgap','', false, true)]),
+            row('LARC', 'Langley Research Center', false, [seg('active','2024-07-01','2025-06-30','$XX,XXX','OCLC','ILLiad','Active Subscription'), seg('stopgap','2025-07-01','2025-09-30','3 mo.','OCLC','ILLiad','Temporary Stopgap','', false, true)])
+          ]
+        },
+        {
+          name: 'OCLC WorldShare ILL', note: 'Center-specific OCLC symbols retained; billing consolidated into one annual invoice', rows: [
+            row('ARC', 'Ames Research Center', false, [seg('active','2024-01-01','2024-12-31','$XX,XXX','OCLC','WorldShare ILL','Active Subscription'), seg('stopgap','2025-01-01','2025-09-30','9 mo.','OCLC','WorldShare ILL','Temporary Stopgap','', false, true)]),
+            row('AFRC', 'Armstrong Flight Research Center', false, [seg('active','2024-07-01','2025-06-30','$XX,XXX','OCLC','WorldShare ILL','Active Subscription'), seg('stopgap','2025-07-01','2025-09-30','3 mo.','OCLC','WorldShare ILL','Temporary Stopgap','', false, true)]),
+            row('GRC', 'Glenn Research Center', false, [seg('active','2024-07-01','2025-06-30','$XX,XXX','OCLC','WorldShare ILL','Active Subscription'), seg('stopgap','2025-07-01','2025-09-30','3 mo.','OCLC','WorldShare ILL','Temporary Stopgap','', false, true)]),
+            row('GISS', 'Goddard Institute for Space Studies', false, [seg('active','2024-07-01','2025-06-30','$XX,XXX','OCLC','WorldShare ILL','Active Subscription'), seg('stopgap','2025-07-01','2025-09-30','3 mo.','OCLC','WorldShare ILL','Temporary Stopgap','', false, true)]),
+            row('GSFC', 'Goddard Space Flight Center', false, [seg('active','2023-11-01','2024-10-31','$XX,XXX','OCLC','WorldShare ILL','Active Subscription'), seg('stopgap','2024-11-01','2025-09-30','11 mo.','OCLC','WorldShare ILL','Temporary Stopgap','', false, true)]),
+            row('HQ', 'NASA Headquarters', false, [seg('active','2024-07-01','2025-06-30','$XX,XXX','OCLC','WorldShare ILL','Active Subscription'), seg('stopgap','2025-07-01','2025-09-30','3 mo.','OCLC','WorldShare ILL','Temporary Stopgap','', false, true)]),
+            row('JSC', 'Johnson Space Center', false, [seg('active','2024-07-01','2025-06-30','$XX,XXX','OCLC','WorldShare ILL','Active Subscription'), seg('stopgap','2025-07-01','2025-09-30','3 mo.','OCLC','WorldShare ILL','Temporary Stopgap','', false, true)]),
+            row('KSC', 'Kennedy Space Center', false, [seg('active','2024-07-01','2025-06-30','$XX,XXX','OCLC','WorldShare ILL','Active Subscription'), seg('stopgap','2025-07-01','2025-09-30','3 mo.','OCLC','WorldShare ILL','Temporary Stopgap','', false, true)]),
+            row('LARC', 'Langley Research Center', false, [seg('active','2024-07-01','2025-06-30','$XX,XXX','OCLC','WorldShare ILL','Active Subscription'), seg('stopgap','2025-07-01','2025-09-30','3 mo.','OCLC','WorldShare ILL','Temporary Stopgap','', false, true)]),
+            row('NASA', 'Enterprise', true, [seg('future','2025-11-01','2026-10-31','$XX,XXX','OCLC','WorldShare ILL','Future Subscription','Consolidates separate center invoices into one annual bill while preserving each library’s OCLC symbol and associated records. Complements Rapido.', true, false)])
+          ]
+        },
+        {
+          name: 'OpenAthens', note: 'Enterprise authentication service', rows: [
+            row('NASA', 'Enterprise', true, [seg('future','2025-01-01','2025-12-31','$XX,XXX','Jisc','OpenAthens','Future Subscription','', true, false)])
+          ]
+        },
+        {
+          name: 'SirsiDynix Symphony', note: 'Current enterprise ILS', rows: [
+            row('NASA', 'Enterprise', true, [seg('active','2023-11-01','2024-10-31','$XX,XXX','SirsiDynix','Symphony','Active Subscription','Current enterprise ILS.'), seg('stopgap','2024-11-01','2025-10-31','$XX,XXX','SirsiDynix','Symphony','Temporary Stopgap','Current enterprise ILS.', false, true)])
+          ]
+        },
+        {
+          name: 'Springshare LibAnswers (Lite)', note: 'Current enterprise reference platform', rows: [
+            row('NASA', 'Enterprise', true, [seg('active','2023-11-01','2024-10-31','$XX,XXX','Springshare','LibAnswers Lite','Active Subscription','Includes helpdesk ticketing and a searchable FAQ knowledgebase.'), seg('stopgap','2024-11-01','2025-04-30','$XX,XXX','Springshare','LibAnswers Lite','Temporary Stopgap','Includes helpdesk ticketing and a searchable FAQ knowledgebase.', false, true)])
+          ]
+        },
+        {
+          name: 'Springshare LibAnswers (Full)', note: 'Future enterprise reference platform with live chat', rows: [
+            row('NASA', 'Enterprise', true, [seg('future','2025-05-01','2026-04-30','$XX,XXX','Springshare','LibAnswers Full','Future Subscription','Includes helpdesk ticketing, searchable FAQs, live chat, and reference analytics.', true, false)])
+          ]
+        },
+        {
+          name: 'Springshare LibGuides', note: 'Future enterprise research-guides platform', rows: [
+            row('NASA', 'Enterprise', true, [seg('future','2025-05-01','2026-04-30','$XX,XXX','Springshare','LibGuides','Future Subscription','Enterprise platform for publishing library guides and resource information.', true, false)])
+          ]
+        },
+        {
+          name: 'WordPress', note: 'Enterprise content management system (CMS)', rows: [
+            row('NASA', 'Enterprise', true, [seg('future launch','2025-01-01','2025-12-31','$XX,XXX','WordPress','WordPress','Future Subscription','NASA Library website: https://library.nasa.gov', true, false)])
+          ]
+        }
+      ];
+
+      const groupOrder = [
+        'Ex Libris 360 Link',
+        'Ex Libris 360 Resource Manager',
+        'Ex Libris Summon',
+        'OCLC Cataloging and Metadata',
+        'OCLC ILLiad',
+        'OCLC WorldShare ILL',
+        'SirsiDynix Symphony',
+        'Springshare LibAnswers (Lite)',
+        'Ex Libris Alma and Primo VE',
+        'Ex Libris Rapido',
+        'OpenAthens',
+        'Springshare LibAnswers (Full)',
+        'Springshare LibGuides',
+        'WordPress'
+      ];
+
+      const orderedGroups = [...groups].sort((a, b) => groupOrder.indexOf(a.name) - groupOrder.indexOf(b.name));
+
+      function row(code, license, enterprise, segments) { return { code, license, enterprise, segments }; }
+      function seg(type, from, to, label, vendor, product, status, notes = '', startMarker = false, stopMarker = false) {
+        return { type, from, to, label, vendor, product, status, notes, startMarker, stopMarker };
+      }
+
+      const defaultNotes = {
+        '360 Link|Active Subscription': 'Center-specific link resolver slated for replacement by Alma and Primo VE.',
+        'Summon|Active Subscription': 'Center-specific discovery service slated for replacement by Primo VE.',
+        'Cataloging & Metadata|Active Subscription': 'Center-level cataloging and metadata service maintained through the transition.',
+        'Cataloging & Metadata|Temporary Stopgap': 'Short-term extension maintains cataloging access through the enterprise transition.',
+        'ILLiad|Active Subscription': 'Center-level interlibrary loan system slated for replacement by Rapido.',
+        'ILLiad|Temporary Stopgap': 'Short-term extension maintains interlibrary loan service through the enterprise transition.',
+        'WorldShare ILL|Active Subscription': 'Center-specific WorldShare ILL service billed separately.',
+        'WorldShare ILL|Temporary Stopgap': 'Short-term extension maintains service until billing is consolidated agencywide.',
+        'OpenAthens|Future Subscription': 'Provides federated, off-network access to licensed electronic resources.'
+      };
+
+      function noteFor(segment) {
+        return segment.notes || defaultNotes[`${segment.product}|${segment.status}`] || 'n/a';
+      }
+
+      function statusFor(segment) {
+        if (segment.status === 'Temporary Stopgap') return 'Temporary Extension';
+        if (segment.status === 'Future Subscription') return 'Enterprise Replacement';
+        return segment.status;
+      }
+
+      const monthCount = ((end.getUTCFullYear() - start.getUTCFullYear()) * 12) + (end.getUTCMonth() - start.getUTCMonth()) + 1;
+      document.documentElement.style.setProperty('--months', monthCount);
+
+      const monthDiff = (date) => {
+        const d = parseDate(date);
+        return ((d.getUTCFullYear() - start.getUTCFullYear()) * 12) + (d.getUTCMonth() - start.getUTCMonth());
+      };
+
+      const position = (date, endDate = false) => {
+        const d = parseDate(date);
+        const month = monthDiff(date);
+        const days = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 0)).getUTCDate();
+        const fraction = endDate ? d.getUTCDate() / days : (d.getUTCDate() - 1) / days;
+        return Math.max(0, Math.min(monthCount, month + fraction));
+      };
+
+      function parseDate(value) {
+        const [y,m,d] = value.split('-').map(Number);
+        return new Date(Date.UTC(y, m - 1, d));
+      }
+
+      function formatDate(value) {
+        const d = parseDate(value);
+        return new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric', year: 'numeric' }).format(d);
+      }
+
+      function calendarHeader() {
+        const header = document.createElement('div');
+        header.className = 'header-row';
+        header.innerHTML = '<div class="header-label">System and license</div>';
+        const cal = document.createElement('div');
+        cal.className = 'calendar';
+        const years = document.createElement('div');
+        years.className = 'year-band';
+        const months = document.createElement('div');
+        months.className = 'months';
+
+        let cursor = new Date(start);
+        const yearCounts = new Map();
+        for (let i = 0; i < monthCount; i++) {
+          const y = cursor.getUTCFullYear();
+          yearCounts.set(y, (yearCounts.get(y) || 0) + 1);
+          const m = document.createElement('div');
+          m.className = 'month';
+          m.textContent = String(cursor.getUTCMonth() + 1).padStart(2, '0');
+          months.appendChild(m);
+          cursor.setUTCMonth(cursor.getUTCMonth() + 1);
+        }
+
+        let offset = 0;
+        for (const [year, count] of yearCounts) {
+          const y = document.createElement('div');
+          y.className = 'year';
+          y.style.left = `calc(${offset} * var(--month-w))`;
+          y.style.width = `calc(${count} * var(--month-w))`;
+          y.textContent = year;
+          years.appendChild(y);
+          offset += count;
+        }
+
+        cal.append(years, months);
+        header.appendChild(cal);
+        return header;
+      }
+
+      function trackOverlays(track) {
+        const migration = document.createElement('span');
+        migration.className = 'migration-zone';
+        migration.style.left = `calc(${position(migrationStart)} * var(--month-w))`;
+        migration.style.width = `calc(${position(migrationEnd, true) - position(migrationStart)} * var(--month-w))`;
+        track.appendChild(migration);
+      }
+
+      function addTimelineEvent(timeline, date, type, label) {
+        const line = document.createElement('span');
+        line.className = `timeline-event-line ${type}`;
+        line.style.left = `calc(var(--label-w) + (${position(date)} * var(--month-w)))`;
+        line.setAttribute('aria-label', label);
+        const marker = document.createElement('span');
+        marker.className = 'timeline-event-marker';
+        line.appendChild(marker);
+        timeline.appendChild(line);
+      }
+
+      function makeBar(segment, rowInfo) {
+        const bar = document.createElement('div');
+        const baseType = segment.type.split(' ')[0];
+        bar.className = `bar ${baseType}${segment.type.includes('launch') ? ' launch' : ''}${rowInfo.enterprise ? ' enterprise' : ''}`;
+        bar.tabIndex = 0;
+        const left = position(segment.from);
+        const right = position(segment.to, true);
+        bar.style.left = `calc(${left} * var(--month-w))`;
+        bar.style.width = `calc(${right - left} * var(--month-w))`;
+        const sensitive = segment.label.trim().startsWith('$');
+        bar.innerHTML = `<span class="cost${sensitive ? ' sensitive' : ''}">${escapeHtml(segment.label)}</span>`;
+        bar.dataset.details = JSON.stringify({
+          title: `${segment.product} — ${rowInfo.code}`,
+          vendor: segment.vendor,
+          license: rowInfo.license,
+          dates: `${formatDate(segment.from)} – ${formatDate(segment.to)}`,
+          cost: segment.label,
+          status: statusFor(segment),
+          notes: noteFor(segment)
+        });
+
+        if (segment.startMarker) bar.appendChild(endpoint('start', left));
+        if (segment.stopMarker) bar.appendChild(endpoint('stop', right));
+        return bar;
+      }
+
+      function endpoint(type, absolutePosition) {
+        const el = document.createElement('span');
+        el.className = `endpoint ${type}`;
+        el.textContent = type === 'start' ? 'GO' : 'STOP';
+        el.style.left = type === 'start' ? '0' : '100%';
+        return el;
+      }
+
+      function fitLabelColumn(timeline) {
+        const root = document.documentElement;
+        root.style.setProperty('--label-w', '1px');
+        const labels = timeline.querySelectorAll('.header-label, .group-label, .row-label');
+        const width = Math.ceil(Math.max(...Array.from(labels, label => label.scrollWidth))) + 1;
+        root.style.setProperty('--label-w', `${width}px`);
+      }
+
+      function render() {
+        const timeline = document.getElementById('timeline');
+        timeline.appendChild(calendarHeader());
+
+        orderedGroups.forEach(group => {
+          const groupRow = document.createElement('div');
+          groupRow.className = 'group-row';
+          groupRow.innerHTML = `<div class="group-label">${escapeHtml(group.name)}</div><div class="group-note">${escapeHtml(group.note)}</div>`;
+          timeline.appendChild(groupRow);
+
+          group.rows.forEach(item => {
+            const rowEl = document.createElement('div');
+            rowEl.className = 'data-row';
+            const label = document.createElement('div');
+            label.className = `row-label${item.enterprise ? ' enterprise' : ''}`;
+            label.innerHTML = `<span>${escapeHtml(item.code)}</span><span class="site">${escapeHtml(item.license)}</span>`;
+            const track = document.createElement('div');
+            track.className = 'track';
+            trackOverlays(track);
+            item.segments.forEach(s => track.appendChild(makeBar(s, item)));
+            rowEl.append(label, track);
+            timeline.appendChild(rowEl);
+          });
+        });
+
+        fitLabelColumn(timeline);
+        addTimelineEvent(timeline, enterpriseTransition, 'transition', 'Enterprise transition begins October 2025');
+        addTimelineEvent(timeline, alpsDeployment, 'deployment', 'ALPS environment deployed January 2026');
+      }
+
+      function escapeHtml(value) {
+        return String(value).replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
+      }
+
+      const details = document.getElementById('details');
+      function showDetails(event) {
+        const bar = event.target.closest('.bar');
+        if (!bar) return;
+        const data = JSON.parse(bar.dataset.details);
+        details.innerHTML = `
+          <h2 class="details-title">${escapeHtml(data.title)}</h2>
+          <dl>
+            <dt>Vendor</dt><dd>${escapeHtml(data.vendor)}</dd>
+            <dt>License</dt><dd>${escapeHtml(data.license)}</dd>
+            <dt>Dates</dt><dd>${escapeHtml(data.dates)}</dd>
+            <dt>Cost</dt><dd class="cost${data.cost.trim().startsWith('$') ? ' sensitive' : ''}">${escapeHtml(data.cost)}</dd>
+            <dt>Status</dt><dd>${escapeHtml(data.status)}</dd>
+            <dt>Notes</dt><dd>${escapeHtml(data.notes)}</dd>
+          </dl>`;
+        details.setAttribute('aria-hidden', 'false');
+        details.classList.add('show');
+        moveDetails(event, bar);
+      }
+
+      function moveDetails(event, bar) {
+        const rect = bar.getBoundingClientRect();
+        const x = event.clientX || rect.left + rect.width / 2;
+        const y = event.clientY || rect.top;
+        const w = Math.min(360, window.innerWidth - 28);
+        details.style.left = `${Math.max(14, Math.min(window.innerWidth - w - 14, x + 14))}px`;
+        details.style.top = `${Math.max(14, Math.min(window.innerHeight - details.offsetHeight - 14, y + 16))}px`;
+      }
+
+      function hideDetails() {
+        details.classList.remove('show');
+        details.setAttribute('aria-hidden', 'true');
+      }
+
+      render();
+
+      const timeline = document.getElementById('timeline');
+      timeline.addEventListener('mouseover', showDetails);
+      timeline.addEventListener('mousemove', event => {
+        const bar = event.target.closest('.bar');
+        if (bar && details.classList.contains('show')) moveDetails(event, bar);
+      });
+      timeline.addEventListener('mouseout', event => { if (event.target.closest('.bar')) hideDetails(); });
+      timeline.addEventListener('focusin', showDetails);
+      timeline.addEventListener('focusout', hideDetails);
+
+    })();
+  </script>
+
+    <footer>
+        <div>
+            <p><svg id="logo-mp" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="300" height="275.64" viewBox="0 0 300 275.64"><g id="c"><polygon class="m" points="247.72 0 247.72 163.07 150.55 219.21 89.11 184.16 89.11 254.55 52.87 275.64 52.87 122.38 150.04 177.62 211.49 142.28 211.49 62.38 150.1 97.29 52.87 41.29 52.87 0 150.5 55.71 247.72 0"/><polygon class="p" points="194.85 91.49 194.85 133.07 150.1 158.52 36.24 93.27 36.24 275.64 0 254.55 0 30.89 149.69 116.79 194.85 91.49"/><polygon class="p" points="300 30.89 300 255.45 264.36 275.64 264.36 51.39 300 30.89"/><path class="p" d="M247.72,182.97v92.67c-12.09-6.93-24.51-13.55-36.14-21.19l-.14-50.42,36.28-21.06Z"/></g></svg></p>
+            <p style="margin: 5px 0px;">© 2026 Michael Pritz</p>
+            <p>All rights reserved</p>
+        </div>
+    </footer>
+        <script src="script.js"></script>
+    </body>
+</html>
