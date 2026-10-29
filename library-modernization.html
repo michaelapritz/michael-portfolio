@@ -221,9 +221,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       --accent-gray-line: #d1d1d1;
       --paper: #ffffff;
       --panel: #f6f6f6;
-      --label-w: 180px;
-      --month-w: 30px;
-      --row-h: 42px;
+      --month-w: 36px;
+      --row-h: 48px;
       --months: 40;
     }
 
@@ -1467,14 +1466,14 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     }
 
     .timeline {
-      width: calc(var(--label-w) + (var(--months) * var(--month-w)));
-      min-width: calc(var(--label-w) + (var(--months) * var(--month-w)));
+      width: calc(var(--months) * var(--month-w));
+      min-width: calc(var(--months) * var(--month-w));
       position: relative;
     }
 
     .header-row, .data-row, .group-row {
       display: grid;
-      grid-template-columns: var(--label-w) calc(var(--months) * var(--month-w));
+      grid-template-columns: calc(var(--months) * var(--month-w));
     }
 
     .header-row {
@@ -1505,18 +1504,19 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .year-band { position: absolute; inset: 0 0 auto 0; height: 30px; border-bottom: 1px solid var(--line); }
     .year { position: absolute; top: 0; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 12px; border-right: 1px solid #d1d1d1; }
     .months { position: absolute; left: 0; right: 0; bottom: 0; height: 44px; display: grid; grid-template-columns: repeat(var(--months), var(--month-w)); }
-    .month { display: grid; place-items: center; border-right: 1px solid var(--line); font-size: 10px; font-weight: 700; color: #58585b; }
+    .month { display: grid; place-items: center; border-right: 1px solid #eeeeee; font-size: 10px; font-weight: 700; color: #58585b; }
 
-    .group-row { min-height: 36px; height: auto; background: #f6f6f6; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; }
+    .group-row { min-height: 40px; height: auto; background: #f6f6f6; border-top: 1px solid #d1d1d1; border-bottom: 1px solid #d1d1d1; }
     .group-label { position: sticky; left: 0; z-index: 7; padding: 4px 12px; display: flex; align-items: center; background: #f6f6f6; border-right: 1px solid #d1d1d1; font-size: 11px; line-height: 1.15; text-transform: uppercase; letter-spacing: .045em; white-space: normal; }
-    .group-note { padding: 0 12px; display: flex; align-items: center; color: #58585b; font-size: 10px; font-weight: 700; }
+    .group-note { padding: 0 12px; display: flex; align-items: center; gap: 12px; color: #58585b; font-size: 11.5px; font-weight: 500; }
+    .group-name { color: var(--nasa-blue); font-family: var(--font-body); font-size: 12px; font-weight: 600; line-height: 1.15; text-transform: uppercase; letter-spacing: .045em; }
 
     .data-row { height: var(--row-h); border-bottom: 1px solid #e3e3e3; }
     .row-label { position: sticky; left: 0; z-index: 6; display: flex; align-items: center; gap: 8px; padding: 0 10px 0 12px; background: #ffffff; border-right: 1px solid #e3e3e3; font-size: 11px; font-weight: 700; white-space: nowrap; }
     .track {
       position: relative;
       height: var(--row-h);
-      background-image: repeating-linear-gradient(to right, transparent 0, transparent calc(var(--month-w) - 1px), var(--line) calc(var(--month-w) - 1px), var(--line) var(--month-w));
+      background-image: repeating-linear-gradient(to right, transparent 0, transparent calc(var(--month-w) - 1px), #eeeeee calc(var(--month-w) - 1px), #eeeeee var(--month-w));
       overflow: hidden;
     }
 
@@ -1524,7 +1524,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .changeover-zone { position: absolute; top: 0; bottom: 0; background: rgba(149,149,153,.20); border-left: 1px solid rgba(88,88,91,.45); border-right: 1px solid rgba(88,88,91,.45); pointer-events: none; }
     .month.migration-month { background: var(--blue-tint-10); }
     .month.changeover-month { background: #e3e3e3; }
-    .timeline-event-line { position: absolute; top: 110px; bottom: 0; width: 0; border-left: 2px solid #2e2e32; pointer-events: none; z-index: 4; }
+    .timeline-event-line { position: absolute; top: 114px; bottom: 0; width: 0; border-left: 2px solid #2e2e32; pointer-events: none; z-index: 4; }
     .timeline-event-line::before { content: ''; position: absolute; z-index: 1; left: 0; top: 0; transform: translate(-50%, -50%); }
     .timeline-event-line.transition::before { width: 12px; height: 12px; box-sizing: border-box; background: #ffffff; border: 2px solid #2e2e32; }
     .timeline-event-line.deployment::before { width: 12px; height: 12px; box-sizing: border-box; background: #fee685; border: 2px solid #2e2e32; border-radius: 50%; }
@@ -1533,8 +1533,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .bar.clipped-right { border-top-right-radius: 0; border-bottom-right-radius: 0; }
     .bar {
       position: absolute;
-      top: 10px;
-      height: 22px;
+      top: 11px;
+      height: 26px;
       min-width: 8px;
       border-radius: 999px;
       display: flex;
@@ -1544,7 +1544,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       overflow: visible;
       white-space: nowrap;
       text-overflow: ellipsis;
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 600;
       line-height: 1;
       z-index: 5;
@@ -1563,7 +1563,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 
     .endpoint { position: absolute; top: 50%; width: 18px; height: 18px; margin-left: -9px; color: #ffffff; display: grid; place-items: center; font-size: 6px; font-weight: 900; line-height: 1; z-index: 8; transform: translateY(-50%); clip-path: polygon(29% 0, 71% 0, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0 71%, 0 29%); }
     .endpoint.start { background: var(--start-green); }
-    .endpoint.stop { background: var(--stop-red); }
+    .endpoint.stop { width: 16px; height: 16px; margin-left: -8px; background: var(--stop-red); font-size: 5px; }
 
     .details {
       position: fixed;
@@ -1585,9 +1585,9 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .details dt { color: var(--muted); font-weight: 700; }
     .details dd { margin: 0; }
 
-    .footnote { margin: 14px 2px 0; color: #58585b; font-size: 10px; line-height: 1.45; }
+    .footnote { margin: 14px 2px 0; color: #58585b; font-size: 10px; line-height: 1.45; text-align: center; }
     @media (max-width: 920px) {
-      :root { --label-w: 180px; --month-w: 28px; }
+      :root { --month-w: 32px; }
       .page { padding: 22px 16px 38px; }
       .presentation-header { padding: 16px 8px 26px; }
       .presentation-title { font-size: clamp(2.15em, 8.8vw, 3.25em); }
@@ -1846,13 +1846,13 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .year {
       color: var(--nasa-navy);
       font-family: "Public Sans", "Segoe UI", Arial, sans-serif;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 700;
     }
     .month {
       color: #2e2e32;
       font-family: "Public Sans", "Segoe UI", Arial, sans-serif;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
     }
     .group-row { background: var(--blue-tint-10); border-color: var(--blue-tint-20); }
@@ -1992,6 +1992,10 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       .savings-section { padding: 30px 22px; }
       .savings-compare { grid-template-columns: 1fr; gap: 8px; }
       .savings-arrow { transform: rotate(90deg); }
+      .savings-plan { text-align: center; }
+      .savings-plan li { display: flex; align-items: center; justify-content: center; }
+      .savings-plan li .plan-icon-badge { flex: 0 0 24px; }
+      .savings-plan li > span:last-child { text-align: center; }
     }
     @media (max-width: 560px) {
       .savings-section { padding: 26px 16px; }
@@ -2038,6 +2042,20 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .vendor-step-head{margin-bottom:9px}
     .vendor-step h3{margin-bottom:5px}
     .vendor-step p{line-height:1.4}
+    @media (max-width: 1100px) {
+      .vendor-process {
+        grid-template-columns: minmax(240px, 1fr);
+        grid-template-rows: none;
+        gap: 0;
+        overflow-x: auto;
+      }
+      .vendor-process > :nth-child(n) { grid-column: 1; grid-row: auto; }
+      .vendor-step { min-width: 240px; text-align: center; }
+      .vendor-step-head { position: relative; justify-content: center; }
+      .vendor-step-number { position: absolute; right: 0; }
+      .vendor-process-arrow { min-height: 34px; }
+      .vendor-process-arrow svg { transform: rotate(90deg); }
+    }
     .vendor-logo{min-height:58px;padding:2px 8px}
     .vendor-logo img{max-height:36px;max-width:170px}
     /* Keep the card-to-label and label-to-logo gaps visually even. */
@@ -2112,6 +2130,9 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     }
     @media (max-width: 820px) {
       .stakeholder-section .stakeholder-grid { grid-template-columns: 1fr; row-gap: 24px; }
+      .stakeholder-section .stakeholder-card { text-align: center; }
+      .stakeholder-section .stakeholder-card h3 { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+      .stakeholder-section .stakeholder-card p { margin-left: 0; text-align: center; }
     }
     .stakeholder-section .stakeholder-copy-line { display: block; }
 
@@ -2400,6 +2421,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       background: #ffffff;
       box-shadow: 0 8px 28px rgba(22,46,81,.075);
     }
+    .questions-section[hidden] { display: none !important; }
     .questions-section h2 {
       margin: 0;
       color: var(--ink);
@@ -2646,7 +2668,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       <p class="presentation-subtitle">How I led the effort to bring ten long-established, geographically dispersed NASA libraries into a shared way of working—replacing fragmented technologies, aligning services and operations, and guiding the vendor and cost decisions behind the transformation.</p>
     </header>
     <section class="contents-section" aria-labelledby="contents-title">
-      <p class="contents-kicker">Presentation Overview</p>
+      <p class="contents-kicker">Overview</p>
       <h2 class="contents-title" id="contents-title">What We’ll Cover</h2>
       <nav aria-labelledby="contents-title">
         <ol class="contents-list">
@@ -3352,7 +3374,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
             <span class="vendor-step-number">02</span>
           </div>
           <h3>Work through terms</h3>
-          <p>Compared quotes,<br>negotiated pricing and<br>licensing details, and<br>prepared the material needed<br>for internal decisions.</p>
+          <p>Compared quotes, negotiated pricing and licensing details, and prepared the material needed for internal decisions.</p>
         </article>
         <span class="vendor-process-arrow" aria-hidden="true"><svg viewBox="0 0 32 24"><path d="M2 6h17V1l12 11-12 11v-5H2Z"/></svg></span>
         <article class="vendor-step">
@@ -3427,7 +3449,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     </section>
 
     
-    <section class="questions-section" id="questions" aria-labelledby="questions-title">
+    <section class="questions-section" id="questions" aria-labelledby="questions-title" hidden>
       <h2 id="questions-title">Questions?</h2>
     </section>
 
@@ -3575,7 +3597,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         },
         {
           name: 'OpenAthens', note: 'Enterprise authentication service', rows: [
-            row('NASA', 'Enterprise', true, [seg('future','2025-01-01','2025-12-31','$XX,XXX','Jisc','OpenAthens','Future Subscription','', true, false)])
+            row('NASA', 'Enterprise', true, [seg('future','2025-05-01','2026-04-30','$XX,XXX','Jisc','OpenAthens','Future Subscription','', true, false)])
           ]
         },
         {
@@ -3613,11 +3635,11 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         'OCLC ILLiad',
         'OCLC WorldShare ILL',
         'SirsiDynix Symphony',
-        'Springshare LibAnswers (Lite)',
         'Ex Libris Alma and Primo VE',
         'Ex Libris Rapido',
         'OpenAthens',
         'Springshare LibAnswers (Full)',
+        'Springshare LibAnswers (Lite)',
         'Springshare LibGuides',
         'WordPress'
       ];
@@ -3680,7 +3702,6 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       function calendarHeader() {
         const header = document.createElement('div');
         header.className = 'header-row';
-        header.innerHTML = '<div class="header-label">System / Center</div>';
         const cal = document.createElement('div');
         cal.className = 'calendar';
         const years = document.createElement('div');
@@ -3737,7 +3758,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       function addTimelineEvent(timeline, date, type, label) {
         const line = document.createElement('span');
         line.className = `timeline-event-line ${type}`;
-        line.style.left = `calc(var(--label-w) + (${position(date)} * var(--month-w)))`;
+        line.style.left = `calc(${position(date)} * var(--month-w))`;
         line.setAttribute('aria-label', label);
         timeline.appendChild(line);
       }
@@ -3753,8 +3774,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         const right = position(segment.to, true);
         bar.style.left = `calc(${left} * var(--month-w))`;
         bar.style.width = `calc(${right - left} * var(--month-w))`;
-        const sensitive = segment.label.trim().startsWith('$');
-        bar.innerHTML = `<span class="cost${sensitive ? ' sensitive' : ''}">${escapeHtml(segment.label)}</span>`;
+        const barLabel = segment.label.trim().startsWith('$') ? rowInfo.code : segment.label;
+        bar.innerHTML = `<span class="cost">${escapeHtml(barLabel)}</span>`;
         bar.dataset.details = JSON.stringify({
           title: `${segment.product} — ${rowInfo.code}`,
           vendor: segment.vendor,
@@ -3776,10 +3797,6 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         el.textContent = type === 'start' ? 'GO' : 'STOP';
         el.style.left = type === 'start' ? '0' : '100%';
         return el;
-      }
-
-      function fitLabelColumn(timeline) {
-        document.documentElement.style.setProperty('--label-w', '180px');
       }
 
       function projectMapCoordinate(latitude, longitude) {
@@ -3872,25 +3889,21 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         orderedGroups.forEach(group => {
           const groupRow = document.createElement('div');
           groupRow.className = 'group-row';
-          groupRow.innerHTML = `<div class="group-label">${escapeHtml(group.name)}</div><div class="group-note">${escapeHtml(group.note)}</div>`;
+          groupRow.innerHTML = `<div class="group-note"><span class="group-name">${escapeHtml(group.name)}</span><span>${escapeHtml(group.note)}</span></div>`;
           timeline.appendChild(groupRow);
 
           group.rows.forEach(item => {
             const rowEl = document.createElement('div');
             rowEl.className = 'data-row';
-            const label = document.createElement('div');
-            label.className = `row-label${item.enterprise ? ' enterprise' : ''}`;
-            label.innerHTML = `<span>${escapeHtml(item.code)}</span>`;
             const track = document.createElement('div');
             track.className = 'track';
             trackOverlays(track);
             item.segments.forEach(s => track.appendChild(makeBar(s, item)));
-            rowEl.append(label, track);
+            rowEl.appendChild(track);
             timeline.appendChild(rowEl);
           });
         });
 
-        fitLabelColumn(timeline);
         addTimelineEvent(timeline, enterpriseTransition, 'transition', 'Planned enterprise transition — October 2025');
         addTimelineEvent(timeline, alpsDeployment, 'deployment', 'Planned ALPS Go-Live — January 2026');
       }
