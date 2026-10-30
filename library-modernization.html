@@ -1441,7 +1441,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .legend-color-note { grid-column: 1 / -1; margin: 0; color: var(--muted); font-size: 10px; font-weight: 600; text-align: center; }
     .migration-sample,
     .changeover-sample { width: 54px; height: 11px; box-sizing: border-box; border-radius: 2px; }
-    .migration-sample { border: 1px solid var(--blue-tint-30); background: var(--blue-tint-10); }
+    .migration-sample { border: 1px solid rgba(28,103,227,.24); background: rgba(28,103,227,.09); }
     .changeover-sample { border: 1px solid #b9b9bb; background: #e3e3e3; }
     .marker-sample { width: 18px; height: 18px; flex: 0 0 18px; display: grid; place-items: center; color: white; font-size: 6px; font-weight: 900; line-height: 1; clip-path: polygon(29% 0, 71% 0, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0 71%, 0 29%); }
     .marker-sample.start { background: var(--start-green); }
@@ -2305,8 +2305,9 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       text-align: center;
     }
 
-    /* Optional enlarged views preserve the original matrix and architecture layout. */
+    /* Optional enlarged views preserve the original visual layouts. */
     .visual-actions { display: flex; justify-content: flex-end; margin: 0 0 12px; }
+    .timeline-key-wrap { width: 100%; }
     .visual-expand { display: inline-flex; align-items: center; gap: 7px; min-height: 32px; padding: 6px 10px; border: 1px solid var(--blue-tint-20); border-radius: 5px; background: #ffffff; color: var(--nasa-blue); font-family: var(--font-body); font-size: .78em; font-weight: 650; cursor: pointer; }
     .visual-expand svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.6; }
     .visual-expand:hover { background: var(--blue-tint-05); border-color: var(--blue-tint-40); }
@@ -2332,11 +2333,26 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .visual-viewer-content .app-matrix th, .visual-viewer-content .app-matrix td { padding: 12px 10px; }
     .visual-viewer-content .app-matrix th:first-child, .visual-viewer-content .app-matrix td:first-child { width: 245px; min-width: 245px; }
     .visual-viewer-content .app-matrix th:nth-child(2), .visual-viewer-content .app-matrix td:nth-child(2) { width: 265px; min-width: 265px; }
+    .visual-viewer[data-visual-view="timeline"] .visual-viewer-header { justify-content: flex-end; padding: 8px 12px; border-bottom: 0; }
+    .visual-viewer[data-visual-view="timeline"] { height: calc(100dvh - 40px); }
+    .visual-viewer[data-visual-view="timeline"] .visual-viewer-header h2,
+    .visual-viewer[data-visual-view="timeline"] .visual-viewer-hint { display: none; }
+    .visual-viewer[data-visual-view="timeline"] .visual-viewer-canvas { max-height: none; padding: 0; background: #ffffff; }
+    .visual-viewer[data-visual-view="timeline"] .visual-viewer-content { background: transparent; }
+    .visual-viewer-content .timeline-enlarged { width: 100%; margin: 0; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; --month-w: 48px; --row-h: 56px; }
+    .visual-viewer-content .timeline-enlarged .timeline-key { width: fit-content; margin: 0 auto 12px; grid-template-columns: repeat(3, max-content); }
+    .visual-viewer-content .timeline-enlarged .timeline-shell { width: fit-content; max-width: none; max-height: none; margin: 0 auto; overflow: auto; box-shadow: none; }
+    .visual-viewer-content .timeline-enlarged .year { font-size: 14px; }
+    .visual-viewer-content .timeline-enlarged .month { font-size: 12px; }
+    .visual-viewer-content .timeline-enlarged .group-name { font-size: 14px; }
+    .visual-viewer-content .timeline-enlarged .group-note { font-size: 13px; }
+    .visual-viewer-content .timeline-enlarged .bar { top: 13px; height: 30px; font-size: 13px; }
     .audit-section .audit-logo { opacity: 1; transform: none; transition: none; }
     .savings-results-subtitle { margin: -3px 0 14px; color: #58585b; font-size: .86em; line-height: 1.4; text-align: center; }
     .bentley-takeaway { max-width: 900px; margin: 26px auto 0; padding-top: 20px; border-top: 1px solid #e3e3e3; color: #162e51; font-size: 1em; font-weight: 550; line-height: 1.55; text-align: center; text-wrap: balance; }
     @media (max-width: 620px) {
       .visual-viewer { width: calc(100vw - 16px); max-height: calc(100dvh - 16px); }
+      .visual-viewer[data-visual-view="timeline"] { height: calc(100dvh - 16px); }
       .visual-viewer-header { padding: 12px; }
       .visual-viewer-canvas { padding: 12px; }
       .visual-viewer-controls { gap: 4px; }
@@ -3318,7 +3334,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <h1 id="timeline-title">The Shift to Shared Services</h1>
         <p class="dek">Follow the modernization roadmap from fragmented center subscriptions toward shared enterprise services, including contract extensions, migrations, and planned launch milestones.</p>
       </div>
-      <div>
+      <div class="timeline-key-wrap">
+        <div class="visual-actions"><button type="button" class="visual-expand" data-visual-view="timeline" aria-haspopup="dialog" aria-controls="visual-viewer"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 3H3v4m10-4h4v4M3 13v4h4m10-4v4h-4"/></svg>Enlarge timeline</button></div>
         <div class="timeline-key" role="group" aria-label="Timeline key">
           <p class="timeline-key-title">Timeline Key</p>
           <div class="legend-group">
@@ -3949,15 +3966,18 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       render();
       fitMapLabels();
 
-      const timeline = document.getElementById('timeline');
-      timeline.addEventListener('mouseover', showDetails);
-      timeline.addEventListener('mousemove', event => {
-        const bar = event.target.closest('.bar');
-        if (bar && details.classList.contains('show')) moveDetails(event, bar);
-      });
-      timeline.addEventListener('mouseout', event => { if (event.target.closest('.bar')) hideDetails(); });
-      timeline.addEventListener('focusin', showDetails);
-      timeline.addEventListener('focusout', hideDetails);
+      function bindTimelineDetails(timeline) {
+        timeline.addEventListener('mouseover', showDetails);
+        timeline.addEventListener('mousemove', event => {
+          const bar = event.target.closest('.bar');
+          if (bar && details.classList.contains('show')) moveDetails(event, bar);
+        });
+        timeline.addEventListener('mouseout', event => { if (event.target.closest('.bar')) hideDetails(); });
+        timeline.addEventListener('focusin', showDetails);
+        timeline.addEventListener('focusout', hideDetails);
+      }
+      bindTimelineDetails(document.getElementById('timeline'));
+      window.timelineViewerDetails = { bind: bindTimelineDetails, hide: hideDetails };
 
     })();
   </script>
@@ -3972,6 +3992,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
   const level = dialog.querySelector('.viewer-zoom-level');
   const less = dialog.querySelector('[data-viewer-action="less"]');
   const more = dialog.querySelector('[data-viewer-action="more"]');
+  const timelineDetails = document.getElementById('details');
   let zoom = 1;
   let baseWidth = 1800;
   let opener = null;
@@ -3984,6 +4005,14 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
   }
   function layout() {
     content.style.width = `${baseWidth}px`;
+    if (dialog.dataset.visualView === 'timeline') {
+      const enlarged = content.querySelector('.timeline-enlarged');
+      if (enlarged) {
+        const key = enlarged.querySelector('.timeline-key');
+        const shell = enlarged.querySelector('.timeline-shell');
+        shell.style.height = `${Math.max(180, viewport.clientHeight / zoom - key.offsetHeight - 12)}px`;
+      }
+    }
     content.style.transform = `scale(${zoom})`;
     stage.style.width = `${Math.ceil(baseWidth * zoom)}px`;
     stage.style.height = `${Math.ceil(content.getBoundingClientRect().height)}px`;
@@ -4019,19 +4048,30 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     });
   }
   function openViewer(button) {
-    const architecture = button.dataset.visualView === 'architecture';
-    const source = document.querySelector(architecture ? '.post-diagram .alps-reference' : '.app-matrix-wrap .app-matrix');
+    const view = button.dataset.visualView;
+    dialog.dataset.visualView = view;
+    const architecture = view === 'architecture';
+    const timeline = view === 'timeline';
+    const source = document.querySelector(architecture ? '.post-diagram .alps-reference' : timeline ? '#modernization-timeline .timeline-shell' : '.app-matrix-wrap .app-matrix');
     if (!source) return;
     opener = button;
-    const clone = source.cloneNode(true);
+    const clone = timeline ? document.createElement('div') : source.cloneNode(true);
+    if (timeline) {
+      clone.className = 'timeline-section timeline-enlarged';
+      clone.append(document.querySelector('#modernization-timeline .timeline-key').cloneNode(true), source.cloneNode(true));
+    }
     renameIds(clone);
     clone.removeAttribute('aria-hidden');
     content.replaceChildren(clone);
-    title.textContent = architecture ? 'One Connected Library Environment' : 'A Fragmented Systems Landscape';
+    if (timeline) {
+      dialog.appendChild(timelineDetails);
+      window.timelineViewerDetails?.bind(clone.querySelector('.timeline'));
+    }
+    title.textContent = architecture ? 'One Connected Library Environment' : timeline ? 'The Shift to Shared Services' : 'A Fragmented Systems Landscape';
     document.body.classList.add('visual-viewer-open');
     dialog.showModal();
-    baseWidth = Math.max(availableWidth(), architecture ? 1810 : 1440);
-    zoom = 1;
+    baseWidth = Math.max(availableWidth(), architecture ? 1810 : timeline ? (48 * parseInt(getComputedStyle(document.documentElement).getPropertyValue('--months'), 10) + 48) : 1440);
+    zoom = timeline ? .78 : 1;
     isFitted = false;
     layout();
     viewport.scrollTo(0, 0);
@@ -4041,8 +4081,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
   document.querySelectorAll('[data-visual-view]').forEach(button => button.addEventListener('click', () => openViewer(button)));
   dialog.querySelector('[data-viewer-action="close"]').addEventListener('click', () => dialog.close());
   dialog.querySelector('[data-viewer-action="fit"]').addEventListener('click', fit);
-  less.addEventListener('click', () => { isFitted = false; zoom = Math.max(.35, zoom - .15); layout(); });
-  more.addEventListener('click', () => { isFitted = false; zoom = Math.min(2, zoom + .15); layout(); });
+  less.addEventListener('click', () => { isFitted = false; zoom = Math.max(.35, zoom - .05); layout(); });
+  more.addEventListener('click', () => { isFitted = false; zoom = Math.min(2, zoom + .05); layout(); });
   dialog.addEventListener('click', event => {
     if (event.target !== dialog) return;
     const box = dialog.getBoundingClientRect();
@@ -4050,6 +4090,9 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
   });
   dialog.addEventListener('close', () => {
     document.body.classList.remove('visual-viewer-open');
+    delete dialog.dataset.visualView;
+    window.timelineViewerDetails?.hide();
+    if (timelineDetails.parentElement === dialog) dialog.after(timelineDetails);
     content.replaceChildren();
     if (opener) opener.focus({ preventScroll: true });
   });
