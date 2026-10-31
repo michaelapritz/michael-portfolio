@@ -268,10 +268,11 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       margin: 0 auto;
       color: #1b1b1b;
       font-family: Inter, "Segoe UI", Arial, sans-serif;
-      font-size: clamp(2.45em, 4.6vw, 4.2em);
+      font-size: clamp(1em, 4.5vw, 3.7em);
       font-weight: 800;
       letter-spacing: -.01em;
       line-height: .98;
+      white-space: nowrap;
     }
 
     .presentation-title .headline-accent {
@@ -1442,17 +1443,17 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .legend-color-note { grid-column: 1 / -1; margin: 0; color: var(--muted); font-size: 10px; font-weight: 600; text-align: center; }
     .migration-sample,
     .changeover-sample { width: 54px; height: 11px; box-sizing: border-box; border-radius: 2px; }
-    .migration-sample { border: 1px solid rgba(28,103,227,.24); background: rgba(28,103,227,.09); }
-    .changeover-sample { border: 1px solid #b9b9bb; background: #e3e3e3; }
+    .migration-sample { border: 1px solid rgba(211,182,107,.55); background: rgba(247,240,222,.5); }
+    .changeover-sample { border: 1px solid rgba(156,168,181,.55); background: rgba(220,225,231,.55); }
     .marker-sample { width: 18px; height: 18px; flex: 0 0 18px; display: grid; place-items: center; color: white; font-size: 6px; font-weight: 900; line-height: 1; clip-path: polygon(29% 0, 71% 0, 100% 29%, 100% 71%, 71% 100%, 29% 100%, 0 71%, 0 29%); }
     .marker-sample.start { background: var(--start-green); }
     .marker-sample.stop { background: var(--stop-red); }
     .legend-column.indicators .legend-item { display: grid; grid-template-columns: 100px 54px; column-gap: 8px; min-width: 0; }
-    .milestone-sample { position: relative; width: 52px; height: 18px; flex: 0 0 52px; background: linear-gradient(var(--nasa-blue), var(--nasa-blue)) center / 100% 2px no-repeat; }
-    .milestone-sample::before, .milestone-sample::after { content: ''; position: absolute; top: 50%; width: 10px; height: 10px; box-sizing: border-box; background: #ffffff; border: 2px solid var(--nasa-blue); transform: translateY(-50%); }
+    .milestone-sample { position: relative; width: 52px; height: 18px; flex: 0 0 52px; background: linear-gradient(#2e2e32, #2e2e32) center / 100% 2px no-repeat; }
+    .milestone-sample::before, .milestone-sample::after { content: ''; position: absolute; top: 50%; width: 10px; height: 10px; box-sizing: border-box; background: #ffffff; border: 2px solid #2e2e32; transform: translateY(-50%); }
     .milestone-sample::before { left: 0; }
     .milestone-sample::after { right: 0; }
-    .milestone-sample.deployment::before, .milestone-sample.deployment::after { background: #fee685; border-color: var(--nasa-navy); border-radius: 50%; }
+    .milestone-sample.deployment::before, .milestone-sample.deployment::after { background: #fee685; border-radius: 50%; }
 
     .timeline-shell {
       width: fit-content;
@@ -1521,14 +1522,14 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       overflow: hidden;
     }
 
-    .migration-zone { position: absolute; top: 0; bottom: 0; background: rgba(28,103,227,.09); border-left: 1px solid rgba(28,103,227,.24); border-right: 1px solid rgba(28,103,227,.24); pointer-events: none; }
-    .changeover-zone { position: absolute; top: 0; bottom: 0; background: rgba(149,149,153,.20); border-left: 1px solid rgba(88,88,91,.45); border-right: 1px solid rgba(88,88,91,.45); pointer-events: none; }
-    .month.migration-month { background: var(--blue-tint-10); }
-    .month.changeover-month { background: #e3e3e3; }
+    .migration-zone { position: absolute; top: 0; bottom: 0; background: rgba(247,240,222,.5); border-left: 1px solid rgba(211,182,107,.55); border-right: 1px solid rgba(211,182,107,.55); pointer-events: none; }
+    .changeover-zone { position: absolute; top: 0; bottom: 0; background: rgba(220,225,231,.55); border-left: 1px solid rgba(156,168,181,.55); border-right: 1px solid rgba(156,168,181,.55); pointer-events: none; }
+    .month.migration-month { background: rgba(247,240,222,.5); }
+    .month.changeover-month { background: rgba(220,225,231,.55); }
     .timeline-event-line { position: absolute; top: 114px; bottom: 0; width: 0; border-left: 2px solid #2e2e32; pointer-events: none; z-index: 4; }
-    .timeline-event-line::before { content: ''; position: absolute; z-index: 1; left: 0; top: 0; transform: translate(-50%, -50%); }
-    .timeline-event-line.transition::before { width: 12px; height: 12px; box-sizing: border-box; background: #ffffff; border: 2px solid #2e2e32; }
-    .timeline-event-line.deployment::before { width: 12px; height: 12px; box-sizing: border-box; background: #fee685; border: 2px solid #2e2e32; border-radius: 50%; }
+    .timeline-event-marker-rail { position: absolute; top: 114px; bottom: 0; width: 0; pointer-events: none; z-index: 14; }
+    .timeline-event-marker { position: sticky; top: 82px; display: block; width: 12px; height: 12px; box-sizing: border-box; border: 2px solid #2e2e32; background: #ffffff; transform: translate(calc(-50% + 1px), -50%); }
+    .timeline-event-marker-rail.deployment .timeline-event-marker { background: #fee685; border-radius: 50%; transform: translate(calc(-50% + 1px), -50%); }
 
     .bar.clipped-left { border-top-left-radius: 0; border-bottom-left-radius: 0; }
     .bar.clipped-right { border-top-right-radius: 0; border-bottom-right-radius: 0; }
@@ -1555,6 +1556,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .bar.active { color: #ffffff; background: var(--active-bar); }
     .bar.stopgap { color: #2e2e32; background: rgba(255,255,255,.92); border: 2px dashed var(--active-bar); }
     .bar.future { color: #2e2e32; background: #ffffff; border: 2px solid var(--enterprise-bar); }
+    .bar.renewal { color: #61656d; background: rgba(255,255,255,.4); border: 2px solid rgba(246,65,55,.36); }
     .bar.launch { border-color: var(--enterprise-bar); }
     .bar.enterprise.active { background: var(--enterprise-bar); }
     .bar.enterprise.stopgap { border-color: var(--enterprise-bar); }
@@ -1591,7 +1593,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
       :root { --month-w: 32px; }
       .page { padding: 22px 16px 38px; }
       .presentation-header { padding: 16px 8px 26px; }
-      .presentation-title { font-size: clamp(2.05em, 8.4vw, 3.1em); }
+      .presentation-title { font-size: clamp(.8em, 4vw, 2.6em); }
       .network-section { padding: 30px 22px 24px; }
 
       .hisd-section { padding: 30px 22px 24px; }
@@ -1858,9 +1860,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     }
     .group-row { background: var(--blue-tint-10); border-color: var(--blue-tint-20); }
     .group-label { background: var(--blue-tint-10); color: var(--nasa-blue); }
-    .timeline-event-line { border-left-color: var(--nasa-blue); }
-    .timeline-event-line.transition::before { border-color: var(--nasa-blue); }
-    .timeline-event-line.deployment::before { border-color: var(--nasa-navy); }
+    .timeline-event-line.transition, .timeline-event-line.deployment { border-left-color: #2e2e32; }
 
     @media (max-width: 920px) {
       .presentation-header { padding: 36px 24px 34px; }
@@ -2314,10 +2314,10 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .visual-expand:hover { background: var(--blue-tint-05); border-color: var(--blue-tint-40); }
     .visual-expand:focus-visible, .visual-viewer button:focus-visible { outline: 2px solid var(--nasa-blue); outline-offset: 3px; }
     body.visual-viewer-open { overflow: hidden; }
-    .visual-viewer { width: calc(100vw - 40px); max-width: 1840px; max-height: calc(100dvh - 40px); margin: auto; padding: 0; overflow: hidden; border: 1px solid #d1d1d1; border-radius: 12px; background: #ffffff; color: var(--ink); box-shadow: 0 18px 70px rgba(0,0,0,.3); }
+    .visual-viewer { width: calc(100vw - 40px); max-width: 1840px; height: calc(100dvh - 40px); max-height: calc(100dvh - 40px); margin: auto; padding: 0; overflow: hidden; border: 1px solid #d1d1d1; border-radius: 12px; background: #ffffff; color: var(--ink); box-shadow: 0 18px 70px rgba(0,0,0,.3); }
     .visual-viewer[open] { display: flex; flex-direction: column; }
     .visual-viewer::backdrop { background: rgba(22,46,81,.72); }
-    .visual-viewer-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; padding: 16px 20px; border-bottom: 1px solid #e3e3e3; background: #ffffff; }
+    .visual-viewer-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; padding: 8px 12px; background: #ffffff; }
     .visual-viewer-header h2 { margin: 0; color: var(--nasa-navy); font-size: 1.15em; line-height: 1.25; }
     .visual-viewer-controls { display: flex; align-items: center; gap: 7px; }
     .visual-viewer-controls button { min-width: 34px; min-height: 32px; padding: 5px 10px; border: 1px solid var(--blue-tint-20); border-radius: 4px; background: #ffffff; color: var(--nasa-blue); font-family: var(--font-body); font-size: .86em; font-weight: 650; cursor: pointer; }
@@ -2325,21 +2325,16 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .visual-viewer-controls button:disabled { opacity: .4; cursor: default; }
     .visual-viewer-controls .viewer-close { margin-left: 8px; }
     .viewer-zoom-level { width: 44px; color: #58585b; font-size: .75em; text-align: center; font-variant-numeric: tabular-nums; }
-    .visual-viewer-hint { margin: 0; padding: 8px 20px; color: #58585b; font-size: .75em; background: #f6f6f6; }
-    .visual-viewer-canvas { flex: 1 1 auto; min-height: 0; max-height: calc(100dvh - 180px); padding: 20px; overflow: auto; overscroll-behavior: contain; background: #f6f6f6; }
+    .visual-viewer-canvas { flex: 1 1 auto; min-height: 0; overflow: auto; overscroll-behavior: contain; background: #ffffff; }
     .visual-viewer-stage { position: relative; margin: 0 auto; }
-    .visual-viewer-content { position: absolute; top: 0; left: 0; transform-origin: top left; background: #ffffff; }
+    .visual-viewer-content { position: absolute; top: 0; left: 0; transform-origin: top left; background: transparent; }
     .visual-viewer-content .alps-reference { display: block; width: 100% !important; height: auto !important; min-width: 0 !important; }
     .visual-viewer-content .app-matrix { width: 100%; min-width: 0; table-layout: fixed; border-collapse: collapse; font-family: var(--font-body); font-size: 16px; }
     .visual-viewer-content .app-matrix th, .visual-viewer-content .app-matrix td { padding: 12px 10px; }
+    .visual-viewer[data-visual-view="matrix"] .app-matrix thead th { position: sticky; top: 0; z-index: 3; background: #f0f3fa; }
+    .visual-viewer[data-visual-view="matrix"] .app-matrix thead th:first-child { z-index: 4; }
     .visual-viewer-content .app-matrix th:first-child, .visual-viewer-content .app-matrix td:first-child { width: 245px; min-width: 245px; }
     .visual-viewer-content .app-matrix th:nth-child(2), .visual-viewer-content .app-matrix td:nth-child(2) { width: 265px; min-width: 265px; }
-    .visual-viewer[data-visual-view="timeline"] .visual-viewer-header { justify-content: flex-end; padding: 8px 12px; border-bottom: 0; }
-    .visual-viewer[data-visual-view="timeline"] { height: calc(100dvh - 40px); }
-    .visual-viewer[data-visual-view="timeline"] .visual-viewer-header h2,
-    .visual-viewer[data-visual-view="timeline"] .visual-viewer-hint { display: none; }
-    .visual-viewer[data-visual-view="timeline"] .visual-viewer-canvas { max-height: none; padding: 0; background: #ffffff; }
-    .visual-viewer[data-visual-view="timeline"] .visual-viewer-content { background: transparent; }
     .visual-viewer-content .timeline-enlarged { width: 100%; margin: 0; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; --month-w: 48px; --row-h: 56px; }
     .visual-viewer-content .timeline-enlarged .timeline-key { width: fit-content; margin: 0 auto 12px; grid-template-columns: repeat(3, max-content); }
     .visual-viewer-content .timeline-enlarged .timeline-shell { width: fit-content; max-width: none; max-height: none; margin: 0 auto; overflow: auto; box-shadow: none; }
@@ -2352,10 +2347,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .savings-results-subtitle { margin: -3px 0 14px; color: #58585b; font-size: .86em; line-height: 1.4; text-align: center; }
     .bentley-takeaway { max-width: 900px; margin: 26px auto 0; padding-top: 20px; border-top: 1px solid #e3e3e3; color: #162e51; font-size: 1em; font-weight: 550; line-height: 1.55; text-align: center; text-wrap: balance; }
     @media (max-width: 620px) {
-      .visual-viewer { width: calc(100vw - 16px); max-height: calc(100dvh - 16px); }
-      .visual-viewer[data-visual-view="timeline"] { height: calc(100dvh - 16px); }
-      .visual-viewer-header { padding: 12px; }
-      .visual-viewer-canvas { padding: 12px; }
+      .visual-viewer { width: calc(100vw - 16px); height: calc(100dvh - 16px); max-height: calc(100dvh - 16px); }
       .visual-viewer-controls { gap: 4px; }
     }
     @media print {
@@ -2681,7 +2673,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     <header class="presentation-header">
       <p class="presentation-kicker">Project Management</p>
       <img class="nasa-meatball" src="https://www.nasa.gov/wp-content/themes/nasa/assets/images/nasa-logo.svg" alt="NASA insignia" width="112" height="112">
-      <h1 class="presentation-title">Systems Modernization</h1>
+      <h1 class="presentation-title">Library Systems Modernization</h1>
       <p class="presentation-subtitle">How I led the effort to bring ten long-established, geographically dispersed NASA libraries into a shared way of working—replacing fragmented technologies, aligning services and operations, and guiding the vendor and cost decisions behind the transformation.</p>
     </header>
     <section class="contents-section" aria-labelledby="contents-title">
@@ -2695,7 +2687,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
           <li><a href="#stakeholder-collaboration"><span class="contents-number" aria-hidden="true">04</span><span class="contents-label">Stakeholders Behind the Transformation</span><span class="contents-arrow" aria-hidden="true">↓</span></a></li>
           <li><a href="#business-case"><span class="contents-number" aria-hidden="true">05</span><span class="contents-label">A Lower-Cost Plan Expanded Library Services</span><span class="contents-arrow" aria-hidden="true">↓</span></a></li>
           <li><a href="#connected-environment"><span class="contents-number" aria-hidden="true">06</span><span class="contents-label">One Connected Library Environment</span><span class="contents-arrow" aria-hidden="true">↓</span></a></li>
-          <li><a href="#enterprise-website"><span class="contents-number" aria-hidden="true">07</span><span class="contents-label">Enterprise Website</span><span class="contents-arrow" aria-hidden="true">↓</span></a></li>
+          <li><a href="#enterprise-website"><span class="contents-number" aria-hidden="true">07</span><span class="contents-label">A Digital Front Door to NASA’s Libraries</span><span class="contents-arrow" aria-hidden="true">↓</span></a></li>
           <li><a href="#modernization-timeline"><span class="contents-number" aria-hidden="true">08</span><span class="contents-label">The Shift to Shared Services</span><span class="contents-arrow" aria-hidden="true">↓</span></a></li>
           <li><a href="#vendor-partnership"><span class="contents-number" aria-hidden="true">09</span><span class="contents-label">One Point of Contact, From Demo to Delivery</span><span class="contents-arrow" aria-hidden="true">↓</span></a></li>
           <li><a href="#resources-audit"><span class="contents-number" aria-hidden="true">10</span><span class="contents-label">Finding the Access NASA Already Had</span><span class="contents-arrow" aria-hidden="true">↓</span></a></li>
@@ -2976,11 +2968,11 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     </section>
 
     <section class="app-matrix-section" id="starting-point" aria-labelledby="app-matrix-title">
-      <p class="legacy-kicker">Starting Point</p>
+      <p class="legacy-kicker">The Baseline</p>
       <h2 class="legacy-title" id="app-matrix-title">A Fragmented Systems Landscape</h2>
       <p class="legacy-summary">Before consolidation, the ten center libraries held different mixes of annual product licenses. Even when centers used the same product, services and annual invoices were separate.</p>
       <div class="visual-actions"><button type="button" class="visual-expand" data-visual-view="matrix" aria-haspopup="dialog" aria-controls="visual-viewer"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 3H3v4m10-4h4v4M3 13v4h4m10-4v4h-4"/></svg>Enlarge matrix</button></div>
-      <div class="app-matrix-wrap" role="region" aria-label="Pre-modernization service licenses by center; horizontally scrollable" tabindex="0">
+      <div class="app-matrix-wrap" role="region" aria-label="Pre-modernization services and access by center; horizontally scrollable" tabindex="0">
         <table class="app-matrix">
           <thead><tr><th scope="col">Service</th><th scope="col">Description</th><th scope="col" title="Ames Research Center">ARC</th><th scope="col" title="Armstrong Flight Research Center">AFRC</th><th scope="col" title="Glenn Research Center">GRC</th><th scope="col" title="Goddard Space Flight Center">GSFC</th><th scope="col" title="Goddard Institute for Space Studies">GISS</th><th scope="col" title="NASA Headquarters">HQ</th><th scope="col" title="Johnson Space Center">JSC</th><th scope="col" title="Kennedy Space Center">KSC</th><th scope="col" title="Langley Research Center">LaRC</th><th scope="col" title="Marshall Space Flight Center">MSFC</th></tr></thead>
           <tbody>
@@ -2996,11 +2988,16 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
             <tr><th scope="row">OCLC ILLiad</th><td class="service-description">Interlibrary loan management</td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not licensed">×</span></td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not licensed">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not licensed">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not licensed">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not licensed">×</span></td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not licensed">×</span></td></tr>
             <tr><th scope="row">OCLC WorldShare ILL</th><td class="service-description">Interlibrary loan network</td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not licensed">×</span></td></tr>
             <tr><th scope="row">OCLC Connexion</th><td class="service-description">Cataloging client</td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not licensed">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not licensed">×</span></td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not licensed">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not licensed">×</span></td></tr>
-            <tr><th scope="row">Institutional Repository</th><td class="service-description">Digital repository</td><td class="not-licensed"><span class="matrix-no" aria-label="Not licensed">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not licensed">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not licensed">×</span></td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not licensed">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not licensed">×</span></td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not licensed">×</span></td><td class="licensed"><span class="matrix-check" aria-label="Licensed">✓</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not licensed">×</span></td></tr>
+            <tr><th scope="row">DSpace</th><td class="service-description">Digitized document collection</td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="licensed"><span class="matrix-check" aria-label="In place">✓</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td></tr>
+            <tr><th scope="row">Fedora Commons</th><td class="service-description">Institutional repository</td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="licensed"><span class="matrix-check" aria-label="In place">✓</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td></tr>
+            <tr><th scope="row">Drupal</th><td class="service-description">Website platform</td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="licensed"><span class="matrix-check" aria-label="In place">✓</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td></tr>
+            <tr><th scope="row">SharePoint</th><td class="service-description">Website platform</td><td class="licensed"><span class="matrix-check" aria-label="In place">✓</span></td><td class="licensed"><span class="matrix-check" aria-label="In place">✓</span></td><td class="licensed"><span class="matrix-check" aria-label="In place">✓</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="licensed"><span class="matrix-check" aria-label="In place">✓</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="licensed"><span class="matrix-check" aria-label="In place">✓</span></td><td class="licensed"><span class="matrix-check" aria-label="In place">✓</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="licensed"><span class="matrix-check" aria-label="In place">✓</span></td></tr>
+            <tr><th scope="row">WordPress</th><td class="service-description">Website platform</td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="licensed"><span class="matrix-check" aria-label="In place">✓</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="licensed"><span class="matrix-check" aria-label="In place">✓</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td></tr>
+            <tr><th scope="row">Federated Authentication</th><td class="service-description">SAML-based resource access</td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td><td class="not-licensed"><span class="matrix-no" aria-label="Not in place">×</span></td></tr>
           </tbody>
         </table>
       </div>
-      <div class="app-matrix-legend" aria-label="Matrix legend"><span><b class="matrix-check" aria-hidden="true">✓</b>Licensed</span><span><b class="matrix-no" aria-hidden="true">×</b>Not licensed</span></div>
+      <div class="app-matrix-legend" aria-label="Matrix legend"><span><b class="matrix-check" aria-hidden="true">✓</b>Licensed or in place</span><span><b class="matrix-no" aria-hidden="true">×</b>Not licensed or not in place</span></div>
     </section>
 
     <section class="stakeholder-section" id="stakeholder-collaboration" aria-labelledby="stakeholder-title">
@@ -3048,7 +3045,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     </section>
 
 <section class="savings-section" id="business-case" aria-labelledby="savings-title">
-      <p class="savings-kicker">Modernization Plans</p>
+      <p class="savings-kicker">The Turning Point</p>
       <h2 class="savings-title" id="savings-title">A Lower-Cost Plan Expanded Library Services</h2>
       <p class="savings-intro">The original plan, approved in 2021 and prototyped in 2022, stalled when high costs halted funding. In 2024, I developed a lower-cost plan that expanded library services and won approval to proceed.</p>
 
@@ -3106,7 +3103,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     </section>
 
     <section class="post-section" id="connected-environment" aria-labelledby="post-title">
-      <p class="legacy-kicker">Modernization</p>
+      <p class="legacy-kicker">The Approved Blueprint</p>
       <h2 class="legacy-title" id="post-title">One Connected Library Environment</h2>
       <p class="legacy-summary">The Agency Library Portal System (ALPS) is designed to give NASA’s librarians and users one connected way to discover, request, and access library services across the agency—from research support and resource sharing to digital collections and subscribed resources.</p>
       <div class="visual-actions"><button type="button" class="visual-expand" data-visual-view="architecture" aria-haspopup="dialog" aria-controls="visual-viewer"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 3H3v4m10-4h4v4M3 13v4h4m10-4v4h-4"/></svg>Enlarge diagram</button></div>
@@ -3317,7 +3314,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 
     <section class="website-section" id="enterprise-website" aria-labelledby="website-title">
       <div class="website-heading">
-        <p class="website-kicker">Enterprise Website</p>
+        <p class="website-kicker">From Ten Sites to One</p>
         <h2 id="website-title">A Digital Front Door to NASA’s Libraries</h2>
         <p class="website-summary">Replacing ten center-specific library sites with one enterprise website took a patron-centered effort. I led the project, collaborating with NASA library staff, users, leadership, and web developers to shape design and content around their needs and create the best experience for NASA’s research community.</p>
       </div>
@@ -3331,7 +3328,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     <section class="timeline-section" id="modernization-timeline" aria-labelledby="timeline-title">
     <div class="masthead">
       <div>
-        <p class="timeline-kicker">Modernization Timeline</p>
+        <p class="timeline-kicker">Timeline</p>
         <h1 id="timeline-title">The Shift to Shared Services</h1>
         <p class="dek">Follow the modernization roadmap from fragmented center subscriptions toward shared enterprise services, including contract extensions, migrations, and planned launch milestones.</p>
       </div>
@@ -3372,7 +3369,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     
 
     <section class="vendor-section" id="vendor-partnership" aria-labelledby="vendor-title">
-      <p class="vendor-kicker">Vendor Partnership</p>
+      <p class="vendor-kicker">Vendor Coordination</p>
       <h2 class="vendor-title" id="vendor-title">One Point of Contact, From Demo to Delivery</h2>
         <p class="vendor-summary">I coordinated vendor evaluation and implementation, from demonstrations and negotiations through approvals, migrations, and support; the Chief Librarian approved expenditures.</p>
 
@@ -3482,7 +3479,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
   </footer>
 
 
-  <dialog class="visual-viewer" id="visual-viewer" aria-labelledby="visual-viewer-title" aria-describedby="visual-viewer-hint">
+  <dialog class="visual-viewer" id="visual-viewer" aria-labelledby="visual-viewer-title">
     <header class="visual-viewer-header">
       <h2 id="visual-viewer-title">Enlarged view</h2>
       <div class="visual-viewer-controls" role="group" aria-label="View controls">
@@ -3493,7 +3490,6 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <button type="button" class="viewer-close" data-viewer-action="close" autofocus>Close</button>
       </div>
     </header>
-    <p class="visual-viewer-hint" id="visual-viewer-hint">Use the controls to zoom; scroll to explore.</p>
     <div class="visual-viewer-canvas" tabindex="0" role="region" aria-label="Enlarged visual">
       <div class="visual-viewer-stage"><div class="visual-viewer-content"></div></div>
     </div>
@@ -3567,12 +3563,12 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         },
         {
           name: 'Ex Libris Alma and Primo VE', note: 'Future enterprise library services platform and discovery interface', rows: [
-            row('NASA', 'Enterprise', true, [seg('future','2025-11-01','2026-10-31','$XX,XXX','Ex Libris','Alma & Primo VE','Future Subscription','Replaces SirsiDynix Symphony, Ex Libris 360, and Ex Libris Summon.', true, false)])
+            row('NASA', 'Enterprise', true, [seg('future','2025-10-01','2026-09-30','$XX,XXX','Ex Libris','Alma & Primo VE','Future Subscription','Replaces SirsiDynix Symphony, Ex Libris 360, and Ex Libris Summon.', true, false)])
           ]
         },
         {
           name: 'Ex Libris Rapido', note: 'Future enterprise resource-sharing service', rows: [
-            row('NASA', 'Enterprise', true, [seg('future','2025-11-01','2026-10-31','$XX,XXX','Ex Libris','Rapido','Future Subscription','Replaces OCLC ILLiad.', true, false)])
+            row('NASA', 'Enterprise', true, [seg('future','2025-10-01','2026-09-30','$XX,XXX','Ex Libris','Rapido','Future Subscription','Replaces OCLC ILLiad.', true, false)])
           ]
         },
         {
@@ -3615,7 +3611,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         },
         {
           name: 'OpenAthens', note: 'Enterprise authentication service', rows: [
-            row('NASA', 'Enterprise', true, [seg('future','2025-05-01','2026-04-30','$XX,XXX','Jisc','OpenAthens','Future Subscription','', true, false)])
+            row('NASA', 'Enterprise', true, [seg('future','2025-05-01','2026-04-30','$XX,XXX','Jisc','OpenAthens','Future Subscription','', true, false), seg('renewal','2026-05-01','2027-04-30','$XX,XXX','Jisc','OpenAthens','Annual Renewal','Ongoing annual subscription.')])
           ]
         },
         {
@@ -3630,17 +3626,17 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         },
         {
           name: 'Springshare LibAnswers (Full)', note: 'Future enterprise reference platform with live chat', rows: [
-            row('NASA', 'Enterprise', true, [seg('future','2025-05-01','2026-04-30','$XX,XXX','Springshare','LibAnswers Full','Future Subscription','Includes helpdesk ticketing, searchable FAQs, live chat, and reference analytics.', true, false)])
+            row('NASA', 'Enterprise', true, [seg('future','2025-05-01','2026-04-30','$XX,XXX','Springshare','LibAnswers Full','Future Subscription','Includes helpdesk ticketing, searchable FAQs, live chat, and reference analytics.', true, false), seg('renewal','2026-05-01','2027-04-30','$XX,XXX','Springshare','LibAnswers Full','Annual Renewal','Ongoing annual subscription.')])
           ]
         },
         {
           name: 'Springshare LibGuides', note: 'Future enterprise research-guides platform', rows: [
-            row('NASA', 'Enterprise', true, [seg('future','2025-05-01','2026-04-30','$XX,XXX','Springshare','LibGuides','Future Subscription','Enterprise platform for publishing library guides and resource information.', true, false)])
+            row('NASA', 'Enterprise', true, [seg('future','2025-05-01','2026-04-30','$XX,XXX','Springshare','LibGuides','Future Subscription','Enterprise platform for publishing library guides and resource information.', true, false), seg('renewal','2026-05-01','2027-04-30','$XX,XXX','Springshare','LibGuides','Annual Renewal','Ongoing annual subscription.')])
           ]
         },
         {
           name: 'WordPress', note: 'Enterprise content management system (CMS)', rows: [
-            row('NASA', 'Enterprise', true, [seg('future launch','2025-01-01','2025-12-31','$XX,XXX','WordPress','WordPress','Future Subscription','NASA Library website: https://library.nasa.gov', true, false)])
+            row('NASA', 'Enterprise', true, [seg('future launch','2025-01-01','2025-12-31','$XX,XXX','WordPress','WordPress','Future Subscription','NASA Library website: https://library.nasa.gov', true, false), seg('renewal','2026-01-01','2026-12-31','$XX,XXX','WordPress','WordPress','Annual Renewal','Ongoing annual subscription.')])
           ]
         }
       ];
@@ -3779,6 +3775,14 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         line.style.left = `calc(${position(date)} * var(--month-w))`;
         line.setAttribute('aria-label', label);
         timeline.appendChild(line);
+        const markerRail = document.createElement('span');
+        markerRail.className = `timeline-event-marker-rail ${type}`;
+        markerRail.style.left = line.style.left;
+        markerRail.setAttribute('aria-hidden', 'true');
+        const marker = document.createElement('span');
+        marker.className = 'timeline-event-marker';
+        markerRail.appendChild(marker);
+        timeline.appendChild(markerRail);
       }
 
       function makeBar(segment, rowInfo) {
