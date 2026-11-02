@@ -2329,7 +2329,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     .visual-viewer-stage { position: relative; margin: 0 auto; }
     .visual-viewer-content { position: absolute; top: 0; left: 0; transform-origin: top left; background: transparent; }
     .visual-viewer-content .alps-reference { display: block; width: 100% !important; height: auto !important; min-width: 0 !important; }
-    .visual-viewer-content .app-matrix { width: 100%; min-width: 0; table-layout: fixed; border-collapse: collapse; font-family: var(--font-body); font-size: 16px; }
+    .visual-viewer-content .app-matrix { width: 100%; min-width: 0; table-layout: fixed; border-collapse: separate; border-spacing: 0; font-family: var(--font-body); font-size: 16px; }
     .visual-viewer-content .app-matrix th, .visual-viewer-content .app-matrix td { padding: 12px 10px; }
     .visual-viewer[data-visual-view="matrix"] .app-matrix thead th { position: sticky; top: 0; z-index: 3; background: #f0f3fa; }
     .visual-viewer[data-visual-view="matrix"] .app-matrix thead th:first-child { z-index: 4; }
@@ -2698,7 +2698,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     <section class="network-section" id="nasa-centers" aria-labelledby="network-title">
       <p class="network-kicker">NASA at a Glance</p>
       <h2 class="network-title" id="network-title">NASA Centers and Facilities</h2>
-      <p class="network-summary">NASA’s library services support personnel across 18 centers and facilities nationwide.</p>
+      <p class="network-summary">NASA’s library services support approximately 68,000 personnel across 18 centers and facilities.</p>
       <div class="network-map">
         <svg viewBox="0 0 1150 700" role="img" aria-labelledby="network-map-title network-map-desc">
           <title id="network-map-title">Map of 18 NASA centers and facilities</title>
@@ -2997,7 +2997,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
           </tbody>
         </table>
       </div>
-      <div class="app-matrix-legend" aria-label="Matrix legend"><span><b class="matrix-check" aria-hidden="true">✓</b>Licensed or in place</span><span><b class="matrix-no" aria-hidden="true">×</b>Not licensed or not in place</span></div>
+      <div class="app-matrix-legend" aria-label="Matrix legend"><span><b class="matrix-check" aria-hidden="true">✓</b>Licensed</span><span><b class="matrix-no" aria-hidden="true">×</b>Not licensed</span></div>
     </section>
 
     <section class="stakeholder-section" id="stakeholder-collaboration" aria-labelledby="stakeholder-title">
@@ -4016,6 +4016,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     return Math.max(200, viewport.clientWidth - parseFloat(styles.paddingLeft) - parseFloat(styles.paddingRight));
   }
   function layout() {
+    const matrix = dialog.dataset.visualView === 'matrix';
     content.style.width = `${baseWidth}px`;
     if (dialog.dataset.visualView === 'timeline') {
       const enlarged = content.querySelector('.timeline-enlarged');
@@ -4025,9 +4026,13 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         shell.style.height = `${Math.max(180, viewport.clientHeight / zoom - key.offsetHeight - 12)}px`;
       }
     }
-    content.style.transform = `scale(${zoom})`;
+    // CSS zoom keeps the matrix header in the viewport's scroll layout.
+    // Transform scaling offsets sticky table cells while scrolling.
+    content.style.position = matrix ? 'relative' : 'absolute';
+    content.style.zoom = matrix ? zoom : '';
+    content.style.transform = matrix ? 'none' : `scale(${zoom})`;
     stage.style.width = `${Math.ceil(baseWidth * zoom)}px`;
-    stage.style.height = `${Math.ceil(content.getBoundingClientRect().height)}px`;
+    stage.style.height = matrix ? 'auto' : `${Math.ceil(content.getBoundingClientRect().height)}px`;
     level.textContent = `${Math.round(zoom * 100)}%`;
     less.disabled = zoom <= .35001;
     more.disabled = zoom >= 2;
